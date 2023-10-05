@@ -27,7 +27,7 @@ void BrickCollision(TBrick *brick, TBall *ball)
     {
         brick->active = false;
         float degree = GetAngle({ball->position.x - brick->position.x, ball->position.y - brick->position.y});
-        printf("Degrees: %.0f\n", GetAngle({ball->position.x - brick->position.x, ball->position.y - brick->position.y}));
+        // printf("Degrees: %.0f\n", GetAngle({ball->position.x - brick->position.x, ball->position.y - brick->position.y}));
         if (degree > 45.0f && degree < 135.0f)
         {
             // Abajo
