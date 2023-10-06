@@ -66,7 +66,7 @@ int esat::main(int argc, char **argv) {
   srand(time(NULL));
   Init();
 
-  while(esat::WindowIsOpened() && !esat::IsSpecialKeyDown(esat::kSpecialKey_Escape) && !quit_game){
+  while(esat::WindowIsOpened() && !esat::IsSpecialKeyDown(esat::kSpecialKey_Escape) && window_type != TWindowType::quit_game){
 
   	last_time = esat::Time();
     esat::DrawBegin();

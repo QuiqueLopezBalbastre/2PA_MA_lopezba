@@ -57,9 +57,16 @@ extern float transformed_brick[2 * 4];
 
 extern float brick_points[8];
 
-extern bool quit_game;
 extern const int kWindowWidth, kWindowHeight;
 extern unsigned char fps;
 extern double current_time, last_time;
+
+struct GameData{
+    esat::Vec2 player_position, ball_position;
+    bool ball_active;
+    TBrick brick[8][11];
+    int window_status;
+};
+
 
 #endif

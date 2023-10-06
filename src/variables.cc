@@ -34,7 +34,6 @@ float brick_points[8] = {
     -0.5f,
 };
 
-bool quit_game = false;
 const int kWindowWidth=1200, kWindowHeight=800;
 unsigned char fps=60;
 double current_time, last_time;

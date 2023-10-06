@@ -24,7 +24,7 @@ void MainMenu(){
 
     ImGui::SetCursorPos(rect2Pos);
     if(ImGui::Button("Quit", ImVec2(100, 40))) {
-        quit_game=true;
+        window_type = TWindowType::quit_game;
     }
 
     ImGui::End();
