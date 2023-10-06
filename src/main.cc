@@ -6,7 +6,7 @@
 #include <esat/time.h>
 #include <esat/helpers.h>
 #include <esat_extra/imgui.h>
-
+#include <esat_extra/sqlite3.h>
 
 #include <conio.h>
 #include <stdio.h>
@@ -14,7 +14,6 @@
 #include <time.h>
 #include <string.h>
 #include <math.h>
-
 
 #include "../include/variables.h"
 #include "../include/ball.h"
