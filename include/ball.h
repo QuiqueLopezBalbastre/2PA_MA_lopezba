@@ -1,3 +1,14 @@
+/**
+ * @file ball.h
+ * @author Quique López (lopezba@esat-alumni.com)
+ * @brief Functions related with the ball
+ * @version 0.1
+ * @date 2023-10-10
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+
 #ifndef BALL
 #define BALL
 

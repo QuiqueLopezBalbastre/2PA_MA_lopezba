@@ -5,6 +5,7 @@
 
 #define PI 3.14159265
 
+
 struct TBall
 {
     esat::Vec2 position, speed, scale, direction;
