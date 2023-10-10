@@ -1,5 +1,5 @@
 #ifndef BRICKS
-#define BRICKS
+#define BRICKS 1
 
 #include "variables.h"
 /**

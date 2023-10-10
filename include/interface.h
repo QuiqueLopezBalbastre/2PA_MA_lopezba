@@ -1,5 +1,5 @@
-#ifndef INTERFACE
-#define INTERFACE
+#ifndef __INTERFACE__
+#define __INTERFACE__ 1
 #include "variables.h"
 
 /**

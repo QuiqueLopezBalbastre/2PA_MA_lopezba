@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef BALL
-#define BALL
+#ifndef __BALL__
+#define __BALL__ 1
 
 #include "variables.h"
 

@@ -1,5 +1,5 @@
-#ifndef COLLISIONS
-#define COLLISIONS
+#ifndef __COLLISIONS__
+#define __COLLISIONS__ 1
 
 #include "variables.h"
 

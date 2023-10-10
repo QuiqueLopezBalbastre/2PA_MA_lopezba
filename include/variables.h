@@ -1,5 +1,5 @@
-#ifndef VARIABLES
-#define VARIABLES
+#ifndef __VARIABLES__
+#define __VARIABLES__ 1
 
 #include <esat/math.h>
 

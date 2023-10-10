@@ -1,5 +1,5 @@
-#ifndef PLAYER
-#define PLAYER
+#ifndef __PLAYER__
+#define __PLAYER__ 1
 
 #include "variables.h"
 
