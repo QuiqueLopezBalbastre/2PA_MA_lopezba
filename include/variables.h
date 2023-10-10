@@ -11,6 +11,9 @@
 #define __VARIABLES_H__ 1
 
 #include <esat/math.h>
+#include "ball.h"
+#include "bricks.h"
+#include "player.h"
 
 #define PI 3.14159265
 

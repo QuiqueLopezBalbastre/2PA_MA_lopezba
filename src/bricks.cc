@@ -32,7 +32,7 @@ void DrawBrick(TBrick brick[8][11]){
 
             if(brick[i][j].active){
                 int row = i;
-                TransformAndDraw(brick[i][j].position.x, brick[i][j].position.y, brick[i][j].scale.x, brick[i][j].scale.y, row);
+                TransformAndDraw(brick[i][j].position, brick[i][j].scale, row);
             }
         }
     }
