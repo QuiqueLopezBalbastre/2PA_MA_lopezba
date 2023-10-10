@@ -1,7 +1,23 @@
-#ifndef __PLAYER__
-#define __PLAYER__ 1
+/**
+ * @file player.h
+ * @author Quique López (lopezba@esat-alumni.com)
+ * @brief Player data structure & methods definitions
+ * @version 0.1
+ * @date 2023-10-10
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+#ifndef __PLAYER_H__
+#define __PLAYER_H__ 1
 
 #include "variables.h"
+
+struct TPlayer
+{
+    esat::Vec2 position, speed, scale;
+    esat::Vec2 *points, *world_points;
+};
 
 /**
  * @brief Set a player variable to a default parameters.

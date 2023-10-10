@@ -1,30 +1,20 @@
-#ifndef __VARIABLES__
-#define __VARIABLES__ 1
+/**
+ * @file variables.h
+ * @brief 
+ * @version 0.1
+ * @date 2023-10-10
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+#ifndef __VARIABLES_H__
+#define __VARIABLES_H__ 1
 
 #include <esat/math.h>
 
 #define PI 3.14159265
 
 
-struct TBall
-{
-    esat::Vec2 position, speed, scale, direction;
-    bool active;
-    int initial_direction;
-};
-
-struct TBrick
-{
-    esat::Vec2 position, scale;
-    bool active;
-    int hp;
-};
-
-struct TPlayer
-{
-    esat::Vec2 position, speed, scale;
-    esat::Vec2 *points, *world_points;
-};
 enum struct TWindowType
 {
     main_menu,

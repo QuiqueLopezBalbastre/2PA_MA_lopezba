@@ -1,7 +1,19 @@
-#ifndef __COLLISIONS__
-#define __COLLISIONS__ 1
+/**
+ * @file collisions.h
+ * @author Sergio Madaleno (madalenofi@esat-alumni.com)
+ * @brief Collisions methods definitions
+ * @version 0.1
+ * @date 2023-10-10
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+#ifndef __COLLISIONS_H__
+#define __COLLISIONS_H__ 1
 
-#include "variables.h"
+#include "ball.h"
+#include "bricks.h"
+#include "player.h"
 
 /**
  * @brief Collision between two 2D squares
