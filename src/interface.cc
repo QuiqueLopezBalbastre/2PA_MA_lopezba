@@ -1,7 +1,7 @@
 #include <esat/draw.h>
 #include <esat_extra/imgui.h>
 #include "../include/interface.h"
-#include "../include/variables.h"
+#include "variables.cc"
 
 void MainMenu(){
 

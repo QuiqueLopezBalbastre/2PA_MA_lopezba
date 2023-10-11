@@ -11,7 +11,6 @@
 #ifndef __BRICKS_H_
 #define __BRICKS_H__ 1
 
-// #include "variables.h"
 
 struct TBrick
 {

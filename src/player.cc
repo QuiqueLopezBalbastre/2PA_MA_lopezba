@@ -7,7 +7,7 @@
 
 #include "../include/player.h"
 #include "../include/collisions.h"
-#include "../include/variables.h"
+#include "variables.cc"
 TPlayer InitPlayer()
 {
     TPlayer temp_player;

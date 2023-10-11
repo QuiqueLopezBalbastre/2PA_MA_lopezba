@@ -4,8 +4,8 @@
 #include <stdlib.h>
 #include <math.h>
 
-#include "../include/variables.h"
 #include "../include/ball.h"
+#include "variables.cc"
 
 void InitShapeCoords(float *circle)
 {

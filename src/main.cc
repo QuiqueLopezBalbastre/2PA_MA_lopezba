@@ -15,12 +15,12 @@
 #include <string.h>
 #include <math.h>
 
-#include "../include/variables.h"
 #include "../include/ball.h"
 #include "../include/bricks.h"
 #include "../include/collisions.h"
 #include "../include/interface.h"
 #include "../include/player.h"
+#include "variables.cc"
 
 void Init(){
 
