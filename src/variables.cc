@@ -3,10 +3,10 @@
 const int kBrick_cols = 8;
 const int kBrick_rows = 11;
 
-TBall g_ball;
-TBrick g_brick[kBrick_cols][kBrick_rows];
-TPlayer g_player;
-TWindowType window_type = TWindowType::main_menu;
+// TBall g_ball;
+// TBrick g_brick[kBrick_cols][kBrick_rows];
+// TPlayer g_player;
+// TWindowType window_type = TWindowType::main_menu;
 
 float ball_coords[30 * 2] = {0.0f};
 float transformed_coords[30 * 2] = {0.0f};

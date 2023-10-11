@@ -10,7 +10,6 @@
  */
 #ifndef __INTERFACE_H__
 #define __INTERFACE_H__ 1
-#include "variables.h"
 
 /**
  * @brief 

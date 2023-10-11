@@ -11,7 +11,6 @@
 #ifndef __PLAYER_H__
 #define __PLAYER_H__ 1
 
-#include "variables.h"
 
 struct TPlayer
 {

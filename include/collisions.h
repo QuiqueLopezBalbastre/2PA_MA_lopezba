@@ -11,6 +11,7 @@
 #ifndef __COLLISIONS_H__
 #define __COLLISIONS_H__ 1
 
+#include <esat/math.h>
 #include "ball.h"
 #include "bricks.h"
 #include "player.h"

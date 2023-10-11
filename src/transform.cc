@@ -1,7 +1,7 @@
 #include <esat/math.h>
 #include <esat/draw.h>
 
-#include "variables.cc"
+#include "../include/variables.h"
 
 void TransformAndDraw(esat::Vec2 position, esat::Vec2 scale, int row){
 

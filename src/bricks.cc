@@ -1,4 +1,5 @@
 #include <esat/draw.h>
+#include <esat/math.h>
 
 #include "../include/variables.h"
 #include "../include/bricks.h"
@@ -31,8 +32,7 @@ void DrawBrick(TBrick brick[8][11]){
         for(int j=0; j<kBrick_rows; ++j){
 
             if(brick[i][j].active){
-                int row = i;
-                TransformAndDraw(brick[i][j].position, brick[i][j].scale, row);
+                TransformAndDraw(brick[i][j].position, brick[i][j].scale, i);
             }
         }
     }

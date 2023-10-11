@@ -12,7 +12,7 @@
 #ifndef __BALL__
 #define __BALL__ 1
 
-#include "variables.h"
+
 
 struct TBall
 {

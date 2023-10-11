@@ -6,7 +6,6 @@
 
 #include "../include/variables.h"
 #include "../include/ball.h"
-#include "../include/bricks.h"
 
 void InitShapeCoords(float *circle)
 {

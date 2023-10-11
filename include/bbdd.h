@@ -11,7 +11,6 @@
 #ifndef __BBDD_H__
 #define __BBDD_H__ 1
 
-#include "bbdd.h"
 
 
 
