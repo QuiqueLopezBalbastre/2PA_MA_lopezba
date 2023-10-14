@@ -9,7 +9,7 @@
 void InitBrick()
 {
     float initialX=175.0f, initialY = 120.0f;
-    int brickWidth = 40, brickHeight = 30;
+    float brickWidth = 40, brickHeight = 30;
     int spacingX = 45, spacingY = 5;
 
     for (int i = 0; i < kBrick_cols; ++i)

@@ -1,7 +1,7 @@
 #include <esat/math.h>
 
-#include "ball.h"
 #include "bricks.h"
+#include "ball.h"
 #include "player.h"
 
 
@@ -40,7 +40,7 @@ esat::Vec2 RightUp = {1.0f, -1.0f};
 esat::Vec2 LeftUp = {-1.0f, -1.0f};
 esat::Vec2 LeftDown = {-1.0f, 1.0f};
 
-float kCricunfernece = 2 * PI;
+double kCricunfernece = 2 * PI;
 const int kNumPointsBrick = 4;
 float transformed_brick[2 * kNumPointsBrick] = {0.0f};
 

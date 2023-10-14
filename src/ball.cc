@@ -7,9 +7,9 @@
 #include "../include/ball.h"
 #include "variables.cc"
 
-void InitShapeCoords(float *circle)
+void InitShapeCoords(double *circle)
 {
-    float portion = PI * 2 / num_ball_points;
+    double portion = PI * 2 / num_ball_points;
     for (int i = 0; i < num_ball_points; ++i)
     {
         circle[i * 2] = cos(portion * i);
