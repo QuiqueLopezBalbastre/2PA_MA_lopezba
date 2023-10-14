@@ -8,8 +8,8 @@
  * @copyright Copyright (c) 2023
  * 
  */
-#ifndef __PLAYER_H__
-#define __PLAYER_H__ 1
+#ifndef PLAYER_H
+#define PLAYER_H 1
 
 
 struct TPlayer

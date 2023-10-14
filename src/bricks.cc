@@ -1,10 +1,10 @@
 #include <esat/draw.h>
 #include <esat/math.h>
 
-#include "variables.cc"
 #include "../include/bricks.h"
 #include "../include/collisions.h"
 #include "../include/transform.h"
+#include "variables.cc"
 
 void InitBrick()
 {

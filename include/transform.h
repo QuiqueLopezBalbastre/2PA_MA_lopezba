@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef __TRANSFORM_H__
-#define __TRANSFORM_H__ 1
+#ifndef TRANSFORM_H
+#define TRANSFORM_H 1
 
 #include <esat/math.h>
 

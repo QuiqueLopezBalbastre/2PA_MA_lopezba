@@ -9,10 +9,8 @@
  * 
  */
 
-#ifndef __BALL__
-#define __BALL__ 1
-
-
+#ifndef BALL_H
+#define BALL_H 1
 
 struct TBall
 {

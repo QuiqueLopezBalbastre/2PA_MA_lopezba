@@ -8,8 +8,8 @@
  * @copyright Copyright (c) 2023
  * 
  */
-#ifndef __BBDD_H__
-#define __BBDD_H__ 1
+#ifndef BBDD_H
+#define BBDD_H 1
 
 
 

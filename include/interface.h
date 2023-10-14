@@ -8,8 +8,8 @@
  * @copyright Copyright (c) 2023
  * 
  */
-#ifndef __INTERFACE_H__
-#define __INTERFACE_H__ 1
+#ifndef INTERFACE_H
+#define INTERFACE_H 1
 
 /**
  * @brief 
