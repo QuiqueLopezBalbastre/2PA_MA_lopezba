@@ -20,40 +20,41 @@
 #include "../include/collisions.h"
 #include "../include/interface.h"
 #include "../include/player.h"
-#include "variables.cc"
+//#include "variables.cc"
+#include "game_data.h"
 
-void Init(){
+void Init(GameData* game_data){
 
-  InitBall();
-  g_player = InitPlayer();
-  InitBrick();
+  InitBall(game_data);
+  game_data->g_player = InitPlayer();
+  InitBrick(game_data);
 }
 
-void Draw(){
+void Draw(GameData* game_data){
 
-  DrawBall(g_ball);
-  DrawPlayer(g_player);
-  DrawBrick(g_brick);
+  DrawBall(&(game_data->g_ball));
+  DrawPlayer(&(game_data->g_player));
+  DrawBrick(&(game_data->g_brick));
 }
 
-void Update(){
+void Update(GameData* game_data){
 
-  UpdateBall(&g_ball);
-  PlayerMovement(&g_player);
-  UpdateBrick(g_brick);
+  UpdateBall(&(game_data->g_ball));
+  PlayerMovement(&(game_data->g_player));
+  UpdateBrick(&(game_data->g_brick));
 }
 
-void Game(){
+void Game(GameData* game_data){
 
   switch(window_type){
 
     case TWindowType::main_menu:
-        MainMenu();
+        MainMenu(game_data);
         break;
 
     case TWindowType::start_game:
-        Draw();
-        Update();
+        Draw(game_data);
+        Update(game_data);
         break;
   }
 }
@@ -62,9 +63,12 @@ int esat::main(int argc, char **argv) {
  
   esat::WindowInit(kWindowWidth,kWindowHeight);
   WindowSetMouseVisibility(true);
-
   srand(time(NULL));
-  Init();
+
+  // Create GameData instance
+  GameData game_data;
+
+  Init(&game_data);
 
   while(esat::WindowIsOpened() && !esat::IsSpecialKeyDown(esat::kSpecialKey_Escape) && window_type != TWindowType::quit_game){
 
@@ -72,7 +76,7 @@ int esat::main(int argc, char **argv) {
     esat::DrawBegin();
     esat::DrawClear(0,0,0);
     
-    Game();
+    Game(&game_data);
 
     esat::DrawEnd();
 

@@ -8,12 +8,12 @@
  * @copyright Copyright (c) 2023
  * 
  */
-#ifndef PLAYER_H
-#define PLAYER_H 1
+#ifndef __PLAYER_H__
+#define __PLAYER_H__ 1
 
+#include <esat/math.h>
 
-struct TPlayer
-{
+struct TPlayer {
     esat::Vec2 position, speed, scale;
     esat::Vec2 *points, *world_points;
 };

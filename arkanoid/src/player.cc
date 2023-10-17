@@ -5,11 +5,11 @@
 #include <esat/draw.h>
 #include <esat/math.h>
 
-#include "../include/player.h"
-#include "../include/collisions.h"
-#include "variables.cc"
-TPlayer InitPlayer()
-{
+#include "player.h"
+#include "collisions.h"
+//#include "variables.cc"
+
+TPlayer InitPlayer() {
     TPlayer temp_player;
     temp_player = {{kWindowWidth * 0.5f, kWindowHeight * 0.9f}, {15.0f, 15.0f}, {50.0f, 50.0f}};
     temp_player.points = (esat::Vec2 *)malloc(6 * sizeof(esat::Vec2));

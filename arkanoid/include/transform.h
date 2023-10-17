@@ -1,5 +1,5 @@
 /**
- * @file transform.cc
+ * @file transform.h
  * @author Sergio Madaleno (madalenofi@esat-alumni.com)
  * @brief 
  * @version 0.1
@@ -9,14 +9,13 @@
  * 
  */
 
-#ifndef TRANSFORM_H
-#define TRANSFORM_H 1
+#ifndef __TRANSFORM_H__
+#define __TRANSFORM_H__ 1
 
 #include <esat/math.h>
 
 
-struct Transform
-{
+struct Transform {
     esat::Vec2 position;
     esat::Vec2 scale; 
     esat::Vec2 origin;
