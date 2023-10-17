@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <math.h>
-#include "../include/collisions.h"
+#include "collisions.h"
 
 bool BoxCollision(esat::Vec2 a, esat::Vec2 a_size, esat::Vec2 b, esat::Vec2 b_size){
 

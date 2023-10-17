@@ -8,8 +8,8 @@
  * @copyright Copyright (c) 2023
  * 
  */
-#ifndef COLLISIONS_H
-#define COLLISIONS_H 1
+#ifndef __COLLISIONS_H__
+#define __COLLISIONS_H__ 1
 
 #include <esat/math.h>
 #include "ball.h"

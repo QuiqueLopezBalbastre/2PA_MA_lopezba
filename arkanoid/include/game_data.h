@@ -22,10 +22,10 @@ enum TWindowType {
 // Constants
 const int kBrick_cols = 8;
 const int kBrick_rows = 11;
-const int num_ball_points = 30;
-const int kNumPointsBrick = 4;
+const int kNum_ball_points = 30;
+const int kNum_points_brick = 4;
 const float kCircunference = 2.0f * PI;
-const int kWindowWidth = 1200, kWindowHeight = 800;
+const int kWindow_width = 1200, kWindow_height = 800;
 
 
 struct GameData {
@@ -34,22 +34,20 @@ struct GameData {
   TBrick brick[8][11];
   int window_status;
 
-  TBall g_ball;
-  TPlayer g_player;
-  TBrick g_brick[8][11];
+  TBall ball;
+  TPlayer player;
+  TBrick brick[8][11];
   TWindowType window_type;
 
   float ball_coords[30 * 2] = {0.0f};
   float transformed_coords[30 * 2] = {0.0f};
-
-  bool initBall = false;
 
   esat::Vec2 right_down = {1.0f, 1.0f};
   esat::Vec2 right_up   = {1.0f, -1.0f};
   esat::Vec2 left_up    = {-1.0f, -1.0f};
   esat::Vec2 left_down  = {-1.0f, 1.0f};
 
-  float transformed_brick[2 * kNumPointsBrick] = {0.0f};
+  float transformed_brick[2 * kNum_points_brick] = {0.0f};
 
   float brick_points[8] = {
         -1.0f,

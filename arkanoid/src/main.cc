@@ -61,7 +61,7 @@ void Game(GameData* game_data){
 
 int esat::main(int argc, char **argv) {
  
-  esat::WindowInit(kWindowWidth,kWindowHeight);
+  esat::WindowInit(kWindow_width,kWindow_height);
   WindowSetMouseVisibility(true);
   srand(time(NULL));
 

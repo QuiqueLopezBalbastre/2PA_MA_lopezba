@@ -8,8 +8,8 @@
  * @copyright Copyright (c) 2023
  * 
  */
-#ifndef BRICKS_H
-#define BRICKS_H 1
+#ifndef __BRICKS_H__
+#define __BRICKS_H__ 1
 
 
 struct TBrick

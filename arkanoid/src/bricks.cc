@@ -1,9 +1,9 @@
 #include <esat/draw.h>
 #include <esat/math.h>
 
-#include "../include/bricks.h"
-#include "../include/collisions.h"
-#include "../include/transform.h"
+#include "bricks.h"
+#include "collisions.h"
+#include "transform.h"
 #include "variables.cc"
 
 void InitBrick()
