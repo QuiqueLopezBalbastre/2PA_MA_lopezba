@@ -17,7 +17,7 @@ void InitShapeCoords(float *circle)
     }
 }
 
-void TransformAndDraw(const float *shape_coords, float scaleX, float scaleY, float posX, float posY)
+void TransformAndDraw(const float *shape_coords, float scaleX, float scaleY, float posX, float posY, GameData info)
 {
 
     esat::Mat3 m = esat::Mat3Identity();
@@ -28,13 +28,13 @@ void TransformAndDraw(const float *shape_coords, float scaleX, float scaleY, flo
     {
         esat::Vec3 p = {shape_coords[i * 2], shape_coords[i * 2 + 1], 1.0f};
         esat::Vec3 result = esat::Mat3TransformVec3(m, p);
-        game_data.transformed_coords[i * 2] = result.x;
-        game_data.transformed_coords[i * 2 + 1] = result.y;
+        info.transformed_coords[i * 2] = result.x;
+        info.transformed_coords[i * 2 + 1] = result.y;
     }
 
     esat::DrawSetStrokeColor(255, 255, 255);
     esat::DrawSetFillColor(255, 255, 255);
-    esat::DrawSolidPath(game_data.transformed_coords, kNum_ball_points, true);
+    esat::DrawSolidPath(info.transformed_coords, kNum_ball_points, true);
     esat::DrawSetFillColor(255, 255, 255, 0);
 }
 
@@ -57,12 +57,12 @@ void InitBall(GameData* info)
 }
 
 
-void DrawBall(TBall ball)
+void DrawBall(GameData info)
 {
 
-    if (ball.active)
+    if (info.ball.active)
     {
-        TransformAndDraw(game_data.ball_coords, ball.scale.x, ball.scale.y, ball.position.x, ball.position.y);
+        TransformAndDraw(info.ball_coords, info.ball.scale.x, info.ball.scale.y, info.ball.position.x, info.ball.position.y, info);
     }
 }
 

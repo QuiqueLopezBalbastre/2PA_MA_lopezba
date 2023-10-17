@@ -1,4 +1,3 @@
-
 #include "transform.h"
 
 #include <esat/math.h>
@@ -6,7 +5,8 @@
 
 #include "game_data.h"
 
-void TransformAndDraw(esat::Vec2 position, esat::Vec2 scale, int row){
+
+void TransformAndDraw(GameData game_data, esat::Vec2 position, esat::Vec2 scale, int row){
 
     esat::Mat3 m = esat::Mat3Identity();
     m = esat::Mat3Multiply(esat::Mat3Scale(scale.x, scale.y), m);

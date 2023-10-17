@@ -13,7 +13,7 @@
 #define __TRANSFORM_H__ 1
 
 #include <esat/math.h>
-
+struct GameData;
 
 struct Transform {
     esat::Vec2 position;
@@ -33,6 +33,6 @@ struct Transform {
  * @param scaleY Component y of the scale propierty
  * @param row Component x of the position propierty
  */
-void TransformAndDraw(esat::Vec2 position, esat::Vec2 scale, int row);
+void TransformAndDraw(GameData info, esat::Vec2 position, esat::Vec2 scale, int row);
 
 #endif

@@ -9,6 +9,8 @@
 #include "collisions.h"
 #include "game_data.h"
 
+struct GameData;
+
 TPlayer InitPlayer() {
     TPlayer temp_player;
     temp_player = {{kWindow_width * 0.5f, kWindow_height * 0.9f}, {15.0f, 15.0f}, {50.0f, 50.0f}};
@@ -23,10 +25,10 @@ TPlayer InitPlayer() {
     return temp_player;
 }
 
-void PlayerMovement(TPlayer *player)
+void PlayerMovement(GameData info, TPlayer *player)
 {
 
-    BallPlayerCollision(&ball, player);
+    BallPlayerCollision(&info.ball, player);
 
     // Screen's limits check
     if (player->position.x + player->scale.x * 0.5f < kWindow_width && player->position.x - player->scale.x * 0.5f > 0)

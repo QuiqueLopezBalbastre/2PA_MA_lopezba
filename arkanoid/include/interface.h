@@ -11,10 +11,11 @@
 #ifndef __INTERFACE_H__
 #define __INTERFACE_H__ 1
 
+struct GameData;
 /**
  * @brief 
  * 
  */
-void MainMenu();
+void MainMenu(GameData* game_data);
 
 #endif 

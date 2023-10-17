@@ -4,7 +4,7 @@
 #include "interface.h"
 #include "game_data.h"
 
-void MainMenu() {
+void MainMenu(GameData* game_data) {
 
     float fontSize = ImGui::GetFontSize();
 
@@ -32,14 +32,14 @@ void MainMenu() {
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(0, 89, 79, 255));
 
     if (ImGui::Button("Start Game", buttonSize)) {
-        game_data.window_type = TWindowType::kTWindowType_StartGame;
+        game_data->window_type = TWindowType::kTWindowType_StartGame;
     }
 
     //Spacing between buttons
     ImGui::Dummy(ImVec2(0, 180.0f));
 
     if (ImGui::Button("Quit", buttonSize)) {
-        game_data.window_type = TWindowType::kTWindowType_QuitGame;
+        game_data->window_type = TWindowType::kTWindowType_QuitGame;
     }
 
     ImGui::PopStyleColor();

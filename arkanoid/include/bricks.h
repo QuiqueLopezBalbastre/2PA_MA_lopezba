@@ -18,7 +18,8 @@ struct TBrick
     int hp;
 };
 
-#include "game_data.h"
+// #include "game_data.h"
+struct GameData;
 
 /**
  * @brief Initializes brick array to default values.
@@ -31,7 +32,7 @@ void InitBrick(GameData* info);
  * 
  * @param brick array of bricks that are being painted.
  */
-void DrawBrick(TBrick brick[8][11]);
+void DrawBrick(GameData info);
 
 
 /**
@@ -39,6 +40,6 @@ void DrawBrick(TBrick brick[8][11]);
  * 
  * @param brick 
  */
-void UpdateBrick(TBrick brick[8][11]);
+void UpdateBrick(GameData info);
 
 #endif

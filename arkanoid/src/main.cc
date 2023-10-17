@@ -15,6 +15,7 @@
 #include <string.h>
 #include <math.h>
 
+
 #include "../include/ball.h"
 #include "../include/bricks.h"
 #include "../include/collisions.h"
@@ -22,38 +23,37 @@
 #include "../include/player.h"
 #include "../include/game_data.h"
 
-void Init(GameData* game_data){
 
-  InitBall(game_data);
-  //game_data->g_player = InitPlayer();
-  //InitBrick(game_data);
+void Init(GameData* info){
+
+  InitBall(info);
+  info->player = InitPlayer();
+  InitBrick(info);
 }
 
-void Draw(GameData* game_data){
-
-  DrawBall(game_data->ball);
-  //DrawPlayer(&(game_data->g_player));
-  //DrawBrick(game_data->brick);
+void Draw(GameData* info){
+  DrawBall(*(info));
+  DrawPlayer((info->player));
+  DrawBrick(*(info));
 }
 
 void Update(GameData* game_data){
-
   UpdateBall(&(game_data->ball));
-  //PlayerMovement(&(game_data->g_player));
-  //UpdateBrick(game_data->brick);
+  PlayerMovement(*(game_data), &game_data->player);
+  UpdateBrick(*(game_data));
 }
 
-void Game(GameData* game_data){
+void Game(GameData* info){
 
-  switch(game_data->window_type){
+  switch(info->window_type){
 
     case TWindowType::kTWindowType_MainMenu:
-        //MainMenu(game_data);
+        MainMenu(info);
         break;
 
     case TWindowType::kTWindowType_StartGame:
-        Draw(game_data);
-        Update(game_data);
+        Draw(info);
+        Update(info);
         break;
   }
 }
@@ -63,6 +63,8 @@ int esat::main(int argc, char **argv) {
   esat::WindowInit(kWindow_width,kWindow_height);
   WindowSetMouseVisibility(true);
   srand(time(NULL));
+  
+  GameData game_data;
 
   Init(&game_data);
 

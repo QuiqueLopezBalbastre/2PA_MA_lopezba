@@ -4,7 +4,8 @@
 #include "bricks.h"
 #include "collisions.h"
 #include "transform.h"
-#include "game_data.h"
+// #include "game_data.h"
+
 
 void InitBrick(GameData* info)
 {
@@ -26,24 +27,24 @@ void InitBrick(GameData* info)
     }
 }
 
-void DrawBrick(TBrick brick[8][11]){
+void DrawBrick(GameData info){
 
     for(int i=0; i<kBrick_cols; ++i){
         for(int j=0; j<kBrick_rows; ++j){
 
-            if(brick[i][j].active){
-                TransformAndDraw(brick[i][j].position, brick[i][j].scale, i);
+            if(info.brick[i][j].active){
+                TransformAndDraw(info, info.brick[i][j].position, info.brick[i][j].scale, i);
             }
         }
     }
 }
 
-void UpdateBrick(TBrick brick[8][11]){
+void UpdateBrick(GameData info){
 
     for(int i=0; i<kBrick_cols; ++i){
         for(int j=0; j<kBrick_rows; ++j){
 
-            BrickCollision(&brick[i][j], &game_data.ball);
+            BrickCollision(&info.brick[i][j], &info.ball);
         }
     }
 }

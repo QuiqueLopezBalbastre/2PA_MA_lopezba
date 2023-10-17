@@ -35,7 +35,7 @@ struct GameData {
   TBall ball;
   TPlayer player;
   TBrick brick[8][11];
-  TWindowType window_type;
+  TWindowType window_type = TWindowType::kTWindowType_MainMenu;
 
   float ball_coords[30 * 2] = {0.0f};
   float transformed_coords[30 * 2] = {0.0f};
@@ -62,7 +62,7 @@ struct GameData {
   double current_time, last_time;
 };
 
-GameData game_data;
+
 
 #endif
 

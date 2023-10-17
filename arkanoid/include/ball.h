@@ -20,7 +20,8 @@ struct TBall
     int initial_direction;
 };
 
-#include "game_data.h"
+// #include "game_data.h"
+struct GameData;
 
 /**
  * @brief Initialize the drawing points of the ball. 
@@ -43,7 +44,7 @@ void InitBall(GameData* info);
  * 
  * @param ball 
  */
-void DrawBall(TBall ball);
+void DrawBall(GameData info);
 
 
 /**

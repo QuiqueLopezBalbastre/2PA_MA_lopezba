@@ -32,7 +32,7 @@ TPlayer InitPlayer();
  * 
  * @param player 
  */
-void PlayerMovement(TPlayer *player);
+void PlayerMovement(GameData info, TPlayer *player);
 
 /**
  * @brief Draws the player
