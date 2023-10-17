@@ -4,9 +4,9 @@
 #include "bricks.h"
 #include "collisions.h"
 #include "transform.h"
-#include "variables.cc"
+#include "game_data.h"
 
-void InitBrick()
+void InitBrick(GameData* info)
 {
     float initialX=175.0f, initialY = 120.0f;
     float brickWidth = 40, brickHeight = 30;
@@ -16,12 +16,12 @@ void InitBrick()
     {
         for (int j = 0; j < kBrick_rows; ++j)
         {
-            g_brick[i][j].position.x = initialX + j * (brickWidth + spacingX);
-            g_brick[i][j].position.y = initialY + i * (brickHeight + spacingY);
-            g_brick[i][j].scale.x = brickWidth;
-            g_brick[i][j].scale.y = brickHeight;
-            g_brick[i][j].active = true;
-            g_brick[i][j].hp = 1;
+            info->brick[i][j].position.x = initialX + j * (brickWidth + spacingX);
+            info->brick[i][j].position.y = initialY + i * (brickHeight + spacingY);
+            info->brick[i][j].scale.x = brickWidth;
+            info->brick[i][j].scale.y = brickHeight;
+            info->brick[i][j].active = true;
+            info->brick[i][j].hp = 1;
         }
     }
 }
@@ -43,7 +43,7 @@ void UpdateBrick(TBrick brick[8][11]){
     for(int i=0; i<kBrick_cols; ++i){
         for(int j=0; j<kBrick_rows; ++j){
 
-            BrickCollision(&brick[i][j], &g_ball);
+            BrickCollision(&brick[i][j], &game_data.ball);
         }
     }
 }

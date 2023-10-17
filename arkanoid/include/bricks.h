@@ -11,7 +11,6 @@
 #ifndef __BRICKS_H__
 #define __BRICKS_H__ 1
 
-
 struct TBrick
 {
     esat::Vec2 position, scale;
@@ -19,11 +18,12 @@ struct TBrick
     int hp;
 };
 
+#include "game_data.h"
 
 /**
  * @brief Initializes brick array to default values.
  */
-void InitBrick();
+void InitBrick(GameData* info);
 
 
 /**

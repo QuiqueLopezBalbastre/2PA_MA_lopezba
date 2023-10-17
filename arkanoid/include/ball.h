@@ -12,6 +12,7 @@
 #ifndef __BALL_H__
 #define __BALL_H__ 1
 
+
 struct TBall
 {
     esat::Vec2 position, speed, scale, direction;
@@ -19,6 +20,7 @@ struct TBall
     int initial_direction;
 };
 
+#include "game_data.h"
 
 /**
  * @brief Initialize the drawing points of the ball. 
@@ -33,7 +35,7 @@ void TransformAndDraw(const float *shape_coords, float scaleX, float scaleY, flo
 /**
  * @brief Initializes the ball transform propierties to default
  */
-void InitBall();
+void InitBall(GameData* info);
 
 
 /**
@@ -49,7 +51,7 @@ void DrawBall(TBall ball);
  * 
  * @param ball 
  */
-void UpdateBall(TBall *ball);
+void UpdateBall(TBall* ball);
 
 
 #endif

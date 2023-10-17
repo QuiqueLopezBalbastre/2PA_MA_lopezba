@@ -18,6 +18,8 @@ struct TPlayer {
     esat::Vec2 *points, *world_points;
 };
 
+#include "game_data.h"
+
 /**
  * @brief Set a player variable to a default parameters.
  * 

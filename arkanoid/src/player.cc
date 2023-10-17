@@ -7,11 +7,11 @@
 
 #include "player.h"
 #include "collisions.h"
-//#include "variables.cc"
+#include "game_data.h"
 
 TPlayer InitPlayer() {
     TPlayer temp_player;
-    temp_player = {{kWindowWidth * 0.5f, kWindowHeight * 0.9f}, {15.0f, 15.0f}, {50.0f, 50.0f}};
+    temp_player = {{kWindow_width * 0.5f, kWindow_height * 0.9f}, {15.0f, 15.0f}, {50.0f, 50.0f}};
     temp_player.points = (esat::Vec2 *)malloc(6 * sizeof(esat::Vec2));
     temp_player.world_points = (esat::Vec2 *)malloc(6 * sizeof(esat::Vec2));
     *(temp_player.points + 0) = {-1.0f, 0.0f};
@@ -26,10 +26,10 @@ TPlayer InitPlayer() {
 void PlayerMovement(TPlayer *player)
 {
 
-    BallPlayerCollision(&g_ball, player);
+    BallPlayerCollision(&ball, player);
 
     // Screen's limits check
-    if (player->position.x + player->scale.x * 0.5f < kWindowWidth && player->position.x - player->scale.x * 0.5f > 0)
+    if (player->position.x + player->scale.x * 0.5f < kWindow_width && player->position.x - player->scale.x * 0.5f > 0)
     {
         // *(player) movement
         if (esat::IsSpecialKeyPressed(esat::kSpecialKey_Right))
@@ -43,7 +43,7 @@ void PlayerMovement(TPlayer *player)
     }
     else
     {
-        if (player->position.x + player->scale.x * 0.5f >= kWindowWidth)
+        if (player->position.x + player->scale.x * 0.5f >= kWindow_width)
         {
             player->position.x -= player->speed.x;
         }

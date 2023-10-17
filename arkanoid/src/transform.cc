@@ -4,7 +4,7 @@
 #include <esat/math.h>
 #include <esat/draw.h>
 
-//#include "variables.cc"
+#include "game_data.h"
 
 void TransformAndDraw(esat::Vec2 position, esat::Vec2 scale, int row){
 
@@ -12,11 +12,11 @@ void TransformAndDraw(esat::Vec2 position, esat::Vec2 scale, int row){
     m = esat::Mat3Multiply(esat::Mat3Scale(scale.x, scale.y), m);
     m = esat::Mat3Multiply(esat::Mat3Translate(position.x, position.y), m);
 
-    for(int k = 0; k < kNumPointsBrick; ++k){
-        esat::Vec3 p = {brick_points[k * 2], brick_points[k * 2 + 1], 1.0f};
+    for(int k = 0; k < kNum_points_brick; ++k){
+        esat::Vec3 p = {game_data.brick_points[k * 2], game_data.brick_points[k * 2 + 1], 1.0f};
         esat::Vec3 result = Mat3TransformVec3(m, p);
-        transformed_brick[k * 2] = result.x;
-        transformed_brick[k * 2 + 1] = result.y;
+        game_data.transformed_brick[k * 2] = result.x;
+        game_data.transformed_brick[k * 2 + 1] = result.y;
     }
 
     switch(row){
@@ -33,5 +33,5 @@ void TransformAndDraw(esat::Vec2 position, esat::Vec2 scale, int row){
         case 7: esat::DrawSetFillColor(0, 255, 0); break;
     }
 
-    esat::DrawSolidPath(transformed_brick, kNumPointsBrick);
+    esat::DrawSolidPath(game_data.transformed_brick, kNum_points_brick);
 }

@@ -13,7 +13,7 @@
 
 #define PI 3.1416f
 
-enum TWindowType {
+enum struct TWindowType {
   kTWindowType_MainMenu,  // main_menu,
   kTWindowType_StartGame, // start_game,
   kTWindowType_QuitGame   // quit_game
@@ -27,11 +27,9 @@ const int kNum_points_brick = 4;
 const float kCircunference = 2.0f * PI;
 const int kWindow_width = 1200, kWindow_height = 800;
 
-
 struct GameData {
   esat::Vec2 player_position, ball_position;
   bool ball_active;
-  TBrick brick[8][11];
   int window_status;
 
   TBall ball;
@@ -64,6 +62,7 @@ struct GameData {
   double current_time, last_time;
 };
 
+GameData game_data;
 
 #endif
 

@@ -2,7 +2,7 @@
 #include <esat_extra/imgui.h>
 
 #include "interface.h"
-#include "variables.cc"
+#include "game_data.h"
 
 void MainMenu() {
 
@@ -10,14 +10,14 @@ void MainMenu() {
 
     ImVec2 windowSize(600, 500);
     ImVec2 windowPos(
-        (kWindowWidth - windowSize.x) * 0.5f,
-        (kWindowHeight - windowSize.y) * 0.5f
+        (kWindow_width - windowSize.x) * 0.5f,
+        (kWindow_height - windowSize.y) * 0.5f
     );
 
     ImGui::SetNextWindowPos(windowPos);
     ImGui::SetNextWindowSize(windowSize);
 
-    ImGui::SetNextWindowBgAlpha(0.0f);
+    //ImGui::SetNextWindowBgAlpha(0.0f);
 
     ImGui::Begin("Main Menu", NULL,
         ImGuiWindowFlags_NoTitleBar | 
@@ -32,14 +32,14 @@ void MainMenu() {
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(0, 89, 79, 255));
 
     if (ImGui::Button("Start Game", buttonSize)) {
-        window_type = TWindowType::start_game;
+        game_data.window_type = TWindowType::kTWindowType_StartGame;
     }
 
     //Spacing between buttons
     ImGui::Dummy(ImVec2(0, 180.0f));
 
     if (ImGui::Button("Quit", buttonSize)) {
-        window_type = TWindowType::quit_game;
+        game_data.window_type = TWindowType::kTWindowType_QuitGame;
     }
 
     ImGui::PopStyleColor();
