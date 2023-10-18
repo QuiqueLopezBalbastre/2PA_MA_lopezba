@@ -54,6 +54,7 @@ void Game(GameData* info){
     case TWindowType::kTWindowType_StartGame:
         Draw(info);
         Update(info);
+        DebugWindow(info);
         break;
   }
 }
