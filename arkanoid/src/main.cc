@@ -39,8 +39,8 @@ void Draw(GameData* info){
 
 void Update(GameData* game_data){
   UpdateBall(&(game_data->ball));
-  PlayerMovement(*(game_data), &game_data->player);
-  UpdateBrick(*(game_data));
+  PlayerMovement((game_data), &game_data->player);
+  UpdateBrick((game_data));
 }
 
 void Game(GameData* info){

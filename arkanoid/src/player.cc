@@ -25,10 +25,10 @@ TPlayer InitPlayer() {
     return temp_player;
 }
 
-void PlayerMovement(GameData info, TPlayer *player)
+void PlayerMovement(GameData *info, TPlayer *player)
 {
 
-    BallPlayerCollision(&info.ball, player);
+    BallPlayerCollision(&info->ball, &info->player);
 
     // Screen's limits check
     if (player->position.x + player->scale.x * 0.5f < kWindow_width && player->position.x - player->scale.x * 0.5f > 0)

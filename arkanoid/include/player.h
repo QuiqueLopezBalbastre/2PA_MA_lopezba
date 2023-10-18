@@ -33,7 +33,7 @@ TPlayer InitPlayer();
  * @param info Gets the data of the GameData struct
  * @param player 
  */
-void PlayerMovement(GameData info, TPlayer *player);
+void PlayerMovement(GameData *info, TPlayer *player);
 
 /**
  * @brief Draws the player

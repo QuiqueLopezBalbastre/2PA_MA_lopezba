@@ -42,6 +42,6 @@ void DrawBrick(GameData info);
  * 
  * @param info Gets the data of the GameData struct
  */
-void UpdateBrick(GameData info);
+void UpdateBrick(GameData *info);
 
 #endif

@@ -39,12 +39,12 @@ void DrawBrick(GameData info){
     }
 }
 
-void UpdateBrick(GameData info){
+void UpdateBrick(GameData *info){
 
     for(int i=0; i<kBrick_cols; ++i){
         for(int j=0; j<kBrick_rows; ++j){
 
-            BrickCollision(&info.brick[i][j], &info.ball);
+            BrickCollision(&info->brick[i][j], &info->ball);
         }
     }
 }
