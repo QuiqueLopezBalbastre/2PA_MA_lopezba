@@ -7,6 +7,7 @@
 
 void MainMenu(GameData* game_data) {
 
+
     float fontSize = ImGui::GetFontSize();
 
     ImVec2 windowSize(600, 500);
