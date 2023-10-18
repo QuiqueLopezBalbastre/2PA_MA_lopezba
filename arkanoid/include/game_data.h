@@ -30,6 +30,7 @@ const int kWindow_width = 1200, kWindow_height = 800;
 struct GameData {
   esat::Vec2 player_position, ball_position;
   bool ball_active;
+  bool isDebugWindowVisible = false;
   int window_status;
 
   TBall ball;
