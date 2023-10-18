@@ -35,6 +35,8 @@ void TransformAndDraw(const float *shape_coords, float scaleX, float scaleY, flo
 
 /**
  * @brief Initializes the ball transform propierties to default
+ * 
+ * @param info Gets the data of the GameData struct
  */
 void InitBall(GameData* info);
 
@@ -42,7 +44,7 @@ void InitBall(GameData* info);
 /**
  * @brief Draws with the graphic library the ball
  * 
- * @param ball 
+ * @param info Gets the data of the GameData struct 
  */
 void DrawBall(GameData info);
 

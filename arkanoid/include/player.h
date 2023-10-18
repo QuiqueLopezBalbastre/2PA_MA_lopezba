@@ -30,6 +30,7 @@ TPlayer InitPlayer();
 /**
  * @brief Controls the movement of the player
  * 
+ * @param info Gets the data of the GameData struct
  * @param player 
  */
 void PlayerMovement(GameData info, TPlayer *player);

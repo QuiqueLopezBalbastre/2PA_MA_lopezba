@@ -13,8 +13,9 @@
 
 struct GameData;
 /**
- * @brief 
- * 
+ * @brief Main Menu created with imgui.
+ *
+ * @param game_data 
  */
 void MainMenu(GameData* game_data);
 

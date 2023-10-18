@@ -23,6 +23,8 @@ struct GameData;
 
 /**
  * @brief Initializes brick array to default values.
+ *
+ * @param info Gets the data of the GameData struct
  */
 void InitBrick(GameData* info);
 
@@ -30,7 +32,7 @@ void InitBrick(GameData* info);
 /**
  * @brief Draws bricks from a Brick array.
  * 
- * @param brick array of bricks that are being painted.
+ * @param info Gets the data of the GameData struct
  */
 void DrawBrick(GameData info);
 
@@ -38,7 +40,7 @@ void DrawBrick(GameData info);
 /**
  * @brief Checks if there has been a collision between a brick and the ball
  * 
- * @param brick 
+ * @param info Gets the data of the GameData struct
  */
 void UpdateBrick(GameData info);
 
