@@ -47,6 +47,24 @@ void MainMenu(GameData* game_data) {
     ImGui::End();
 }
 
+void DebugWindow(GameData* info){
+    ImGui::PushID(info);
+
+    if(ImGui::Button("Stop Ball")){ info->ball.speed.x = 0.0f; info->ball.speed.y = 0.0f;}
+    if(ImGui::Button("Resume Ball")){ info->ball.speed.x = 2.0f; info->ball.speed.y = 2.0f;}
+    
+    ImGui::DragFloat2("Ball position", &info->ball.position.x);
+
+    for(int i = 0; i < kBrick_cols; ++i){
+        for(int j = 0; j < kBrick_rows; ++j){  
+            
+            ImGui::DragFloat2("Bricks position", &info->brick[i][j].position.x);
+        }
+    }
+
+    ImGui::PopID();
+}
+
 
 
 

@@ -19,4 +19,11 @@ struct GameData;
  */
 void MainMenu(GameData* game_data);
 
+/**
+ * @brief Debug window to change values
+ * 
+ * @param info 
+ */
+ void DebugWindow(GameData* info);
+
 #endif 
