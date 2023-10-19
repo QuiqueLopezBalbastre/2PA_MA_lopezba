@@ -13,6 +13,7 @@
 #include <time.h>
 
 #include "../include/global_data.h"
+#include "../include/interface.h"
 
 
 
@@ -31,7 +32,7 @@ int esat::main(int argc, char **argv) {
     esat::DrawBegin();
     esat::DrawClear(0,0,0);
     
-
+    ShowDatabaseTable();
 
     esat::DrawEnd();
 
