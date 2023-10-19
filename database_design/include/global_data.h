@@ -16,10 +16,10 @@ const int kWindow_width = 800, kWindow_height = 600;
 
 struct GlobalData {
 
+  char user_name[40];
+  char pass_word[40];
 
-
-    
-  unsigned char fps = 60;
+    unsigned char fps = 60;
   double current_time, last_time;
 };
 
