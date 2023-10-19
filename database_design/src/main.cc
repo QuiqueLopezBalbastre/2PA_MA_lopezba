@@ -12,12 +12,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-
-
-unsigned char fps = 60;
-double current_time, last_time;
-const int kWindow_width = 800, kWindow_height = 600;
-
+#include "../include/global_data.h"
 
 
 
@@ -28,11 +23,11 @@ int esat::main(int argc, char **argv) {
   WindowSetMouseVisibility(true);
   srand(time(NULL));
   
-
+  GlobalData global_data;
 
   while(esat::WindowIsOpened() && !esat::IsSpecialKeyDown(esat::kSpecialKey_Escape)){
 
-  	last_time = esat::Time();
+  	global_data.last_time = esat::Time();
     esat::DrawBegin();
     esat::DrawClear(0,0,0);
     
@@ -41,8 +36,8 @@ int esat::main(int argc, char **argv) {
     esat::DrawEnd();
 
    do{
-    current_time = esat::Time();
-    }while((current_time-last_time)<=1000.0/fps);
+    global_data.current_time = esat::Time();
+    }while((global_data.current_time-global_data.last_time)<=1000.0/global_data.fps);
     
    esat::WindowFrame();
   }
