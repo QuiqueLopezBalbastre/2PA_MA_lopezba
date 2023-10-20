@@ -12,5 +12,7 @@ void ShowDatabaseTable(/*const char *table_selected*/GlobalData *info);
 
 void Login(GlobalData *info);
 
+void Buttons(GlobalData *info);
+
 #endif
 

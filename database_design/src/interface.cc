@@ -20,28 +20,44 @@
 
 #include "global_data.h"
 
-static int ImGuiCallback(void* data, int argc, char** argv, char** colNames){
+static int ImGuiCallback(void* data, int argc, char** argv, char** colNames) {
+    
     ImGui::Columns(argc, "Database Table", false);
 
     for (int i = 0; i < argc; i++) {
-        ImGui::Text("%s: %s", colNames[i], (argv[i] ? argv[i] : "NULL"));
+        ImGui::Text("%s", colNames[i]);
+        ImGui::NextColumn();
+    }
+
+    ImGui::Separator();
+
+    ImGui::Columns(argc, "Database Table Data", false);
+
+    for (int i = 0; i < argc; i++) {
+        ImGui::Text("%s", (argv[i] ? argv[i] : "NULL"));
         ImGui::NextColumn();
     }
 
     return 0;
 }
 
+
 void ShowDatabaseTable(/*const char *table_selected*/GlobalData* info) {
 
     sqlite3* db;
     int rc = sqlite3_open("../data/Database.db", &db);
 
-    if (rc) {
+    if(rc){
         fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
         return;
     }
 
-    ImGui::Begin("Database Table");
+    ImGui::SetNextWindowPos(ImVec2(20, 100));
+
+    ImGui::Begin("Database Table", NULL,
+        ImGuiWindowFlags_NoTitleBar |
+        ImGuiWindowFlags_NoResize |   
+        ImGuiWindowFlags_NoMove); 
     
     const char* query = "SELECT * FROM EMPLOYEE";
     char* errMsg = 0;
@@ -55,26 +71,26 @@ void ShowDatabaseTable(/*const char *table_selected*/GlobalData* info) {
     sqlite3_close(db);
 
     ImGui::End();
-    
-
-    
-
 }
 
 void Login(GlobalData *info)
 {
-    ImGui::SetNextWindowPos(ImVec2(100.0f, 50.0f), ImGuiCond_Once);
-    // ImGui::SetNextWindowSize(ImVec2(login_size.x, login_size.y));
+    ImGui::SetNextWindowPos(ImVec2(20.0f, 435.0f));
+    ImGui::SetNextWindowSize(ImVec2(768, 150));
     ImGui::SetNextWindowBgAlpha(1.0f);
 
-    ImGui::Begin("Login");
+    ImGui::Begin("login Table", NULL,
+        ImGuiWindowFlags_NoTitleBar |
+        ImGuiWindowFlags_NoResize |   
+        ImGuiWindowFlags_NoMove);
     {
-        ImGui::SetCursorPos(ImVec2(60, 240));
+        ImGui::SetCursorPos(ImVec2(60, 30));
         ImGui::InputText("##Username", info->user_name, IM_ARRAYSIZE(info->user_name));
 
-        ImGui::SetCursorPos(ImVec2(60, 280));
+        ImGui::SetCursorPos(ImVec2(60, 70));
         ImGui::InputText("##Password", info->pass_word, IM_ARRAYSIZE(info->pass_word, ImGuiInputTextFlags_Password));
-        ImGui::SetCursorPos(ImVec2(127, 325));
+        
+        ImGui::SetCursorPos(ImVec2(640, 40));
         if (ImGui::Button("Login", ImVec2(100, 40)))
         {
             NULL;
@@ -83,4 +99,15 @@ void Login(GlobalData *info)
     ImGui::End();
 }
 
+void Buttons(GlobalData *info)
+{
+    ImGui::SetNextWindowPos(ImVec2(0.0f, 0.0f));
+    ImGui::SetNextWindowSize(ImVec2(768, 20));
+
+    ImGui::Begin("login Table");
+    {
+        //This window is not seen, I dont know why
+    }
+    ImGui::End();
+}
 

@@ -33,6 +33,7 @@ int esat::main(int argc, char **argv)
 
     Login(&global_data);
     ShowDatabaseTable(&global_data);
+    Buttons(&global_data);
 
     esat::DrawEnd();
 
