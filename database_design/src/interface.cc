@@ -52,7 +52,8 @@ void ShowDatabaseTable(/*const char *table_selected*/GlobalData* info) {
         return;
     }
 
-    ImGui::SetNextWindowPos(ImVec2(20, 100));
+    ImGui::SetNextWindowPos(ImVec2(20, 60));
+    ImGui::SetNextWindowSize(ImVec2(768, 365));
 
     ImGui::Begin("Database Table", NULL,
         ImGuiWindowFlags_NoTitleBar |
@@ -101,10 +102,13 @@ void Login(GlobalData *info)
 
 void Buttons(GlobalData *info)
 {
-    ImGui::SetNextWindowPos(ImVec2(0.0f, 0.0f));
-    ImGui::SetNextWindowSize(ImVec2(768, 20));
+    ImGui::SetNextWindowPos(ImVec2(20.0f, 10.0f));
+    ImGui::SetNextWindowSize(ImVec2(768, 40));
 
-    ImGui::Begin("login Table");
+    ImGui::Begin("Button Table", NULL,
+        ImGuiWindowFlags_NoTitleBar |
+        ImGuiWindowFlags_NoResize |   
+        ImGuiWindowFlags_NoMove);
     {
         //This window is not seen, I dont know why
     }
