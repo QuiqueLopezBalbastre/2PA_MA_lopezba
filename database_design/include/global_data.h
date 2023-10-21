@@ -7,22 +7,36 @@
 
 #include <esat/math.h>
 
-
-// Constants
+/// Constants
 const int kWindow_width = 800, kWindow_height = 600;
+const int kRows = 3;
+const int kTableEmployeeColumns = 8;
+const int kTableCompanyColumns = 3;
+const int kTableCityColumns = 3;
+const int kTableCountryColumns = 2;
+
+
+enum TableSelector
+{
+  Employee,
+  Company,
+  City,
+  Country
+};
 
 
 
-
-struct GlobalData {
+/// Global variable struct
+struct GlobalData
+{
 
   char user_name[40];
   char pass_word[40];
 
-    unsigned char fps = 60;
+  int table_id;
+
+  unsigned char fps = 60;
   double current_time, last_time;
 };
 
-
 #endif
-

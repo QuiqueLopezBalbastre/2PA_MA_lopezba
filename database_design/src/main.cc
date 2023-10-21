@@ -15,14 +15,16 @@
 #include "../include/global_data.h"
 #include "../include/interface.h"
 
+
+
 int esat::main(int argc, char **argv)
 {
-
   esat::WindowInit(kWindow_width, kWindow_height);
   WindowSetMouseVisibility(true);
   srand(time(NULL));
 
   GlobalData global_data;
+
   //ShowDatabaseTable();
   while (esat::WindowIsOpened() && !esat::IsSpecialKeyDown(esat::kSpecialKey_Escape))
   {
@@ -34,7 +36,7 @@ int esat::main(int argc, char **argv)
     Login(&global_data);
     //ShowDatabaseTable(&global_data);
     Buttons(&global_data);
-    ShowDatabaseTable();
+    ShowDatabaseTable(&global_data);
     esat::DrawEnd();
 
     do
