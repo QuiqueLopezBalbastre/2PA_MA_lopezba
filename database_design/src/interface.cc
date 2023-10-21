@@ -28,64 +28,63 @@ TableCountry country[kTableCountryColumns];
 
 void InitTable(int id)
 {
-    switch (id)
-    {
-    case TableSelector::Employee:
-        for (int i = 0; i < kTableEmployeeColumns; i++)
-        {
-            employee[i].id = -1;
-            employee[i].name[40] = '\0';
-            employee[i].surname[40] = '\0';
-            employee[i].adress[40] = '\0';
-            employee[i].company = -1;
-            employee[i].city = -1;
-            employee[i].nacionality = -1;
-            employee[i].salary = -1;
-        }
-        break;
-    case TableSelector::Company:
-        for (int i = 0; i < kTableCompanyColumns; i++)
-        {
-            company[i].id = -1;
-            company[i].name[40] = '\0';
-            company[i].country[40] = '\0';
-        }
-        break;
-    case TableSelector::City:
-        for (int i = 0; i < kTableCityColumns; i++)
-        {
-            city[i].id = -1;
-            city[i].name[40] = '\0';
-            city[i].country[40] = '\0';
-        }
-        break;
-    case TableSelector::Country:
-        for (int i = 0; i < kTableCountryColumns; i++)
-        {
-            country[i].id = -1;
-            country[i].name[40] = '\0';
-        }
-        break;
+    switch(id){
+        case TableSelector::Employee:
+            for (int i = 0; i < kTableEmployeeColumns; i++)
+            {
+                employee[i].id = -1;
+                employee[i].name[40] = '\0';
+                employee[i].surname[40] = '\0';
+                employee[i].adress[40] = '\0';
+                employee[i].company = -1;
+                employee[i].city = -1;
+                employee[i].nacionality = -1;
+                employee[i].salary = -1;
+            }
+            break;
+
+        case TableSelector::Company:
+            for (int i = 0; i < kTableCompanyColumns; i++)
+            {
+                company[i].id = -1;
+                company[i].name[40] = '\0';
+                company[i].country[40] = '\0';
+            }
+            break;
+
+        case TableSelector::City:
+            for (int i = 0; i < kTableCityColumns; i++)
+            {
+                city[i].id = -1;
+                city[i].name[40] = '\0';
+                city[i].country[40] = '\0';
+            }
+            break;
+            
+        case TableSelector::Country:
+            for (int i = 0; i < kTableCountryColumns; i++)
+            {
+                country[i].id = -1;
+                country[i].name[40] = '\0';
+            }
+            break;
     }
 }
 
 int TableEmployeeCallback(void *data, int argc, char **field_values, char **colNames)
 {
-
     const int Kncolumst1 = 1;
     TableEmployee *t = (TableEmployee *)data;
 
     int index = 0;
 
-    for (index = 0; index < kTableEmployeeColumns; index++)
-    {
+    for(index = 0; index < kTableEmployeeColumns; index++){
 
-        if (t[index].id == -1)
-            break;
+        if(t[index].id == -1)
+        break;
     }
 
-    if (kRows == index)
-    {
+    if(kRows == index){
         return 0;
     }
 
@@ -108,13 +107,10 @@ int TableEmployeeCallback(void *data, int argc, char **field_values, char **colN
         printf("%d", t[index].salary);
     */
 
-    if (index == 0)
-    {
-
+    if(index == 0){
         ImGui::Columns(argc, "Database Table", false);
 
-        for (int i = 0; i < argc; i++)
-        {
+        for (int i = 0; i < argc; i++){
             ImGui::Text("%s", colNames[i]);
             ImGui::NextColumn();
         }
@@ -130,12 +126,15 @@ int ShowDatabaseTable(GlobalData *info)
     char *err_msg = 0;
     int rc = sqlite3_open("../data/Database.db", &db);
 
-    if (rc != SQLITE_OK)
-    {
+    if(rc != SQLITE_OK){
+
         fprintf(stderr, "Cannot open database: %s\n", sqlite3_errmsg(db));
         sqlite3_close(db);
         return 1;
     }
+
+    ImGui::SetNextWindowPos(ImVec2(20, 60));
+    ImGui::SetNextWindowSize(ImVec2(768, 365));
     ImGui::Begin("Database Table", NULL,
                  ImGuiWindowFlags_NoTitleBar |
                      ImGuiWindowFlags_NoResize |
@@ -146,24 +145,27 @@ int ShowDatabaseTable(GlobalData *info)
     rc = sqlite3_exec(db, sql, TableEmployeeCallback, (void *)employee, &err_msg);
 
     ImGui::Separator();
-    switch (info->table_id)
-    {
-    case TableSelector::Employee:
-        ImGui::Columns(kTableEmployeeColumns, "Employee Table Data", false);
-        break;
-    case TableSelector::Company:
-        ImGui::Columns(kTableCompanyColumns, "Company Table Data", false);
-        break;
-    case TableSelector::City:
-        ImGui::Columns(kTableCityColumns, "City Table Data", false);
-        break;
-    case TableSelector::Country:
-        ImGui::Columns(kTableCountryColumns, "Country Table Data", false);
-        break;
+    switch (info->table_id){
+
+        case TableSelector::Employee:
+            ImGui::Columns(kTableEmployeeColumns, "Employee Table Data", false);
+            break;
+
+        case TableSelector::Company:
+            ImGui::Columns(kTableCompanyColumns, "Company Table Data", false);
+            break;
+
+        case TableSelector::City:
+            ImGui::Columns(kTableCityColumns, "City Table Data", false);
+            break;
+
+        case TableSelector::Country:
+            ImGui::Columns(kTableCountryColumns, "Country Table Data", false);
+            break;
     }
 
-    for (int i = 0; i < kTableEmployeeColumns; i++)
-    {
+    for(int i = 0; i < kTableEmployeeColumns; i++){
+
         ImGui::Text("%d", employee[i].id);
         ImGui::NextColumn();
         ImGui::Text("%s", employee[i].name);
@@ -182,8 +184,7 @@ int ShowDatabaseTable(GlobalData *info)
         ImGui::NextColumn();
     }
 
-    if (rc != SQLITE_OK)
-    {
+    if(rc != SQLITE_OK){
         fprintf(stderr, "Failed to select data\n");
         fprintf(stderr, "SQL error: %s\n", err_msg);
 
@@ -226,45 +227,25 @@ void Login(GlobalData *info)
     ImGui::End();
 }
 
-void Buttons(GlobalData *info)
+void ButtonsWindow(GlobalData *info)
 {
     ImGui::SetNextWindowPos(ImVec2(20.0f, 10.0f));
     ImGui::SetNextWindowSize(ImVec2(768, 40));
 
     ImGui::Begin("Button Table", NULL,
-                 ImGuiWindowFlags_NoTitleBar |
-                     ImGuiWindowFlags_NoResize |
-                     ImGuiWindowFlags_NoMove);
+                ImGuiWindowFlags_NoTitleBar |
+                ImGuiWindowFlags_NoResize |
+                ImGuiWindowFlags_NoMove);
     {
-        if (ImGui::Button("Open Popup"))
-        {
-            // When the button is clicked, open the popup
-            ImGui::OpenPopup("MyPopup");
-        }
+        if(ImGui::Button("Open Popup")){ ImGui::OpenPopup("MyPopup"); }
 
-        if (ImGui::BeginPopup("MyPopup"))
+        if(ImGui::BeginPopup("MyPopup"))
         {
-            if (ImGui::Button("Employee"))
-            {
-                info->table_id = TableSelector::Employee;
-            }
-            if (ImGui::Button("Company"))
-            {
-                info->table_id = TableSelector::Company;
-            }
-            if (ImGui::Button("City"))
-            {
-                info->table_id = TableSelector::City;
-            }
-            if (ImGui::Button("Country"))
-            {
-                info->table_id = TableSelector::Country;
-            }
-            if (ImGui::Button("Close"))
-            {
-                // When the "Close" button is clicked, close the popup
-                ImGui::CloseCurrentPopup();
-            }
+            if (ImGui::Button("Employee")) { info->table_id = TableSelector::Employee; }
+            if (ImGui::Button("Company")) { info->table_id = TableSelector::Company;}
+            if (ImGui::Button("City")) { info->table_id = TableSelector::City; }
+            if (ImGui::Button("Country")) { info->table_id = TableSelector::Country; }
+            if (ImGui::Button("Close")){ ImGui::CloseCurrentPopup(); }
             ImGui::EndPopup();
         }
     }

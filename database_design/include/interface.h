@@ -47,6 +47,6 @@ int ShowDatabaseTable(GlobalData *info);
 
 void Login(GlobalData *info);
 
-void Buttons(GlobalData *info);
+void ButtonsWindow(GlobalData *info);
 
 #endif
