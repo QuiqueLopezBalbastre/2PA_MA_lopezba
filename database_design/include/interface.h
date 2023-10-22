@@ -39,11 +39,15 @@ struct TableCountry
 
 static int TableEmployeeCallback(void *data, int argc, char **argv, char **colNames);
 
+static int TableCompanyCallback(void *data, int argc, char **field_values, char **colNames);
+
+static int TableCityCallback(void *data, int argc, char **field_values, char **colNames);
+
+int TableCountryCallback(void *data, int argc, char **field_values, char **colNames);
+
 void InitTable(int id);
 
 int ShowDatabaseTable(GlobalData *info);
-
-// void ShowDatabaseTable(/*const char *table_selected*/GlobalData *info);
 
 void Login(GlobalData *info);
 
