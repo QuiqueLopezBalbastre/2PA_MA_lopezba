@@ -21,16 +21,16 @@
 #include "interface.h"
 #include "global_data.h"
 
-TableEmployee employee[kTableEmployeeColumns];
-TableCompany company[kTableCompanyColumns];
-TableCity city[kTableCityColumns];
-TableCountry country[kTableCountryColumns];
+TableEmployee employee[kTableEmployeeRows];
+TableCompany company[kTableCompanyRows];
+TableCity city[kTableCityRows];
+TableCountry country[kTableCountryRows];
 
 void InitTable(int id)
 {
     switch(id){
         case TableSelector::Employee:
-            for (int i = 0; i < kTableEmployeeColumns; i++)
+            for (int i = 0; i < kTableEmployeeRows; i++)
             {
                 employee[i].id = -1;
                 employee[i].name[40] = '\0';
@@ -44,7 +44,7 @@ void InitTable(int id)
             break;
 
         case TableSelector::Company:
-            for (int i = 0; i < kTableCompanyColumns; i++)
+            for (int i = 0; i < kTableCompanyRows; i++)
             {
                 company[i].id = -1;
                 company[i].name[40] = '\0';
@@ -53,7 +53,7 @@ void InitTable(int id)
             break;
 
         case TableSelector::City:
-            for (int i = 0; i < kTableCityColumns; i++)
+            for (int i = 0; i < kTableCityRows; i++)
             {
                 city[i].id = -1;
                 city[i].name[40] = '\0';
@@ -62,7 +62,7 @@ void InitTable(int id)
             break;
             
         case TableSelector::Country:
-            for (int i = 0; i < kTableCountryColumns; i++)
+            for (int i = 0; i < kTableCountryRows; i++)
             {
                 country[i].id = -1;
                 country[i].name[40] = '\0';
@@ -77,13 +77,13 @@ int TableEmployeeCallback(void *data, int argc, char **field_values, char **colN
 
     int index = 0;
 
-    for(index = 0; index < kTableEmployeeColumns; index++){
+    for(index = 0; index < kTableEmployeeRows; index++){
 
         if(t[index].id == -1)
         break;
     }
 
-    if(kRows == index){
+    if(kTableEmployeeRows == index){
         return 0;
     }
 
@@ -124,13 +124,13 @@ int TableCompanyCallback(void *data, int argc, char **field_values, char **colNa
 
     int index = 0;
 
-    for(index = 0; index < kTableCompanyColumns; index++){
+    for(index = 0; index < kTableCompanyRows; index++){
 
         if(t[index].id == -1)
         break;
     }
 
-    if(kRows == index){
+    if(kTableCompanyRows == index){
         return 0;
     }
 
@@ -156,13 +156,13 @@ int TableCityCallback(void *data, int argc, char **field_values, char **colNames
 
     int index = 0;
 
-    for(index = 0; index < kTableCityColumns; index++){
+    for(index = 0; index < kTableCityRows; index++){
 
         if(t[index].id == -1)
         break;
     }
 
-    if(kRows == index){
+    if(kTableCityRows == index){
         return 0;
     }
 
@@ -188,13 +188,13 @@ int TableCountryCallback(void *data, int argc, char **field_values, char **colNa
 
     int index = 0;
 
-    for(index = 0; index < kTableCountryColumns; index++){
+    for(index = 0; index < kTableCountryRows; index++){
 
         if(t[index].id == -1)
         break;
     }
 
-    if(kRows == index){
+    if(kTableCountryRows == index){
         return 0;
     }
 
@@ -241,10 +241,10 @@ int ShowDatabaseTable(GlobalData *info)
         case TableSelector::Employee:
             sql = "SELECT * FROM Employee";
             rc = sqlite3_exec(db, sql, TableEmployeeCallback, (void *)employee, &err_msg);
-            ImGui::Columns(kTableEmployeeColumns, "Employee Table Data", false);
+            ImGui::Columns(8, "Employee Table Data", false);
 
             ImGui::Separator();
-            for(int i = 0; i < kTableEmployeeColumns; i++){
+            for(int i = 0; i < kTableEmployeeRows; i++){
 
                 ImGui::Text("%d", employee[i].id);
                 ImGui::NextColumn();
@@ -268,10 +268,10 @@ int ShowDatabaseTable(GlobalData *info)
         case TableSelector::Company:
             sql = "SELECT * FROM Company";
             rc = sqlite3_exec(db, sql, TableCompanyCallback, (void *)company, &err_msg);
-            ImGui::Columns(kTableCompanyColumns, "Company Table Data", false);
+            ImGui::Columns(3, "Company Table Data", false);
 
             ImGui::Separator();
-            for(int i = 0; i < kTableCompanyColumns; i++){
+            for(int i = 0; i < kTableCompanyRows; i++){
 
                 ImGui::Text("%d", company[i].id);
                 ImGui::NextColumn();
@@ -285,10 +285,10 @@ int ShowDatabaseTable(GlobalData *info)
         case TableSelector::City:
             sql = "SELECT * FROM City";
             rc = sqlite3_exec(db, sql, TableCityCallback, (void *)city, &err_msg);
-            ImGui::Columns(kTableCityColumns, "City Table Data", false);
+            ImGui::Columns(3, "City Table Data", false);
 
             ImGui::Separator();
-            for(int i = 0; i < kTableCityColumns; i++){
+            for(int i = 0; i < kTableCityRows; i++){
 
                 ImGui::Text("%d", city[i].id);
                 ImGui::NextColumn();
@@ -302,10 +302,10 @@ int ShowDatabaseTable(GlobalData *info)
         case TableSelector::Country:
             sql = "SELECT * FROM Country";
             rc = sqlite3_exec(db, sql, TableCountryCallback, (void *)country, &err_msg);
-            ImGui::Columns(kTableCountryColumns, "Country Table Data", false);
+            ImGui::Columns(2, "Country Table Data", false);
 
             ImGui::Separator();
-            for(int i = 0; i < kTableCountryColumns; i++){
+            for(int i = 0; i < kTableCountryRows; i++){
 
                 ImGui::Text("%d", country[i].id);
                 ImGui::NextColumn();

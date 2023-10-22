@@ -10,10 +10,10 @@
 /// Constants
 const int kWindow_width = 800, kWindow_height = 600;
 const int kRows = 3;
-const int kTableEmployeeColumns = 8;
-const int kTableCompanyColumns = 3;
-const int kTableCityColumns = 3;
-const int kTableCountryColumns = 2;
+const int kTableEmployeeRows = 3;
+const int kTableCompanyRows = 6;
+const int kTableCityRows = 15;
+const int kTableCountryRows = 5;
 
 
 enum TableSelector
