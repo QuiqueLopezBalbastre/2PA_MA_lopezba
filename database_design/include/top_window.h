@@ -5,7 +5,7 @@ struct GlobalData;
 
 #include <esat/math.h>
 
-void ButtonsWindow(GlobalData *info);
+void TopWindow(GlobalData *info);
 
 
 #endif

@@ -5,6 +5,6 @@ struct GlobalData;
 
 #include <esat/math.h>
 
-void LoginWindow(GlobalData *info);
+void BottomWindow(GlobalData *info);
 
 #endif

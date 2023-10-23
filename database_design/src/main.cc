@@ -25,7 +25,6 @@ int esat::main(int argc, char **argv)
 
   GlobalData global_data;
 
-  //ShowDatabaseTable();
   while (esat::WindowIsOpened() && !esat::IsSpecialKeyDown(esat::kSpecialKey_Escape))
   {
 
@@ -33,10 +32,10 @@ int esat::main(int argc, char **argv)
     esat::DrawBegin();
     esat::DrawClear(0, 0, 0);
 
-    LoginWindow(&global_data);
-    //ShowDatabaseTable(&global_data);
-    ButtonsWindow(&global_data);
+    TopWindow(&global_data);
     ShowDatabaseTable(&global_data);
+    BottomWindow(&global_data);
+
     esat::DrawEnd();
 
     do
