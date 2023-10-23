@@ -8,7 +8,7 @@
 #include <esat/math.h>
 
 /// Constants
-const int kWindow_width = 800, kWindow_height = 600;
+const int kWindow_width = 1200, kWindow_height = 800;
 const int kRows = 3;
 const int kTableEmployeeRows = 3;
 const int kTableCompanyRows = 6;
