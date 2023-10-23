@@ -30,10 +30,10 @@ enum TableSelector
 struct GlobalData
 {
 
-  char user_name[40];
-  char pass_word[40];
-
   int table_id;
+
+  char *user_query=nullptr;
+  bool query_execute=false;
 
   unsigned char fps = 60;
   double current_time, last_time;

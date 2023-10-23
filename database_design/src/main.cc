@@ -24,6 +24,7 @@ int esat::main(int argc, char **argv)
   srand(time(NULL));
 
   GlobalData global_data;
+  global_data.user_query = (char*)calloc(20, sizeof(char));
 
   while (esat::WindowIsOpened() && !esat::IsSpecialKeyDown(esat::kSpecialKey_Escape))
   {

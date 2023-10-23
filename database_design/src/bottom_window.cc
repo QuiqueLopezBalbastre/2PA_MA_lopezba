@@ -11,17 +11,15 @@
 #include "bottom_window.h"
 #include "global_data.h"
 
-void LoginCode(GlobalData *info){
-    ImGui::SetCursorPos(ImVec2(60, 30));
-    ImGui::InputText("##Username", info->user_name, IM_ARRAYSIZE(info->user_name));
+void ExecuteUserQuery(GlobalData *info){
 
-    ImGui::SetCursorPos(ImVec2(60, 70));
-    ImGui::InputText("##Password", info->pass_word, IM_ARRAYSIZE(info->pass_word, ImGuiInputTextFlags_Password));
+    ImGui::SetCursorPos(ImVec2(60, 30));
+    ImGui::InputText("##UserQuery", info->user_query, IM_ARRAYSIZE(info->user_query) * 20);
 
     ImGui::SetCursorPos(ImVec2(1000, 40));
-    if (ImGui::Button("Login", ImVec2(100, 40)))
+    if (ImGui::Button("Execute query", ImVec2(100, 40)))
     {
-        NULL;
+        info->query_execute=true;
     }
 }
 
@@ -31,12 +29,12 @@ void BottomWindow(GlobalData *info)
     ImGui::SetNextWindowSize(ImVec2(1160, 150));
     ImGui::SetNextWindowBgAlpha(1.0f);
 
-    ImGui::Begin("login Table", NULL,
+    ImGui::Begin("TextTable", NULL,
                  ImGuiWindowFlags_NoTitleBar |
                      ImGuiWindowFlags_NoResize |
                      ImGuiWindowFlags_NoMove);
     {
-        LoginCode(info);
+        ExecuteUserQuery(info);
     }
     ImGui::End();
 }
