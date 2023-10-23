@@ -49,4 +49,6 @@ static int TableCountryCallback(void *data, int argc, char **field_values, char 
 
 int ShowDatabaseTable(GlobalData *info);
 
+void ShowQuery(GlobalData *info);
+
 #endif

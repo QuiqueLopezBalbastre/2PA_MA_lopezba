@@ -38,8 +38,6 @@ int esat::main(int argc, char **argv)
     {
     case MenuSelector::kMenuSelector_InitialMenu:
       break;
-    case MenuSelector::kMenuSelector_ShowDatabase:
-      break;
     case MenuSelector::kMenuSelector_ShowTable:
       ShowDatabaseTable(&global_data);
       break;

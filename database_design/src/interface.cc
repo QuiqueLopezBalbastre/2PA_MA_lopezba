@@ -213,6 +213,56 @@ int TableCountryCallback(void *data, int argc, char **field_values, char **colNa
     return 0;
 }
 
+
+
+
+int QueryCallback(void* data, int argc, char** argv, char** colNames){
+    ImGui::Columns(argc, "Database Table", false);
+
+    for (int i = 0; i < argc; i++) {
+        ImGui::Text("%s: %s", colNames[i], (argv[i] ? argv[i] : "NULL"));
+        ImGui::NextColumn();
+    }
+
+    return 0;
+}
+
+
+
+void ShowQuery(GlobalData *info){
+
+    sqlite3* db;
+    int rc = sqlite3_open("../data/Database.db", &db);
+
+    if (rc) {
+        fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+        return;
+    }
+    
+    
+    ImGui::SetNextWindowSize(ImVec2(830, 151));
+    ImGui::Begin("Database Table");
+
+    char* query = info->user_query;
+    char* err_msg = 0;
+    rc = sqlite3_exec(db, query, QueryCallback, 0, &err_msg);
+    
+    
+
+    if (rc != SQLITE_OK) {
+        fprintf(stderr, "SQL error: %s\n", err_msg);
+        sqlite3_free(err_msg);
+    }
+
+    sqlite3_close(db);
+
+    ImGui::End();
+
+
+}
+
+
+
 int ShowDatabaseTable(GlobalData *info)
 {
     InitTable(info->table_id);
@@ -313,6 +363,11 @@ int ShowDatabaseTable(GlobalData *info)
                 ImGui::NextColumn();
             }
             break;
+        case TableSelector::Database:
+             if(info->query_execute){
+                ShowQuery(info);
+             }
+            break;
     }
 
     if(rc != SQLITE_OK){
@@ -331,7 +386,4 @@ int ShowDatabaseTable(GlobalData *info)
 
     return 0;
 }
-
-
-
 
