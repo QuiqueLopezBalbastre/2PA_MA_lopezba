@@ -14,8 +14,8 @@
 
 #include "../include/global_data.h"
 #include "../include/interface.h"
-
-
+#include "../include/top_window.h"
+#include "../include/bottom_window.h"
 
 int esat::main(int argc, char **argv)
 {
@@ -33,7 +33,7 @@ int esat::main(int argc, char **argv)
     esat::DrawBegin();
     esat::DrawClear(0, 0, 0);
 
-    Login(&global_data);
+    LoginWindow(&global_data);
     //ShowDatabaseTable(&global_data);
     ButtonsWindow(&global_data);
     ShowDatabaseTable(&global_data);

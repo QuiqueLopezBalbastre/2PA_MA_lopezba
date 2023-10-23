@@ -37,20 +37,16 @@ struct TableCountry
     char name[40];
 };
 
+void InitTable(int id);
+
 static int TableEmployeeCallback(void *data, int argc, char **argv, char **colNames);
 
 static int TableCompanyCallback(void *data, int argc, char **field_values, char **colNames);
 
 static int TableCityCallback(void *data, int argc, char **field_values, char **colNames);
 
-int TableCountryCallback(void *data, int argc, char **field_values, char **colNames);
-
-void InitTable(int id);
+static int TableCountryCallback(void *data, int argc, char **field_values, char **colNames);
 
 int ShowDatabaseTable(GlobalData *info);
-
-void Login(GlobalData *info);
-
-void ButtonsWindow(GlobalData *info);
 
 #endif

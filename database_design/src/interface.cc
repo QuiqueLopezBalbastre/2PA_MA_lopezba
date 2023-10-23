@@ -332,54 +332,6 @@ int ShowDatabaseTable(GlobalData *info)
     return 0;
 }
 
-void Login(GlobalData *info)
-{
-    ImGui::SetNextWindowPos(ImVec2(20.0f, 640.0f));
-    ImGui::SetNextWindowSize(ImVec2(1160, 150));
-    ImGui::SetNextWindowBgAlpha(1.0f);
 
-    ImGui::Begin("login Table", NULL,
-                 ImGuiWindowFlags_NoTitleBar |
-                     ImGuiWindowFlags_NoResize |
-                     ImGuiWindowFlags_NoMove);
-    {
-        ImGui::SetCursorPos(ImVec2(60, 30));
-        ImGui::InputText("##Username", info->user_name, IM_ARRAYSIZE(info->user_name));
 
-        ImGui::SetCursorPos(ImVec2(60, 70));
-        ImGui::InputText("##Password", info->pass_word, IM_ARRAYSIZE(info->pass_word, ImGuiInputTextFlags_Password));
 
-        ImGui::SetCursorPos(ImVec2(1000, 40));
-        if (ImGui::Button("Login", ImVec2(100, 40)))
-        {
-            NULL;
-        }
-    }
-    ImGui::End();
-}
-
-void ButtonsWindow(GlobalData *info)
-{
-    ImGui::SetNextWindowPos(ImVec2(20.0f, 10.0f));
-    ImGui::SetNextWindowSize(ImVec2(1160, 40));
-
-    ImGui::Begin("Button Table", NULL,
-                ImGuiWindowFlags_NoTitleBar |
-                ImGuiWindowFlags_NoResize |
-                ImGuiWindowFlags_NoMove);
-    {
-        if(ImGui::Button("Tables")){ ImGui::OpenPopup("TablesPopup"); }
-
-        if(ImGui::BeginPopup("TablesPopup"))
-        {
-            if (ImGui::Button("Employee")) { info->table_id = TableSelector::Employee; }
-            if (ImGui::Button("Company")) { info->table_id = TableSelector::Company;}
-            if (ImGui::Button("City")) { info->table_id = TableSelector::City; }
-            if (ImGui::Button("Country")) { info->table_id = TableSelector::Country; }
-            ImGui::Separator();
-            if (ImGui::Button("Close")){ ImGui::CloseCurrentPopup(); }
-            ImGui::EndPopup();
-        }
-    }
-    ImGui::End();
-}
