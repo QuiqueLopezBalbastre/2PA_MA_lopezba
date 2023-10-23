@@ -21,16 +21,24 @@ enum TableSelector
   Employee,
   Company,
   City,
-  Country
+  Country,
+  Database
 };
 
-
+enum MenuSelector
+{
+  kMenuSelector_InitialMenu,
+  kMenuSelector_ShowTable,
+  kMenuSelector_ShowDatabase,
+  kMenuSelector_InsertData,
+  kMenuSelector_RemoveData
+};
 
 /// Global variable struct
 struct GlobalData
 {
-
   int table_id;
+  int menu_id;
 
   char *user_query=nullptr;
   bool query_execute=false;

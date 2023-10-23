@@ -11,17 +11,57 @@
 #include "top_window.h"
 #include "global_data.h"
 
-void DatabaseButton(GlobalData *info){
-    if(ImGui::Button("Tables")){ ImGui::OpenPopup("TablesPopup"); }
-
-    if(ImGui::BeginPopup("TablesPopup"))
+void DatabaseButton(GlobalData *info)
+{
+    ImGui::Columns(4, "Options selector", false);
+    if (ImGui::Button("Initial menu"))
     {
-        if (ImGui::Button("Employee")) { info->table_id = TableSelector::Employee; }
-        if (ImGui::Button("Company")) { info->table_id = TableSelector::Company;}
-        if (ImGui::Button("City")) { info->table_id = TableSelector::City; }
-        if (ImGui::Button("Country")) { info->table_id = TableSelector::Country; }
+        info->menu_id = MenuSelector::kMenuSelector_InitialMenu;
+    }
+    ImGui::NextColumn();
+    if (ImGui::Button("Select tables"))
+    {
+        ImGui::OpenPopup("TablesPopup");
+        info->menu_id = MenuSelector::kMenuSelector_ShowTable;
+    }
+    ImGui::NextColumn();
+    if (ImGui::Button("Insert data"))
+    {
+        info->menu_id = MenuSelector::kMenuSelector_InsertData;
+    }
+    ImGui::NextColumn();
+    if (ImGui::Button("Remove data"))
+    {
+        info->menu_id = MenuSelector::kMenuSelector_RemoveData;
+    }
+
+    if (ImGui::BeginPopup("TablesPopup"))
+    {
+        if (ImGui::Button("Employee"))
+        {
+            info->table_id = TableSelector::Employee;
+        }
+        if (ImGui::Button("Company"))
+        {
+            info->table_id = TableSelector::Company;
+        }
+        if (ImGui::Button("City"))
+        {
+            info->table_id = TableSelector::City;
+        }
+        if (ImGui::Button("Country"))
+        {
+            info->table_id = TableSelector::Country;
+        }
+        if (ImGui::Button("Database"))
+        {
+            info->table_id = TableSelector::Database;
+        }
         ImGui::Separator();
-        if (ImGui::Button("Close")){ ImGui::CloseCurrentPopup(); }
+        if (ImGui::Button("Close"))
+        {
+            ImGui::CloseCurrentPopup();
+        }
         ImGui::EndPopup();
     }
 }
@@ -32,9 +72,9 @@ void TopWindow(GlobalData *info)
     ImGui::SetNextWindowSize(ImVec2(1160, 40));
 
     ImGui::Begin("Button Table", NULL,
-                ImGuiWindowFlags_NoTitleBar |
-                ImGuiWindowFlags_NoResize |
-                ImGuiWindowFlags_NoMove);
+                 ImGuiWindowFlags_NoTitleBar |
+                     ImGuiWindowFlags_NoResize |
+                     ImGuiWindowFlags_NoMove);
     {
         DatabaseButton(info);
     }

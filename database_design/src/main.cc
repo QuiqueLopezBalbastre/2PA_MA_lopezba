@@ -24,7 +24,7 @@ int esat::main(int argc, char **argv)
   srand(time(NULL));
 
   GlobalData global_data;
-  global_data.user_query = (char*)calloc(20, sizeof(char));
+  global_data.user_query = (char *)calloc(20, sizeof(char));
 
   while (esat::WindowIsOpened() && !esat::IsSpecialKeyDown(esat::kSpecialKey_Escape))
   {
@@ -34,7 +34,20 @@ int esat::main(int argc, char **argv)
     esat::DrawClear(0, 0, 0);
 
     TopWindow(&global_data);
-    ShowDatabaseTable(&global_data);
+    switch (global_data.menu_id)
+    {
+    case MenuSelector::kMenuSelector_InitialMenu:
+      break;
+    case MenuSelector::kMenuSelector_ShowDatabase:
+      break;
+    case MenuSelector::kMenuSelector_ShowTable:
+      ShowDatabaseTable(&global_data);
+      break;
+    case MenuSelector::kMenuSelector_InsertData:
+      break;
+    case MenuSelector::kMenuSelector_RemoveData:
+      break;
+    }
     BottomWindow(&global_data);
 
     esat::DrawEnd();
