@@ -16,6 +16,7 @@
 #include "../include/interface.h"
 #include "../include/top_window.h"
 #include "../include/bottom_window.h"
+#include "../include/insertdata.h"
 
 int esat::main(int argc, char **argv)
 {
@@ -34,20 +35,24 @@ int esat::main(int argc, char **argv)
     esat::DrawClear(0, 0, 0);
 
     TopWindow(&global_data);
-    switch (global_data.menu_id)
-    {
-    case MenuSelector::kMenuSelector_InitialMenu:
-      global_data.structb=true;
-      ShowQuery(&global_data);
-      break;
-    case MenuSelector::kMenuSelector_ShowTable:
-      global_data.structb=false;
-      ShowDatabaseTable(&global_data);
-      break;
-    case MenuSelector::kMenuSelector_InsertData:
-      break;
-    case MenuSelector::kMenuSelector_RemoveData:
-      break;
+    switch(global_data.menu_id){
+      
+      case MenuSelector::kMenuSelector_InitialMenu:
+        global_data.structb=true;
+        ShowQuery(&global_data);
+        break;
+
+      case MenuSelector::kMenuSelector_ShowTable:
+        global_data.structb=false;
+        ShowDatabaseTable(&global_data);
+        break;
+
+      case MenuSelector::kMenuSelector_InsertData:
+        InsertDataTable(&global_data);
+        break;
+
+      case MenuSelector::kMenuSelector_RemoveData:
+        break;
     }
     BottomWindow(&global_data);
 

@@ -213,9 +213,6 @@ int TableCountryCallback(void *data, int argc, char **field_values, char **colNa
     return 0;
 }
 
-
-
-
 int QueryCallback(void* data, int argc, char** argv, char** colNames){
     ImGui::Columns(argc, "Database Table", false);
 
@@ -226,8 +223,6 @@ int QueryCallback(void* data, int argc, char** argv, char** colNames){
 
     return 0;
 }
-
-
 
 void ShowQuery(GlobalData *info){
 
@@ -266,8 +261,6 @@ void ShowQuery(GlobalData *info){
 
 
 }
-
-
 
 int ShowDatabaseTable(GlobalData *info)
 {
