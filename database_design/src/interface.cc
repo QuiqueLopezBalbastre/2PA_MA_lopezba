@@ -401,3 +401,179 @@ int ShowDatabaseTable(GlobalData *info)
     return 0;
 }
 
+void Executevalues(const char* sql) {
+    sqlite3* db;
+    char* err_msg = 0;
+    int rc = sqlite3_open("../data/Database.db", &db);
+
+    if (rc != SQLITE_OK) {
+        fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+        sqlite3_close(db);
+        return;
+    }
+
+    rc = sqlite3_exec(db, sql, 0, 0, &err_msg);
+
+    if (rc != SQLITE_OK) {
+        fprintf(stderr, "SQL error: %s\n", err_msg);
+        sqlite3_free(err_msg);
+    }
+
+    sqlite3_close(db);
+}
+
+
+void Updatevalues(GlobalData* info) {
+    
+    ImGui::SetNextWindowPos(ImVec2(20, 60));
+    ImGui::SetNextWindowSize(ImVec2(1160, 570));
+    ImGui::Begin("InsertEmployeeData", NULL);
+    if (ImGui::Button("Employee"))
+    {
+        info->table_id = TableSelector::Employee;
+    }
+    ImGui::SameLine();
+    if (ImGui::Button("Company"))
+    {
+        info->table_id = TableSelector::Company;
+    }
+    ImGui::SameLine();
+    if (ImGui::Button("City"))
+    {
+        info->table_id = TableSelector::City;
+    }
+    ImGui::SameLine();
+    if (ImGui::Button("Country"))
+    {
+        info->table_id = TableSelector::Country;
+    }
+    ImGui::Separator();
+
+    switch(info->table_id){
+        case TableSelector::Employee:
+            
+            for(int i = 0; i < kTableEmployeeRows; i++){
+                ImGui::PushID(i);
+                ImGui::InputInt("ID", &employee[i].id);
+                ImGui::NextColumn();
+                ImGui::InputText("Name", employee[i].name, 40);
+                ImGui::NextColumn();
+                ImGui::InputText("surName", employee[i].surname, 40);
+                ImGui::NextColumn();
+                ImGui::Text("NULL(RELLENAR)");
+                ImGui::NextColumn();
+                ImGui::InputInt("company", &employee[i].company);
+                ImGui::NextColumn();
+                ImGui::InputInt("city", &employee[i].city);
+                ImGui::NextColumn();
+                ImGui::InputInt("nacionality", &employee[i].nacionality);
+                ImGui::NextColumn();
+                ImGui::InputInt("salary", &employee[i].salary);
+                ImGui::NextColumn();
+                ImGui::Separator();
+                
+                ImGui::PopID();
+            }
+
+            printf("%s",&employee[0].name);
+
+            if(ImGui::Button("Insert")){
+                for(int i = 0; i < kTableEmployeeRows; i++){
+                char sql[512];
+                snprintf(sql, sizeof(sql), "UPDATE Employee Set ID = %d , Name = '%s' , Surname = '%s', Company = %d , city = %d , nationality = %d , salary = %d WHERE ID = %d ;",
+                    employee[i].id, &employee[i].name,&employee[i].surname, employee[i].company, employee[i].city, employee[i].nacionality, employee[i].salary,employee[i].id);
+
+                Executevalues(sql);
+                }
+            }
+            
+            
+          
+            
+        break;
+
+        case TableSelector::Company:
+            
+             for(int i = 0; i < kTableCompanyRows; i++){
+                ImGui::PushID(i);
+                ImGui::InputInt("ID", &company[i].id);
+                ImGui::NextColumn();
+                ImGui::InputText("Name", company[i].name, 40);
+                ImGui::NextColumn();
+                ImGui::InputText("surName", company[i].country, 40);
+                
+                ImGui::Separator();
+                
+                ImGui::PopID();
+            }
+
+            printf("%s",&company[0].name);
+
+            if(ImGui::Button("Insert")){
+                for(int i = 0; i < kTableEmployeeRows; i++){
+                char sql[512];
+                snprintf(sql, sizeof(sql), "UPDATE Country Set ID = %d , Name = '%s' , Country = '%s' WHERE ID = %d ;",
+                    company[i].id, &company[i].name,&company[i].country,employee[i].id);
+
+                Executevalues(sql);
+                }
+            }
+        break;
+
+        case TableSelector::City:
+            for(int i = 0; i < kTableCityRows; i++){
+                ImGui::PushID(i);
+                ImGui::InputInt("ID", &city[i].id);
+                ImGui::NextColumn();
+                ImGui::InputText("Name", city[i].name, 40);
+                ImGui::NextColumn();
+                ImGui::InputText("surName", city[i].country, 40);
+                
+                ImGui::Separator();
+                
+                ImGui::PopID();
+            }
+
+            printf("%s",&company[0].name);
+
+            if(ImGui::Button("Insert")){
+                for(int i = 0; i < kTableCityRows; i++){
+                char sql[512];
+                snprintf(sql, sizeof(sql), "UPDATE City Set ID = %d , Name = '%s' , Country = '%s' WHERE ID = %d ;",
+                    city[i].id, &city[i].name,&city[i].country,city[i].id);
+                Executevalues(sql);
+                }
+            }
+        break;
+
+        case TableSelector::Country:
+          
+          for(int i = 0; i < kTableCountryRows; i++){
+                ImGui::PushID(i);
+                ImGui::InputInt("ID", &country[i].id);
+                ImGui::NextColumn();
+                ImGui::InputText("Name", country[i].name, 40);
+               
+                ImGui::Separator();
+                
+                ImGui::PopID();
+            }
+
+            printf("%s",&company[0].name);
+
+            if(ImGui::Button("Insert")){
+                for(int i = 0; i < kTableCityRows; i++){
+                char sql[512];
+                snprintf(sql, sizeof(sql), "UPDATE City Set ID = %d , Name = '%s' WHERE ID = %d ;",
+                    country[i].id, &country[i].name,country[i].id);
+                Executevalues(sql);
+                }
+            }
+            
+
+        break;
+    }
+
+    ImGui::End();
+}
+

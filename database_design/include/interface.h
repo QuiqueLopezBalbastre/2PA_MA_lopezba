@@ -51,6 +51,10 @@ int ShowDatabaseTable(GlobalData *info);
 
 void ShowQuery(GlobalData *info);
 
+void Updatevalues(GlobalData* info);
+
+void Executevalues(const char* sql);
+
 void CreateWindow();
 void CloseWindow();
 #endif

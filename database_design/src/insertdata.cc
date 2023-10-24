@@ -70,7 +70,7 @@ void InsertDataTable(GlobalData *info)
         info->table_id = TableSelector::Country;
     }
     ImGui::Separator();
-    ImGui::Separator();
+    
 
     switch (info->table_id)
     {

@@ -50,6 +50,10 @@ int esat::main(int argc, char **argv)
       ShowDatabaseTable(&global_data);
       break;
 
+    case MenuSelector::kMenuSelector_UdateData:
+      Updatevalues(&global_data);
+      break;
+
     case MenuSelector::kMenuSelector_InsertData:
       InsertDataTable(&global_data);
       break;

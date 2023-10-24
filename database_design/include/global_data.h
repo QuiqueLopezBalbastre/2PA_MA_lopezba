@@ -30,6 +30,7 @@ enum MenuSelector
   kMenuSelector_InitialMenu,
   kMenuSelector_ShowTable,
   kMenuSelector_ShowDatabase,
+   kMenuSelector_UdateData,
   kMenuSelector_InsertData,
   kMenuSelector_RemoveData
 };

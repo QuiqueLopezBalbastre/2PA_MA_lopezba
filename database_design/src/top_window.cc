@@ -13,7 +13,7 @@
 
 void DatabaseButton(GlobalData *info)
 {
-    ImGui::Columns(4, "Options selector", false);
+    ImGui::Columns(5, "Options selector", false);
     if (ImGui::Button("Initial menu"))
     {
         info->menu_id = MenuSelector::kMenuSelector_InitialMenu;
@@ -23,6 +23,12 @@ void DatabaseButton(GlobalData *info)
     {
         ImGui::OpenPopup("TablesPopup");
         info->menu_id = MenuSelector::kMenuSelector_ShowTable;
+    }
+    ImGui::NextColumn();
+    if (ImGui::Button("Update data"))
+    {
+        
+        info->menu_id = MenuSelector::kMenuSelector_UdateData;
     }
     ImGui::NextColumn();
     if (ImGui::Button("Insert data"))
