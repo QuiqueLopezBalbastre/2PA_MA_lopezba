@@ -35,7 +35,7 @@ void InitTable(int id)
                 employee[i].id = -1;
                 employee[i].name[40] = '\0';
                 employee[i].surname[40] = '\0';
-                employee[i].adress[40] = '\0';
+                employee[i].address[40] = '\0';
                 employee[i].company = -1;
                 employee[i].city = -1;
                 employee[i].nacionality = -1;
@@ -262,6 +262,21 @@ void ShowQuery(GlobalData *info){
 
 }
 
+void CreateWindow()
+{
+    ImGui::SetNextWindowPos(ImVec2(20, 60));
+    ImGui::SetNextWindowSize(ImVec2(1160, 570));
+    ImGui::Begin("Database Table", NULL,
+                 ImGuiWindowFlags_NoTitleBar |
+                     ImGuiWindowFlags_NoResize |
+                     ImGuiWindowFlags_NoMove);
+}
+
+void CloseWindow()
+{
+    ImGui::End();
+}
+
 int ShowDatabaseTable(GlobalData *info)
 {
     InitTable(info->table_id);
@@ -276,12 +291,12 @@ int ShowDatabaseTable(GlobalData *info)
         return 1;
     }
 
-    ImGui::SetNextWindowPos(ImVec2(20, 60));
-    ImGui::SetNextWindowSize(ImVec2(1160, 570));
-    ImGui::Begin("Database Table", NULL,
-                ImGuiWindowFlags_NoTitleBar |
-                ImGuiWindowFlags_NoResize |
-                ImGuiWindowFlags_NoMove);
+    // ImGui::SetNextWindowPos(ImVec2(20, 60));
+    // ImGui::SetNextWindowSize(ImVec2(1160, 570));
+    // ImGui::Begin("Database Table", NULL,
+    //             ImGuiWindowFlags_NoTitleBar |
+    //             ImGuiWindowFlags_NoResize |
+    //             ImGuiWindowFlags_NoMove);
 
     char *sql = nullptr;
 
@@ -381,7 +396,7 @@ int ShowDatabaseTable(GlobalData *info)
 
     sqlite3_close(db);
 
-    ImGui::End();
+    // ImGui::End();
 
     return 0;
 }

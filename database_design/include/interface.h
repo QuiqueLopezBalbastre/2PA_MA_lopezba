@@ -10,7 +10,7 @@ struct TableEmployee
     int id;
     char name[40];
     char surname[40];
-    char adress[40];
+    char address[40];
     int company;
     int city;
     int nacionality;
@@ -51,4 +51,6 @@ int ShowDatabaseTable(GlobalData *info);
 
 void ShowQuery(GlobalData *info);
 
+void CreateWindow();
+void CloseWindow();
 #endif
