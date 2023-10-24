@@ -41,8 +41,11 @@ struct GlobalData
   int menu_id;
 
   char *user_query=nullptr;
-  bool query_execute=false;
+  
+  char struct_database[80]="Select name From sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'\0";
 
+  bool query_execute=false;
+  bool structb=false;
   unsigned char fps = 60;
   double current_time, last_time;
 };

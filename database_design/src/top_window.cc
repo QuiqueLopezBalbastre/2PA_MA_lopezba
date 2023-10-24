@@ -53,7 +53,7 @@ void DatabaseButton(GlobalData *info)
         {
             info->table_id = TableSelector::Country;
         }
-        if (ImGui::Button("Database"))
+        if (ImGui::Button("Query"))
         {
             info->table_id = TableSelector::Database;
         }

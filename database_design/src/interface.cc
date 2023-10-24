@@ -242,8 +242,14 @@ void ShowQuery(GlobalData *info){
     
     ImGui::SetNextWindowSize(ImVec2(830, 151));
     ImGui::Begin("Database Table");
+    char* query;
+    if(!info->structb){
+    query = info->user_query;
+    }else{
+   
+     query = info->struct_database;
 
-    char* query = info->user_query;
+    }
     char* err_msg = 0;
     rc = sqlite3_exec(db, query, QueryCallback, 0, &err_msg);
     
