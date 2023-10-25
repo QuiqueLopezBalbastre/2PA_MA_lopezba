@@ -88,7 +88,7 @@ void InsertDataTable(GlobalData *info)
         if (ImGui::Button("Insert"))
         {
             char sql[512];
-            snprintf(sql, sizeof(sql), "INSERT INTO Employee (id, name, surname, adress, company, city, nationality, salary) VALUES (%d, '%s', '%s', '%s', %d, %d, %d, %d);",
+            snprintf(sql, sizeof(sql), "INSERT INTO Employee (id, name, surname, address, company, city, nationality, salary) VALUES (%d, '%s', '%s', '%s', %d, %d, %d, %d);",
                      newEmployee.id, newEmployee.name, newEmployee.surname, newEmployee.address, newEmployee.company, newEmployee.city, newEmployee.nacionality, newEmployee.salary);
 
             ExecuteSQL(sql);
