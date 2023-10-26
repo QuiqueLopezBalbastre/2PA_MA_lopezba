@@ -1,5 +1,5 @@
-#ifndef __BOTTOM_WINDOW_H__
-#define __BOTTOM_WINDOW_H__ 1
+#ifndef __QUERY_WINDOW_H__
+#define __QUERY_WINDOW_H__ 1
 
 struct GlobalData;
 

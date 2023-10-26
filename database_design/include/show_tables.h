@@ -1,7 +1,16 @@
+/**
+ * @file show_tables.cc
+ * @author Federico Sanjuan (sanjuanbare@esat-alumni.com)
+ * @brief
+ * @version 0.1
+ * @date 2023-10-24
+ *
+ * @copyright Copyright (c) 2023
+ *
+ */
 
-
-#ifndef __INTERFACE_H__
-#define __INTERFACE_H__ 1
+#ifndef __SHOW_TABLES_H__
+#define __SHOW_TABLES_H__ 1
 
 struct GlobalData;
 

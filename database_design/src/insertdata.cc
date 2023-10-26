@@ -8,7 +8,7 @@
 #include <esat_extra/sqlite3.h>
 
 #include "insertdata.h"
-#include "interface.h"
+#include "show_tables.h"
 #include "global_data.h"
 
 TableEmployee newEmployee;
@@ -42,14 +42,6 @@ void ExecuteSQL(const char *sql)
 
 void InsertDataTable(GlobalData *info)
 {
-
-    ImGui::SetNextWindowPos(ImVec2(20, 60));
-    ImGui::SetNextWindowSize(ImVec2(1160, 570));
-    ImGui::Begin("InsertEmployeeData", NULL,
-                 ImGuiWindowFlags_NoTitleBar |
-                     ImGuiWindowFlags_NoResize |
-                     ImGuiWindowFlags_NoMove);
-
     if (ImGui::Button("Employee"))
     {
         info->table_id = TableSelector::Employee;
@@ -143,5 +135,4 @@ void InsertDataTable(GlobalData *info)
         break;
     }
 
-    ImGui::End();
 }

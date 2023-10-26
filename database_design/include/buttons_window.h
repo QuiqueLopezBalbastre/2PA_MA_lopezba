@@ -1,5 +1,5 @@
-#ifndef __TOP_WINDOW_H__
-#define __TOP_WINDOW_H__ 1
+#ifndef __BUTTONS_WINDOW_H__
+#define __BUTTONS_WINDOW_H__ 1
 
 struct GlobalData;
 

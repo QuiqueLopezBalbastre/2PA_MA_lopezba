@@ -1,14 +1,3 @@
-/**
- * @file removedata.cc
- * @author Quique López (lopezba@esat-alumni.com)
- * @brief
- * @version 0.1
- * @date 2023-10-24
- *
- * @copyright Copyright (c) 2023
- *
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -19,7 +8,7 @@
 #include <esat_extra/sqlite3.h>
 
 #include "remove_data.h"
-#include "interface.h"
+#include "show_tables.h"
 #include "global_data.h"
 
 void ExecuteSQL(char *sql)

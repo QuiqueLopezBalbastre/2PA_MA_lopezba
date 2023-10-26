@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "bottom_window.h"
+#include "query_window.h"
 #include "global_data.h"
 
 void ExecuteUserQuery(GlobalData *info){

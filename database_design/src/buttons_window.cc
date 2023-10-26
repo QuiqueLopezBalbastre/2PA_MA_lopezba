@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "top_window.h"
+#include "buttons_window.h"
 #include "global_data.h"
 
 void DatabaseButton(GlobalData *info)

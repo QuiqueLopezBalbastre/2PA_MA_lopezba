@@ -13,9 +13,9 @@
 #include <time.h>
 
 #include "../include/global_data.h"
-#include "../include/interface.h"
-#include "../include/top_window.h"
-#include "../include/bottom_window.h"
+#include "../include/show_tables.h"
+#include "../include/buttons_window.h"
+#include "../include/query_window.h"
 #include "../include/insertdata.h"
 #include "../include/remove_data.h"
 

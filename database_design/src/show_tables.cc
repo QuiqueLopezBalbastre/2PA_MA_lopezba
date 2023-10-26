@@ -1,13 +1,3 @@
-/**
- * @file interface.cc
- * @author Sergio Madaleno (madalenofi@esat-alumni.com)
- * @brief
- * @version 0.1
- * @date 2023-10-19
- *
- * @copyright Copyright (c) 2023
- *
- */
 #include <esat/draw.h>
 #include <esat/input.h>
 #include <esat_extra/imgui.h>
@@ -18,7 +8,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "interface.h"
+#include "show_tables.h"
 #include "global_data.h"
 
 TableEmployee employee[kTableEmployeeRows];
