@@ -22,6 +22,30 @@
 #include "interface.h"
 #include "global_data.h"
 
+void ExecuteSQL(char *sql)
+{
+    sqlite3 *db;
+    char *err_msg = 0;
+    int rc = sqlite3_open("../data/Database.db", &db);
+
+    if (rc != SQLITE_OK)
+    {
+        fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+        sqlite3_close(db);
+        return;
+    }
+
+    rc = sqlite3_exec(db, sql, 0, 0, &err_msg);
+
+    if (rc != SQLITE_OK)
+    {
+        fprintf(stderr, "SQL error: %s\n", err_msg);
+        sqlite3_free(err_msg);
+    }
+
+    sqlite3_close(db);
+}
+
 int id = -1;
 
 int DeleteCallback(void *data, int argc, char **argv, char **colNames)
@@ -60,10 +84,7 @@ int RemoveData(GlobalData *info)
     ImGui::Separator();
     ImGui::InputInt("ID", &id);
 
-    sqlite3 *db;
-    char *err_msg = 0;
-    char *sql = nullptr;
-    int rc = sqlite3_open("../data/Database.db", &db);
+    char sql[512];
 
     if (ImGui::Button("Remove tuple"))
     {
@@ -71,30 +92,21 @@ int RemoveData(GlobalData *info)
         {
         case TableSelector::Employee:
             snprintf(sql, sizeof(sql), "DELETE FROM Employee WHERE ID = %d", id);
+            ExecuteSQL(sql);
             break;
-        case TableSelector::Company:
-            snprintf(sql, sizeof(sql), "DELETE FROM Employee WHERE ID = %d", id);            break;
-        case TableSelector::City:
-            snprintf(sql, sizeof(sql), "DELETE FROM Employee WHERE ID = %d", id);
-            break;
-        case TableSelector::Country:
-            snprintf(sql, sizeof(sql), "DELETE FROM Country WHERE ID = %d", id);            break;
+        // case TableSelector::Company:
+        //     snprintf(sql, sizeof(sql), "DELETE FROM Employee WHERE ID = %d", id);
+        //     ExecuteSQL(sql);
+        //     break;
+        // case TableSelector::City:
+        //     snprintf(sql, sizeof(sql), "DELETE FROM Employee WHERE ID = %d", id);
+        //     ExecuteSQL(sql);
+        //     break;
+        // case TableSelector::Country:
+        //     snprintf(sql, sizeof(sql), "DELETE FROM Country WHERE ID = %d", id);
+        //     ExecuteSQL(sql); 
+        //     break;
         }
-        printf("%s", sql);
-        rc = sqlite3_exec(db, sql, 0, (void *)id, &err_msg);
     }
-
-    if (rc != SQLITE_OK)
-    {
-        fprintf(stderr, "Failed to select data\n");
-        fprintf(stderr, "SQL error: %s\n", err_msg);
-
-        sqlite3_free(err_msg);
-        sqlite3_close(db);
-
-        return 1;
-    }
-
-    sqlite3_close(db);
     return 0;
 }
