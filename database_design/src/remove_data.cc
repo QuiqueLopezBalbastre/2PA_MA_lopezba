@@ -35,13 +35,13 @@ void ExecuteSQL(char *sql)
     sqlite3_close(db);
 }
 
-int id = -1;
-
 int DeleteCallback(void *data, int argc, char **argv, char **colNames)
 {
 
     return 0;
 }
+
+int id = -0;
 
 int RemoveData(GlobalData *info)
 {
@@ -73,7 +73,7 @@ int RemoveData(GlobalData *info)
     ImGui::Separator();
     ImGui::InputInt("ID", &id);
 
-    char sql[512];
+    char sql[512]; 
 
     if (ImGui::Button("Remove tuple"))
     {
@@ -83,18 +83,18 @@ int RemoveData(GlobalData *info)
             snprintf(sql, sizeof(sql), "DELETE FROM Employee WHERE ID = %d", id);
             ExecuteSQL(sql);
             break;
-        // case TableSelector::Company:
-        //     snprintf(sql, sizeof(sql), "DELETE FROM Employee WHERE ID = %d", id);
-        //     ExecuteSQL(sql);
-        //     break;
-        // case TableSelector::City:
-        //     snprintf(sql, sizeof(sql), "DELETE FROM Employee WHERE ID = %d", id);
-        //     ExecuteSQL(sql);
-        //     break;
-        // case TableSelector::Country:
-        //     snprintf(sql, sizeof(sql), "DELETE FROM Country WHERE ID = %d", id);
-        //     ExecuteSQL(sql); 
-        //     break;
+        case TableSelector::Company:
+            snprintf(sql, sizeof(sql), "DELETE FROM Company WHERE ID = %d", id);
+            ExecuteSQL(sql);
+            break;
+        case TableSelector::City:
+            snprintf(sql, sizeof(sql), "DELETE FROM City WHERE ID = %d", id);
+            ExecuteSQL(sql);
+            break;
+        case TableSelector::Country:
+            snprintf(sql, sizeof(sql), "DELETE FROM Country WHERE ID = %d", id);
+            ExecuteSQL(sql); 
+            break;
         }
     }
     return 0;

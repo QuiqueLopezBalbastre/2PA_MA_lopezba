@@ -63,6 +63,7 @@ void InsertDataTable(GlobalData *info)
     }
     ImGui::Separator();
     
+    char sql[512];
 
     switch (info->table_id)
     {
@@ -79,7 +80,7 @@ void InsertDataTable(GlobalData *info)
 
         if (ImGui::Button("Insert"))
         {
-            char sql[512];
+            
             snprintf(sql, sizeof(sql), "INSERT INTO Employee (id, name, surname, address, company, city, nationality, salary) VALUES (%d, '%s', '%s', '%s', %d, %d, %d, %d);",
                      newEmployee.id, newEmployee.name, newEmployee.surname, newEmployee.address, newEmployee.company, newEmployee.city, newEmployee.nacionality, newEmployee.salary);
 
@@ -95,7 +96,6 @@ void InsertDataTable(GlobalData *info)
 
         if (ImGui::Button("Insert"))
         {
-            char sql[512];
             snprintf(sql, sizeof(sql), "INSERT INTO Company (id, name, country) VALUES (%d, '%s', '%s');",
                      newCompany.id, newCompany.name, newCompany.country);
 
@@ -111,7 +111,6 @@ void InsertDataTable(GlobalData *info)
 
         if (ImGui::Button("Insert"))
         {
-            char sql[512];
             snprintf(sql, sizeof(sql), "INSERT INTO City (id, name, country) VALUES (%d, '%s', '%s');",
                      newCity.id, newCity.name, newCity.country);
 
@@ -126,7 +125,6 @@ void InsertDataTable(GlobalData *info)
 
         if (ImGui::Button("Insert"))
         {
-            char sql[512];
             snprintf(sql, sizeof(sql), "INSERT INTO Country (id, name) VALUES (%d, '%s');",
                      newCountry.id, newCountry.name);
 
