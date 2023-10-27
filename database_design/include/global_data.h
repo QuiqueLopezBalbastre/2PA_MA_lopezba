@@ -47,7 +47,7 @@ enum MenuSelector
 struct GlobalData
 {
   int table_id;
-  int menu_id;
+  int menu_id=kMenuSelector_InitialMenu;
 
   char *user_query=nullptr;
   

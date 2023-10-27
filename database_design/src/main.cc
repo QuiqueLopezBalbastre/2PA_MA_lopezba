@@ -56,7 +56,19 @@ int esat::main(int argc, char **argv)
     {
 
     case MenuSelector::kMenuSelector_InitialMenu:
-      esat::DrawSprite(esat_logo, kWindow_width * 0.45f, kWindow_width * 0.20f);
+      esat::DrawSprite(esat_logo, kWindow_width/2 - 15, kWindow_height/2 - 250);
+
+      ImGui::SetCursorPos(ImVec2(kWindow_width/2 - 135, kWindow_height/2 - 100));
+      ImGui::TextColored(ImVec4(57.0f / 255.0f, 222.0f / 255.0f, 206.0f / 255.0f, 1.0f), "DEVELOPED BY");
+
+      ImGui::SetCursorPos(ImVec2(kWindow_width/2 - 145, kWindow_height/2 - 50));
+      ImGui::TextColored(ImVec4(222.0f / 255.0f, 123.0f / 255.0f, 57.0f / 255.0f, 1.0f), "SERGIO MADALENO");
+
+      ImGui::SetCursorPos(ImVec2(kWindow_width/2 - 149, kWindow_height/2));
+      ImGui::TextColored(ImVec4(222.0f / 255.0f, 123.0f / 255.0f, 57.0f / 255.0f, 1.0f), "FEDERICO SANJUAN");
+
+      ImGui::SetCursorPos(ImVec2(kWindow_width/2 - 139, kWindow_height/2 + 50));
+      ImGui::TextColored(ImVec4(222.0f / 255.0f, 123.0f / 255.0f, 57.0f / 255.0f, 1.0f), "ENRIQUE LÓPEZ");
       break;
 
     case MenuSelector::kMenuSelector_ShowTable:
@@ -80,13 +92,11 @@ int esat::main(int argc, char **argv)
       ShowDatabaseStructure(&global_data);
       break;
     case MenuSelector::kMenuSelector_Query:
-      // ShowQuery();
       ShowQuery(&global_data);
       break;
     }
     CloseWindow();
-    /*
-     */
+
     CreateWindow("Bottom window", ImVec2(20.0f, 640.0f), ImVec2(1160, 150));
     BottomWindow(&global_data);
     CloseWindow();
@@ -101,6 +111,7 @@ int esat::main(int argc, char **argv)
     esat::WindowFrame();
   }
 
+  esat::SpriteRelease(esat_logo);
   esat::WindowDestroy();
 
   return 0;

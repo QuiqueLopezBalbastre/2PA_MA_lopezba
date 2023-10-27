@@ -458,8 +458,6 @@ void Updatevalues(GlobalData *info)
             ImGui::PopID();
         }
 
-        printf("%s", &employee[0].name);
-
         if (ImGui::Button("Insert"))
         {
             for (int i = 0; i < kTableEmployeeRows; i++)
@@ -490,8 +488,6 @@ void Updatevalues(GlobalData *info)
             ImGui::PopID();
         }
 
-        printf("%s", &company[0].name);
-
         if (ImGui::Button("Insert"))
         {
             for (int i = 0; i < kTableEmployeeRows; i++)
@@ -520,8 +516,6 @@ void Updatevalues(GlobalData *info)
             ImGui::PopID();
         }
 
-        printf("%s", &company[0].name);
-
         if (ImGui::Button("Insert"))
         {
             for (int i = 0; i < kTableCityRows; i++)
@@ -548,8 +542,6 @@ void Updatevalues(GlobalData *info)
             ImGui::PopID();
         }
 
-        printf("%s", &company[0].name);
-
         if (ImGui::Button("Insert"))
         {
             for (int i = 0; i < kTableCityRows; i++)
@@ -564,5 +556,4 @@ void Updatevalues(GlobalData *info)
         break;
     }
 
-    // ImGui::End();
 }
