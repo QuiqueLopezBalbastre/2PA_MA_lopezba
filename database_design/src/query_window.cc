@@ -13,28 +13,17 @@
 
 void ExecuteUserQuery(GlobalData *info){
 
-    ImGui::SetCursorPos(ImVec2(60, 30));
+    ImGui::SetCursorPos(ImVec2(60, 60));
     ImGui::InputText("##UserQuery", info->user_query, IM_ARRAYSIZE(info->user_query) * 20);
 
-    ImGui::SetCursorPos(ImVec2(1000, 40));
-    if (ImGui::Button("Execute query", ImVec2(100, 40)))
+    ImGui::SetCursorPos(ImVec2(900, 50));
+    if (ImGui::Button("Execute query", ImVec2(150, 45)))
     {
-        info->query_execute=true;
+        info->menu_id = MenuSelector::kMenuSelector_Query;
     }
 }
 
 void BottomWindow(GlobalData *info)
 {
-    ImGui::SetNextWindowPos(ImVec2(20.0f, 640.0f));
-    ImGui::SetNextWindowSize(ImVec2(1160, 150));
-    ImGui::SetNextWindowBgAlpha(1.0f);
-
-    ImGui::Begin("TextTable", NULL,
-                 ImGuiWindowFlags_NoTitleBar |
-                     ImGuiWindowFlags_NoResize |
-                     ImGuiWindowFlags_NoMove);
-    {
-        ExecuteUserQuery(info);
-    }
-    ImGui::End();
+    ExecuteUserQuery(info);
 }

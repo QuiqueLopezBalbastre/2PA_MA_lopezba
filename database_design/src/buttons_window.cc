@@ -11,67 +11,6 @@
 #include "buttons_window.h"
 #include "global_data.h"
 
-void DatabaseButton(GlobalData *info)
-{
-    ImGui::Columns(5, "Options selector", false);
-    if (ImGui::Button("Initial menu"))
-    {
-        info->menu_id = MenuSelector::kMenuSelector_InitialMenu;
-    }
-    ImGui::NextColumn();
-    if (ImGui::Button("Select tables"))
-    {
-        ImGui::OpenPopup("TablesPopup");
-        info->menu_id = MenuSelector::kMenuSelector_ShowTable;
-    }
-    ImGui::NextColumn();
-    if (ImGui::Button("Update data"))
-    {
-        
-        info->menu_id = MenuSelector::kMenuSelector_UdateData;
-    }
-    ImGui::NextColumn();
-    if (ImGui::Button("Insert data"))
-    {
-        info->menu_id = MenuSelector::kMenuSelector_InsertData;
-    }
-    ImGui::NextColumn();
-    if (ImGui::Button("Remove data"))
-    {
-        info->menu_id = MenuSelector::kMenuSelector_RemoveData;
-    }
-
-    if (ImGui::BeginPopup("TablesPopup"))
-    {
-        if (ImGui::Button("Employee"))
-        {
-            info->table_id = TableSelector::Employee;
-        }
-        if (ImGui::Button("Company"))
-        {
-            info->table_id = TableSelector::Company;
-        }
-        if (ImGui::Button("City"))
-        {
-            info->table_id = TableSelector::City;
-        }
-        if (ImGui::Button("Country"))
-        {
-            info->table_id = TableSelector::Country;
-        }
-        if (ImGui::Button("Query"))
-        {
-            info->table_id = TableSelector::Database;
-        }
-        ImGui::Separator();
-        if (ImGui::Button("Close"))
-        {
-            ImGui::CloseCurrentPopup();
-        }
-        ImGui::EndPopup();
-    }
-}
-
 void TopWindow(GlobalData *info)
 {
     ImGui::SetNextWindowPos(ImVec2(20.0f, 10.0f));
@@ -82,7 +21,62 @@ void TopWindow(GlobalData *info)
                      ImGuiWindowFlags_NoResize |
                      ImGuiWindowFlags_NoMove);
     {
-        DatabaseButton(info);
+        if (ImGui::Button("Initial menu", {125.0f, 20.0f}))
+        {
+            info->menu_id = MenuSelector::kMenuSelector_InitialMenu;
+        }
     }
     ImGui::End();
+}
+
+void MenuSelectionWindow(GlobalData *info)
+{
+    const ImVec2 size = {125.0f, 20.0f};
+
+    ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0, 15));
+    if (ImGui::Button("Select tables", size))
+    {
+        info->menu_id = MenuSelector::kMenuSelector_ShowTable;
+    }
+    if (ImGui::Button("Update data", size))
+    {
+        info->menu_id = MenuSelector::kMenuSelector_UpdateData;
+    }
+    if (ImGui::Button("Insert data", size))
+    {
+        info->menu_id = MenuSelector::kMenuSelector_InsertData;
+    }
+    if (ImGui::Button("Remove data", size))
+    {
+        info->menu_id = MenuSelector::kMenuSelector_RemoveData;
+    }
+    if(ImGui::Button("DDBB structure", size))
+    {
+        info->menu_id = MenuSelector::kMenuSelector_ShowDatabase;
+    }
+    ImGui::PopStyleVar();
+}
+
+void TableSelectionWindow(GlobalData *info)
+{
+    const ImVec2 size = {125.0f, 20.0f};
+    ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0, 15));
+
+    if (ImGui::Button("Employee", size))
+    {
+        info->table_id = TableSelector::Employee;
+    }
+    if (ImGui::Button("Company", size))
+    {
+        info->table_id = TableSelector::Company;
+    }
+    if (ImGui::Button("City", size))
+    {
+        info->table_id = TableSelector::City;
+    }
+    if (ImGui::Button("Country", size))
+    {
+        info->table_id = TableSelector::Country;
+    }
+    ImGui::PopStyleVar();
 }

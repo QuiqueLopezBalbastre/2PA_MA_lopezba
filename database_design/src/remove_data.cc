@@ -45,37 +45,11 @@ int id = -0;
 
 int RemoveData(GlobalData *info)
 {
-    if (ImGui::Button("Employee"))
-    {
-        info->table_id = TableSelector::Employee;
-    }
-    ImGui::SameLine();
-    if (ImGui::Button("Company"))
-    {
-        info->table_id = TableSelector::Company;
-    }
-    ImGui::SameLine();
-    if (ImGui::Button("City"))
-    {
-        info->table_id = TableSelector::City;
-    }
-    ImGui::SameLine();
-    if (ImGui::Button("Country"))
-    {
-        info->table_id = TableSelector::Country;
-    }
-    ImGui::SameLine();
-    ImGui::Separator();
-    ImGui::Separator();
-
-    ShowDatabaseTable(info);
-    ImGui::Separator();
-    ImGui::Separator();
     ImGui::InputInt("ID", &id);
 
-    char sql[512]; 
-
+    char sql[512];
     if (ImGui::Button("Remove tuple"))
+
     {
         switch (info->table_id)
         {
@@ -93,9 +67,12 @@ int RemoveData(GlobalData *info)
             break;
         case TableSelector::Country:
             snprintf(sql, sizeof(sql), "DELETE FROM Country WHERE ID = %d", id);
-            ExecuteSQL(sql); 
+            ExecuteSQL(sql);
             break;
         }
     }
+    ImGui::Dummy(ImVec2(0, 10));
+    ImGui::Separator();
+    ShowDatabaseTable(info);
     return 0;
 }

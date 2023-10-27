@@ -37,9 +37,10 @@ enum MenuSelector
   kMenuSelector_InitialMenu,
   kMenuSelector_ShowTable,
   kMenuSelector_ShowDatabase,
-   kMenuSelector_UdateData,
+  kMenuSelector_UpdateData,
   kMenuSelector_InsertData,
-  kMenuSelector_RemoveData
+  kMenuSelector_RemoveData,
+  kMenuSelector_Query
 };
 
 /// Global variable struct

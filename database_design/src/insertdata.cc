@@ -42,27 +42,6 @@ void ExecuteSQL(const char *sql)
 
 void InsertDataTable(GlobalData *info)
 {
-    if (ImGui::Button("Employee"))
-    {
-        info->table_id = TableSelector::Employee;
-    }
-    ImGui::SameLine();
-    if (ImGui::Button("Company"))
-    {
-        info->table_id = TableSelector::Company;
-    }
-    ImGui::SameLine();
-    if (ImGui::Button("City"))
-    {
-        info->table_id = TableSelector::City;
-    }
-    ImGui::SameLine();
-    if (ImGui::Button("Country"))
-    {
-        info->table_id = TableSelector::Country;
-    }
-    ImGui::Separator();
-    
     char sql[512];
 
     switch (info->table_id)
@@ -80,7 +59,7 @@ void InsertDataTable(GlobalData *info)
 
         if (ImGui::Button("Insert"))
         {
-            
+
             snprintf(sql, sizeof(sql), "INSERT INTO Employee (id, name, surname, address, company, city, nationality, salary) VALUES (%d, '%s', '%s', '%s', %d, %d, %d, %d);",
                      newEmployee.id, newEmployee.name, newEmployee.surname, newEmployee.address, newEmployee.company, newEmployee.city, newEmployee.nacionality, newEmployee.salary);
 
@@ -132,5 +111,4 @@ void InsertDataTable(GlobalData *info)
         }
         break;
     }
-
 }

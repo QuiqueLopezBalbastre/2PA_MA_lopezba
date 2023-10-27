@@ -9,7 +9,7 @@
 #include <time.h>
 
 #include "global_functions.h"
-#include "global_data.h"
+// #include "global_data.h"
 
 /*
 
@@ -36,12 +36,13 @@ void ExecuteSQL(const char *sql)
 
     sqlite3_close(db);
 }
+*/
 
-void CreateWindow()
+void CreateWindow(const char *name, ImVec2 pos, ImVec2 size)
 {
-    ImGui::SetNextWindowPos(ImVec2(20, 60));
-    ImGui::SetNextWindowSize(ImVec2(1160, 570));
-    ImGui::Begin("Database Table", NULL,
+    ImGui::SetNextWindowPos(ImVec2(pos.x, pos.y));
+    ImGui::SetNextWindowSize(ImVec2(size.x, size.y));
+    ImGui::Begin(name, NULL,
                  ImGuiWindowFlags_NoTitleBar |
                      ImGuiWindowFlags_NoResize |
                      ImGuiWindowFlags_NoMove);
@@ -51,5 +52,3 @@ void CloseWindow()
 {
     ImGui::End();
 }
-
-*/
