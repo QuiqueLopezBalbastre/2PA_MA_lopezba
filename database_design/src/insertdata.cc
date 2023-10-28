@@ -41,6 +41,8 @@ void InsertDataTable(GlobalData *info)
                      newEmployee.id, newEmployee.name, newEmployee.surname, newEmployee.address, newEmployee.company, newEmployee.city, newEmployee.nacionality, newEmployee.salary);
 
             ExecuteSQL(sql);
+            info->countfiles++;
+            InitTable(info,0);
         }
         break;
 
@@ -56,6 +58,8 @@ void InsertDataTable(GlobalData *info)
                      newCompany.id, newCompany.name, newCompany.country);
 
             ExecuteSQL(sql);
+            info->countfiles2++;
+            InitTable(info,1);
         }
         break;
 
@@ -71,7 +75,10 @@ void InsertDataTable(GlobalData *info)
                      newCity.id, newCity.name, newCity.country);
 
             ExecuteSQL(sql);
+            info->countfiles3++;
+            InitTable(info,2);
         }
+        
         break;
 
     case TableSelector::Country:
@@ -85,6 +92,8 @@ void InsertDataTable(GlobalData *info)
                      newCountry.id, newCountry.name);
 
             ExecuteSQL(sql);
+            info->countfiles4++;
+            InitTable(info,3);
         }
         break;
     }

@@ -21,6 +21,7 @@
 #include "../include/query_window.h"
 #include "../include/insertdata.h"
 #include "../include/remove_data.h"
+#include "../include/count_rows.h"
 
 int esat::main(int argc, char **argv)
 {
@@ -31,7 +32,10 @@ int esat::main(int argc, char **argv)
   GlobalData global_data;
   global_data.user_query = (char *)calloc(80, sizeof(char));
   esat::SpriteHandle esat_logo = esat::SpriteFromFile("../data/esat_logo.png");
-
+   for(int i=0;i<numtables;i++){
+    ShowFile(&global_data,i);
+    InitTable(&global_data,i);
+  }
   while (esat::WindowIsOpened() && !esat::IsSpecialKeyDown(esat::kSpecialKey_Escape))
   {
 

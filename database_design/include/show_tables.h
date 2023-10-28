@@ -24,6 +24,7 @@ struct TableEmployee
     int city;
     int nacionality;
     int salary;
+    int rows;
 };
 
 struct TableCompany
@@ -31,6 +32,7 @@ struct TableCompany
     int id;
     char name[40];
     char country[40];
+    int rows;
 };
 
 struct TableCity
@@ -38,12 +40,14 @@ struct TableCity
     int id;
     char name[40];
     char country[40];
+    int rows;
 };
 
 struct TableCountry
 {
     int id;
     char name[40];
+    int rows;
 };
 
 /**
@@ -51,7 +55,7 @@ struct TableCountry
  *
  * @param id An integer representing the type of the database table to initialize (e.g., Employee, Company, City, or Country).
  */
-void InitTable(int id);
+void InitTable(GlobalData *info,int i);
 
 /**
  * @brief Callback function for processing database results and populating the Employee table.

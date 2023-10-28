@@ -25,18 +25,26 @@ int RemoveData(GlobalData *info)
         case TableSelector::Employee:
             snprintf(sql, sizeof(sql), "DELETE FROM Employee WHERE ID = %d", info->remove_id);
             ExecuteSQL(sql);
+            info->countfiles--;
+            InitTable(info,0);
             break;
         case TableSelector::Company:
             snprintf(sql, sizeof(sql), "DELETE FROM Company WHERE ID = %d", info->remove_id);
             ExecuteSQL(sql);
+            info->countfiles2--;
+            InitTable(info,1);
             break;
         case TableSelector::City:
             snprintf(sql, sizeof(sql), "DELETE FROM City WHERE ID = %d", info->remove_id);
             ExecuteSQL(sql);
+            info->countfiles3--;
+            InitTable(info,2);
             break;
         case TableSelector::Country:
             snprintf(sql, sizeof(sql), "DELETE FROM Country WHERE ID = %d", info->remove_id);
             ExecuteSQL(sql);
+            info->countfiles4--;
+            InitTable(info,3);
             break;
         }
     }
