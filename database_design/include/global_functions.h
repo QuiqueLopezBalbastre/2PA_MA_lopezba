@@ -12,6 +12,8 @@
 #ifndef __GLOBAL_FUNCTIONS_H__
 #define __GLOBAL_FUNCTIONS_H__ 1
 
+#include <esat_extra/imgui.h>
+
 /**
  * @brief Execute a SQL query on a SQLite database.
  *

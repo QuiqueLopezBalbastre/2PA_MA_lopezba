@@ -12,44 +12,52 @@
 #include "global_data.h"
 #include "global_functions.h"
 
-int RemoveData(GlobalData *info)
-{
+int RemoveData(GlobalData *info){
+
     ImGui::InputInt("ID", &info->remove_id);
 
     char sql[512];
-    if (ImGui::Button("Remove tuple"))
+    if(ImGui::Button("Remove tuple")){
 
-    {
-        switch (info->table_id)
-        {
-        case TableSelector::Employee:
-            snprintf(sql, sizeof(sql), "DELETE FROM Employee WHERE ID = %d", info->remove_id);
-            ExecuteSQL(sql);
-            info->countfiles--;
-            InitTable(info,0);
+        switch (info->table_id){
+
+            case TableSelector::Employee:
+                snprintf(sql, sizeof(sql), "DELETE FROM Employee WHERE ID = %d", info->remove_id);
+                ExecuteSQL(sql);
+
+                info->count_rows--;
+                InitTable(info,0);
             break;
-        case TableSelector::Company:
-            snprintf(sql, sizeof(sql), "DELETE FROM Company WHERE ID = %d", info->remove_id);
-            ExecuteSQL(sql);
-            info->countfiles2--;
-            InitTable(info,1);
+
+            case TableSelector::Company:
+                snprintf(sql, sizeof(sql), "DELETE FROM Company WHERE ID = %d", info->remove_id);
+                ExecuteSQL(sql);
+
+                info->count_rows_2--;
+                InitTable(info,1);
             break;
-        case TableSelector::City:
-            snprintf(sql, sizeof(sql), "DELETE FROM City WHERE ID = %d", info->remove_id);
-            ExecuteSQL(sql);
-            info->countfiles3--;
-            InitTable(info,2);
+
+            case TableSelector::City:
+                snprintf(sql, sizeof(sql), "DELETE FROM City WHERE ID = %d", info->remove_id);
+                ExecuteSQL(sql);
+
+                info->count_rows_3--;
+                InitTable(info,2);
             break;
-        case TableSelector::Country:
-            snprintf(sql, sizeof(sql), "DELETE FROM Country WHERE ID = %d", info->remove_id);
-            ExecuteSQL(sql);
-            info->countfiles4--;
-            InitTable(info,3);
+
+            case TableSelector::Country:
+                snprintf(sql, sizeof(sql), "DELETE FROM Country WHERE ID = %d", info->remove_id);
+                ExecuteSQL(sql);
+
+                info->count_rows_4--;
+                InitTable(info,3);
             break;
         }
     }
+
     ImGui::Dummy(ImVec2(0, 10));
     ImGui::Separator();
     ShowDatabaseTable(info);
+    
     return 0;
 }

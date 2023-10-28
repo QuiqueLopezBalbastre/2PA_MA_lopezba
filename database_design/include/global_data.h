@@ -21,7 +21,7 @@ const int kTableEmployeeRows = 3;
 const int kTableCompanyRows = 6;
 const int kTableCityRows = 15;
 const int kTableCountryRows = 5;
-const int numtables=4;
+const int kNumTables=4;
 
 enum TableSelector
 {
@@ -51,7 +51,7 @@ struct GlobalData
   int menu_id=kMenuSelector_InitialMenu;
 
   char *user_query=nullptr;
-  int countfiles,countfiles2,countfiles3,countfiles4;
+  int count_rows, count_rows_2, count_rows_3, count_rows_4;
   
   char struct_database[80]="Select name From sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'\0";
 

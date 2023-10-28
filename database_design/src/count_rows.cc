@@ -10,153 +10,99 @@
 #include "count_rows.h"
 #include "global_data.h"
 
-
-int Readrow(void *data, int argc, char **field_values, char **colNames)
-{
+int ReadRows(void *data, int argc, char **field_values, char **colNames){
     
-     int *t = (int*)data;
-    
+    int *t = (int*)data;
     *t= atoi(field_values[0]);
-
-   
-    //printf("%d",*t);
 
     return 0;
 }
 
-
-void ShowFile(GlobalData* info,int i) {
+void ShowRows(GlobalData* info, int table_identifier) {
     
     char sql[512];
     sqlite3* db;
     char* err_msg = 0;
     int rc = sqlite3_open("../data/Database.db", &db);
 
-    switch(i){
-        case 0:
-            
-                
-                
-                 snprintf(sql, sizeof(sql), " Select COUNT(*) FROM Employee;"
-                     );
+    switch(table_identifier){
+        case TableSelector::Employee: 
+            snprintf(sql, sizeof(sql), " Select COUNT(*) FROM Employee;");
 
+            if (rc != SQLITE_OK) {
+                fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+                sqlite3_close(db);
+                return;
+            }
 
-    
-    
-    
-    if (rc != SQLITE_OK) {
-        fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
-        sqlite3_close(db);
-        return;
-    }
+            rc = sqlite3_exec(db, sql, ReadRows, (void*) &(info->count_rows), &err_msg);
 
-    rc = sqlite3_exec(db, sql, Readrow, (void*) &(info->countfiles), &err_msg);
+            if (rc != SQLITE_OK) {
+                fprintf(stderr, "SQL error: %s\n", err_msg);
+                sqlite3_free(err_msg);
+            }
 
-    if (rc != SQLITE_OK) {
-        fprintf(stderr, "SQL error: %s\n", err_msg);
-        sqlite3_free(err_msg);
-    }
-
-    sqlite3_close(db);
-    
-    printf("%d",info->countfiles);
-            
-    
-            
-          
-            
+            sqlite3_close(db); 
         break;
          
         case TableSelector::Company:
-            
-            
-                
-                 snprintf(sql, sizeof(sql), " Select COUNT(*) FROM Company;"
-                     );
+            snprintf(sql, sizeof(sql), " Select COUNT(*) FROM Company;");
 
+            if (rc != SQLITE_OK) {
+                fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+                sqlite3_close(db);
+                return;
+            }
 
-    
-    
+            rc = sqlite3_exec(db, sql, ReadRows, (void*) &(info->count_rows_2), &err_msg);
 
-    if (rc != SQLITE_OK) {
-        fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
-        sqlite3_close(db);
-        return;
-    }
+            if (rc != SQLITE_OK) {
+                fprintf(stderr, "SQL error: %s\n", err_msg);
+                sqlite3_free(err_msg);
+            }
 
-    rc = sqlite3_exec(db, sql, Readrow, (void*) &(info->countfiles2), &err_msg);
-
-    if (rc != SQLITE_OK) {
-        fprintf(stderr, "SQL error: %s\n", err_msg);
-        sqlite3_free(err_msg);
-    }
-
-    sqlite3_close(db);
-    
-    printf("%d",info->countfiles);
+            sqlite3_close(db);
         break;
 
         case TableSelector::City:
-            
-                
-                 snprintf(sql, sizeof(sql), " Select COUNT(*) FROM City;"
-                     );
+            snprintf(sql, sizeof(sql), " Select COUNT(*) FROM City;");
 
+            if (rc != SQLITE_OK) {
+                fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+                sqlite3_close(db);
+                return;
+            }
 
-    
-    
+            rc = sqlite3_exec(db, sql, ReadRows, (void*) &(info->count_rows_3), &err_msg);
 
-    if (rc != SQLITE_OK) {
-        fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
-        sqlite3_close(db);
-        return;
-    }
+            if (rc != SQLITE_OK) {
+                fprintf(stderr, "SQL error: %s\n", err_msg);
+                sqlite3_free(err_msg);
+            }
 
-    rc = sqlite3_exec(db, sql, Readrow, (void*) &(info->countfiles3), &err_msg);
-
-    if (rc != SQLITE_OK) {
-        fprintf(stderr, "SQL error: %s\n", err_msg);
-        sqlite3_free(err_msg);
-    }
-
-    sqlite3_close(db);
-    
-    printf("%d",info->countfiles);
+            sqlite3_close(db);
         break;
 
         case TableSelector::Country:
-          
-          
-                
-                 snprintf(sql, sizeof(sql), " Select COUNT(*) FROM Country;"
-                     );
+            snprintf(sql, sizeof(sql), " Select COUNT(*) FROM Country;");
 
+            if (rc != SQLITE_OK) {
+                fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+                sqlite3_close(db);
+                return;
+            }
 
-    
-    
+            rc = sqlite3_exec(db, sql, ReadRows, (void*) &(info->count_rows_4), &err_msg);
 
-    if (rc != SQLITE_OK) {
-        fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
-        sqlite3_close(db);
-        return;
-    }
+            if (rc != SQLITE_OK) {
+                fprintf(stderr, "SQL error: %s\n", err_msg);
+                sqlite3_free(err_msg);
+            }
 
-    rc = sqlite3_exec(db, sql, Readrow, (void*) &(info->countfiles4), &err_msg);
-
-    if (rc != SQLITE_OK) {
-        fprintf(stderr, "SQL error: %s\n", err_msg);
-        sqlite3_free(err_msg);
-    }
-
-    sqlite3_close(db);
-    
-    
-
+            sqlite3_close(db);
         break;
-        
-    }
 
-    
+    }
 }
 
 

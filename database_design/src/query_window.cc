@@ -17,13 +17,12 @@ void ExecuteUserQuery(GlobalData *info){
     ImGui::InputText("##UserQuery", info->user_query, IM_ARRAYSIZE(info->user_query) * 20);
 
     ImGui::SetCursorPos(ImVec2(900, 50));
-    if (ImGui::Button("Execute query", ImVec2(150, 45)))
-    {
+    if(ImGui::Button("Execute query", ImVec2(150, 45))){
         info->menu_id = MenuSelector::kMenuSelector_Query;
     }
 }
 
-void BottomWindow(GlobalData *info)
-{
+void BottomWindow(GlobalData *info){
+    
     ExecuteUserQuery(info);
 }

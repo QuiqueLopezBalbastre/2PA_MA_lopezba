@@ -55,7 +55,7 @@ struct TableCountry
  *
  * @param id An integer representing the type of the database table to initialize (e.g., Employee, Company, City, or Country).
  */
-void InitTable(GlobalData *info,int i);
+void InitTable(GlobalData *info, int table_identifier);
 
 /**
  * @brief Callback function for processing database results and populating the Employee table.
