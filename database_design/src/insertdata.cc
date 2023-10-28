@@ -17,7 +17,6 @@ TableCompany newCompany;
 TableCity newCity;
 TableCountry newCountry;
 
-
 void InsertDataTable(GlobalData *info)
 {
     char sql[512];

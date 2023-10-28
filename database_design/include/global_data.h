@@ -1,7 +1,7 @@
 /**
  * @file global_data.cc
  * @author Sergio Madaleno (madalenofi@esat-alumni.com)
- * @brief
+ * @brief Defines global constants, enumerations, and the GlobalData structure used in an application.
  * @version 0.1
  * @date 2023-10-24
  *
@@ -47,6 +47,7 @@ enum MenuSelector
 struct GlobalData
 {
   int table_id;
+  int remove_id=0;
   int menu_id=kMenuSelector_InitialMenu;
 
   char *user_query=nullptr;

@@ -1,3 +1,5 @@
+/// Authors: Sergio Madaleno, Federico Sanjuan, Enrique López
+
 #include <esat/window.h>
 #include <esat/draw.h>
 #include <esat/input.h>

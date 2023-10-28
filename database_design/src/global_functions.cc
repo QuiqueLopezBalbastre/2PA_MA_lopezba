@@ -35,7 +35,6 @@ void ExecuteSQL(const char *sql)
     sqlite3_close(db);
 }
 
-
 void CreateWindow(const char *name, ImVec2 pos, ImVec2 size)
 {
     ImGui::SetNextWindowPos(ImVec2(pos.x, pos.y));
