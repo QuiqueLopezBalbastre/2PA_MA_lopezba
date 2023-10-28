@@ -10,34 +10,10 @@
 #include "remove_data.h"
 #include "show_tables.h"
 #include "global_data.h"
-
-void ExecuteSQL(char *sql)
-{
-    sqlite3 *db;
-    char *err_msg = 0;
-    int rc = sqlite3_open("../data/Database.db", &db);
-
-    if (rc != SQLITE_OK)
-    {
-        fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
-        sqlite3_close(db);
-        return;
-    }
-
-    rc = sqlite3_exec(db, sql, 0, 0, &err_msg);
-
-    if (rc != SQLITE_OK)
-    {
-        fprintf(stderr, "SQL error: %s\n", err_msg);
-        sqlite3_free(err_msg);
-    }
-
-    sqlite3_close(db);
-}
+#include "global_functions.h"
 
 int DeleteCallback(void *data, int argc, char **argv, char **colNames)
 {
-
     return 0;
 }
 

@@ -11,8 +11,6 @@
 #include "global_functions.h"
 // #include "global_data.h"
 
-/*
-
 void ExecuteSQL(const char *sql)
 {
     sqlite3 *db;
@@ -36,7 +34,7 @@ void ExecuteSQL(const char *sql)
 
     sqlite3_close(db);
 }
-*/
+
 
 void CreateWindow(const char *name, ImVec2 pos, ImVec2 size)
 {

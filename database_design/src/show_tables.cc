@@ -10,14 +10,15 @@
 
 #include "show_tables.h"
 #include "global_data.h"
+#include "global_functions.h"
 
 TableEmployee employee[kTableEmployeeRows];
 TableCompany company[kTableCompanyRows];
 TableCity city[kTableCityRows];
 TableCountry country[kTableCountryRows];
 
-void InitTable(int id)
-{
+void InitTable(int id){
+
     switch (id)
     {
     case TableSelector::Employee:
@@ -399,33 +400,7 @@ int ShowDatabaseTable(GlobalData *info)
 
     sqlite3_close(db);
 
-    // ImGui::End();
-
     return 0;
-}
-
-void Executevalues(const char *sql)
-{
-    sqlite3 *db;
-    char *err_msg = 0;
-    int rc = sqlite3_open("../data/Database.db", &db);
-
-    if (rc != SQLITE_OK)
-    {
-        fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
-        sqlite3_close(db);
-        return;
-    }
-
-    rc = sqlite3_exec(db, sql, 0, 0, &err_msg);
-
-    if (rc != SQLITE_OK)
-    {
-        fprintf(stderr, "SQL error: %s\n", err_msg);
-        sqlite3_free(err_msg);
-    }
-
-    sqlite3_close(db);
 }
 
 void Updatevalues(GlobalData *info)
@@ -466,7 +441,7 @@ void Updatevalues(GlobalData *info)
                 snprintf(sql, sizeof(sql), "UPDATE Employee Set ID = %d , Name = '%s' , Surname = '%s', Company = %d , city = %d , nationality = %d , salary = %d WHERE ID = %d ;",
                          employee[i].id, &employee[i].name, &employee[i].surname, employee[i].company, employee[i].city, employee[i].nacionality, employee[i].salary, employee[i].id);
 
-                Executevalues(sql);
+                ExecuteSQL(sql);
             }
         }
 
@@ -496,7 +471,7 @@ void Updatevalues(GlobalData *info)
                 snprintf(sql, sizeof(sql), "UPDATE Country Set ID = %d , Name = '%s' , Country = '%s' WHERE ID = %d ;",
                          company[i].id, &company[i].name, &company[i].country, employee[i].id);
 
-                Executevalues(sql);
+                ExecuteSQL(sql);
             }
         }
         break;
@@ -523,7 +498,7 @@ void Updatevalues(GlobalData *info)
                 char sql[512];
                 snprintf(sql, sizeof(sql), "UPDATE City Set ID = %d , Name = '%s' , Country = '%s' WHERE ID = %d ;",
                          city[i].id, &city[i].name, &city[i].country, city[i].id);
-                Executevalues(sql);
+                ExecuteSQL(sql);
             }
         }
         break;
@@ -549,7 +524,7 @@ void Updatevalues(GlobalData *info)
                 char sql[512];
                 snprintf(sql, sizeof(sql), "UPDATE City Set ID = %d , Name = '%s' WHERE ID = %d ;",
                          country[i].id, &country[i].name, country[i].id);
-                Executevalues(sql);
+                ExecuteSQL(sql);
             }
         }
 

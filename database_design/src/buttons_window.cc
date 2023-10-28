@@ -10,23 +10,20 @@
 
 #include "buttons_window.h"
 #include "global_data.h"
+#include "global_functions.h"
 
 void TopWindow(GlobalData *info)
 {
-    ImGui::SetNextWindowPos(ImVec2(20.0f, 10.0f));
-    ImGui::SetNextWindowSize(ImVec2(1160, 40));
+    CreateWindow("Button Table", {20.0f, 10.0f}, {1160.0f, 40.0f});
 
-    ImGui::Begin("Button Table", NULL,
-                 ImGuiWindowFlags_NoTitleBar |
-                     ImGuiWindowFlags_NoResize |
-                     ImGuiWindowFlags_NoMove);
     {
         if (ImGui::Button("Initial menu", {125.0f, 20.0f}))
         {
             info->menu_id = MenuSelector::kMenuSelector_InitialMenu;
         }
     }
-    ImGui::End();
+
+    CloseWindow();
 }
 
 void MenuSelectionWindow(GlobalData *info)
