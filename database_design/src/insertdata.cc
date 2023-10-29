@@ -33,13 +33,16 @@ void InsertDataTable(GlobalData *info){
             ImGui::InputInt("Salary", &newEmployee.salary);
 
             if(ImGui::Button("Insert")){
-
+                //for(int i=0;i<info->count_rows;i++){
+                //if(newEmployee.id!=(employee+i)->id){
                 snprintf(sql, sizeof(sql), "INSERT INTO Employee (id, name, surname, address, company, city, nationality, salary) VALUES (%d, '%s', '%s', '%s', %d, %d, %d, %d);",
                          newEmployee.id, newEmployee.name, newEmployee.surname, newEmployee.address, newEmployee.company, newEmployee.city, newEmployee.nacionality, newEmployee.salary);
 
                 ExecuteSQL(sql);
                 info->count_rows++;
                 InitTable(info, 0);
+                    //}else{printf("Id invalida");}
+                //}
             }
         break;
 

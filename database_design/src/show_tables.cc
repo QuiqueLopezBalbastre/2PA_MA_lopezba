@@ -26,7 +26,6 @@ void InitTable(GlobalData *info, int table_identifier){
 
             for(int i=0; i<info->count_rows; i++){
                 (employee+i)->id = -1;
-               
                 (employee+i)->name[40] = '\0';
                 (employee+i)->surname[40] = '\0';
                 (employee+i)->address[40] = '\0';
@@ -87,16 +86,31 @@ int TableEmployeeCallback(void *data, int argc, char **field_values, char **colN
     if((employee+index)->rows == index){
         return 0;
     }
-
+    if(NULL!=field_values[0]){
     (employee+index)->id = atoi(field_values[0]);
+    }
+    if(NULL!=field_values[1]){
     strncpy_s((employee+index)->name, field_values[1], 40);
+    }
+    if(NULL!=field_values[2]){
     strncpy_s((employee+index)->surname, field_values[2], 40);
-
+    }
+    if(NULL!=field_values[3]){
+    strncpy_s((employee+index)->address, field_values[3], 40);
+    }
+    if(NULL!=field_values[4]){
     (employee+index)->company = atoi(field_values[4]);
+    }
+    if(NULL!=field_values[5]){
     (employee+index)->city = atoi(field_values[5]);
+    }
+    if(NULL!=field_values[6]){
     (employee+index)->nacionality = atoi(field_values[6]);
+    }
+    if(NULL!=field_values[7]){
     (employee+index)->salary = atoi(field_values[7]);
-
+    }
+    
     if(index == 0){
         ImGui::Columns(argc, "Database Table", false);
 
@@ -120,10 +134,15 @@ int TableCompanyCallback(void *data, int argc, char **field_values, char **colNa
     if((company+index)->rows == index){
         return 0;
     }
-
+    if(NULL!=field_values[0]){
     (company+index)->id = atoi(field_values[0]);
+    }
+    if(NULL!=field_values[1]){
     strncpy_s((company+index)->name, field_values[1], 40);
+    }
+    if(NULL!=field_values[2]){
     strncpy_s((company+index)->country, field_values[2], 40);
+    }
 
     if(index == 0){
         ImGui::Columns(argc, "Database Table", false);
@@ -148,10 +167,15 @@ int TableCityCallback(void *data, int argc, char **field_values, char **colNames
     if((city+index)->rows == index){
         return 0;
     }
-
+    if(NULL!=field_values[0]){
     (city+index)->id = atoi(field_values[0]);
+    }
+    if(NULL!=field_values[1]){
     strncpy_s((city+index)->name, field_values[1], 40);
+    }
+    if(NULL!=field_values[2]){
     strncpy_s((city+index)->country, field_values[2], 40);
+    }
 
     if(index == 0){
         ImGui::Columns(argc, "Database Table", false);
@@ -176,9 +200,12 @@ int TableCountryCallback(void *data, int argc, char **field_values, char **colNa
     if((country+index)->rows == index){
         return 0;
     }
-
+    if(NULL!=field_values[0]){
     (country+index)->id = atoi(field_values[0]);
+    }
+    if(NULL!=field_values[1]){
     strncpy_s((country+index)->name, field_values[1], 40);
+    }
 
     if(index == 0){
         ImGui::Columns(argc, "Database Table", false);
@@ -265,24 +292,37 @@ int ShowDatabaseTable(GlobalData *info){
     }
 
     char *sql = nullptr;
-
+    char null[] = "\0";
     switch(info->table_id){
 
         case TableSelector::Employee:
             sql = "SELECT * FROM Employee";
             rc = sqlite3_exec(db, sql, TableEmployeeCallback, (void *) &(employee), &err_msg);
             ImGui::Columns(8, "Employee Table Data", false);
-
             ImGui::Separator();
+            
             for(int i=0; i<info->count_rows; i++){
 
                 ImGui::Text("%d", (employee+i)->id);
                 ImGui::NextColumn();
+                if(strcmp((employee+i)->name, null)!=0){
                 ImGui::Text("%s", (employee+i)->name);
+                }else{
+                    strncpy_s((employee+i)->name,"(null)", 40);
+                }
                 ImGui::NextColumn();
+                
+                if(strcmp((employee+i)->surname, null)!=0){
                 ImGui::Text("%s", (employee+i)->surname);
+                }else{
+                    strncpy_s((employee+i)->surname,"(null)", 40);
+                }
                 ImGui::NextColumn();
-                ImGui::Text("NULL(RELLENAR)");
+                if(strcmp((employee+i)->address, null)!=0){
+                ImGui::Text("%s", (employee+i)->address);
+                }else{
+                    strncpy_s((employee+i)->address,"(null)", 40);
+                }
                 ImGui::NextColumn();
                 ImGui::Text("%d",(employee+i)->company);
                 ImGui::NextColumn();
@@ -305,9 +345,17 @@ int ShowDatabaseTable(GlobalData *info){
 
                 ImGui::Text("%d", (company+i)->id);
                 ImGui::NextColumn();
+                if(strcmp((company+i)->name, null)!=0){
                 ImGui::Text("%s", (company+i)->name);
+                }else{
+                    strncpy_s((company+i)->name,"(null)", 40);
+                }
                 ImGui::NextColumn();
+                if(strcmp((company+i)->country, null)!=0){
                 ImGui::Text("%s", (company+i)->country);
+                }else{
+                    strncpy_s((company+i)->country,"(null)", 40);
+                }
                 ImGui::NextColumn();
             }
             break;
@@ -322,9 +370,17 @@ int ShowDatabaseTable(GlobalData *info){
 
                 ImGui::Text("%d", (city+i)->id);
                 ImGui::NextColumn();
-                ImGui::Text("%s",  (city+i)->name);
+                if(strcmp((city+i)->name, null)!=0){
+                ImGui::Text("%s", (city+i)->name);
+                }else{
+                    strncpy_s((city+i)->name,"(null)", 40);
+                }
                 ImGui::NextColumn();
+                if(strcmp((city+i)->country, null)!=0){
                 ImGui::Text("%s", (city+i)->country);
+                }else{
+                    strncpy_s((city+i)->country,"(null)", 40);
+                }
                 ImGui::NextColumn();
             }
             break;
@@ -339,7 +395,11 @@ int ShowDatabaseTable(GlobalData *info){
 
                 ImGui::Text("%d",  (country+i)->id);
                 ImGui::NextColumn();
-                ImGui::Text("%s",  (country+i)->name);
+                if(strcmp((country+i)->name, null)!=0){
+                ImGui::Text("%s", (country+i)->name);
+                }else{
+                    strncpy_s((country+i)->name,"(null)", 40);
+                }
                 ImGui::NextColumn();
             }
             break;

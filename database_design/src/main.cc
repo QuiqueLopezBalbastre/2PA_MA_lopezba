@@ -30,6 +30,7 @@ int esat::main(int argc, char **argv){
   srand(time(NULL));
 
   GlobalData global_data;
+  
   global_data.user_query = (char *)calloc(80, sizeof(char));
   esat::SpriteHandle esat_logo = esat::SpriteFromFile("../data/esat_logo.png");
 
