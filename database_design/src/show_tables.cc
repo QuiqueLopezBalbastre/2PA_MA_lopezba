@@ -293,6 +293,7 @@ int ShowDatabaseTable(GlobalData *info){
 
     char *sql = nullptr;
     char null[] = "\0";
+    ImVec4 textColor = ImVec4(1.0f, 0.5f, 0.0f, 1.0f);
     switch(info->table_id){
 
         case TableSelector::Employee:
@@ -300,6 +301,23 @@ int ShowDatabaseTable(GlobalData *info){
             rc = sqlite3_exec(db, sql, TableEmployeeCallback, (void *) &(employee), &err_msg);
             ImGui::Columns(8, "Employee Table Data", false);
             ImGui::Separator();
+            
+                ImGui::TextColored(textColor, "ID");
+                ImGui::NextColumn();
+                ImGui::TextColored(textColor, "Name");
+                ImGui::NextColumn();
+                ImGui::TextColored(textColor, "Surname");
+                ImGui::NextColumn();
+                ImGui::TextColored(textColor, "Address");
+                ImGui::NextColumn();
+                ImGui::TextColored(textColor, "Company");
+                ImGui::NextColumn();
+                ImGui::TextColored(textColor, "City");
+                ImGui::NextColumn();
+                ImGui::TextColored(textColor, "Nationality");
+                ImGui::NextColumn();
+                ImGui::TextColored(textColor, "Salary");
+                ImGui::NextColumn();
             
             for(int i=0; i<info->count_rows; i++){
 
@@ -341,6 +359,14 @@ int ShowDatabaseTable(GlobalData *info){
             ImGui::Columns(3, "Company Table Data", false);
 
             ImGui::Separator();
+
+                ImGui::TextColored(textColor, "ID");
+                ImGui::NextColumn();
+                ImGui::TextColored(textColor, "Name");
+                ImGui::NextColumn();
+                ImGui::TextColored(textColor, "Country");
+                ImGui::NextColumn();
+
             for(int i=0; i<info->count_rows_2; i++){
 
                 ImGui::Text("%d", (company+i)->id);
@@ -366,6 +392,15 @@ int ShowDatabaseTable(GlobalData *info){
             ImGui::Columns(3, "City Table Data", false);
 
             ImGui::Separator();
+
+                ImGui::TextColored(textColor, "ID");
+                ImGui::NextColumn();
+                ImGui::TextColored(textColor, "Name");
+                ImGui::NextColumn();
+                ImGui::TextColored(textColor, "Country");
+                ImGui::NextColumn();
+
+
             for(int i=0; i<info->count_rows_3; i++){
 
                 ImGui::Text("%d", (city+i)->id);
@@ -391,6 +426,13 @@ int ShowDatabaseTable(GlobalData *info){
             ImGui::Columns(2, "Country Table Data", false);
 
             ImGui::Separator();
+
+                ImGui::TextColored(textColor, "ID");
+                ImGui::NextColumn();
+                ImGui::TextColored(textColor, "Name");
+                ImGui::NextColumn();
+
+
             for(int i=0; i<info->count_rows_4; i++){
 
                 ImGui::Text("%d",  (country+i)->id);
