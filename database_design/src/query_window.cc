@@ -13,11 +13,13 @@
 
 void ExecuteUserQuery(GlobalData *info){
 
-    ImGui::SetCursorPos(ImVec2(60, 60));
-    ImGui::InputText("##UserQuery", info->user_query, IM_ARRAYSIZE(info->user_query) * 20);
+    ImGui::SetCursorPos(ImVec2(20, 20));
+    ImVec2 inputSize(550, 40); 
 
-    ImGui::SetCursorPos(ImVec2(900, 50));
-    if(ImGui::Button("Execute query", ImVec2(150, 45))){
+    ImGui::InputTextMultiline("##UserQuery", info->user_query, IM_ARRAYSIZE(info->user_query) * 200, inputSize);
+
+    ImGui::SetCursorPos(ImVec2(20, 80));
+    if (ImGui::Button("Execute query", ImVec2(150, 45))) {
         info->menu_id = MenuSelector::kMenuSelector_Query;
     }
 }
@@ -25,4 +27,5 @@ void ExecuteUserQuery(GlobalData *info){
 void BottomWindow(GlobalData *info){
     
     ExecuteUserQuery(info);
+    
 }

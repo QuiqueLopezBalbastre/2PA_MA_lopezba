@@ -38,4 +38,9 @@ void CreateWindow(const char *name, ImVec2 pos, ImVec2 size);
  */
 void CloseWindow();
 
+/**
+ * @brief Displays an error window with error messages.
+ */
+void ShowErrorWindow();
+
 #endif

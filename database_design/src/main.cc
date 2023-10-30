@@ -108,9 +108,12 @@ int esat::main(int argc, char **argv){
     }
     CloseWindow();
 
-    CreateWindow("Bottom window", ImVec2(20.0f, 640.0f), ImVec2(1160, 150));
+
+    CreateWindow("Bottom window", ImVec2(20.0f, 640.0f), ImVec2(600, 150));
     BottomWindow(&global_data);
     CloseWindow();
+
+    ShowErrorWindow();
 
     esat::DrawEnd();
 

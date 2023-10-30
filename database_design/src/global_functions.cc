@@ -9,7 +9,21 @@
 #include <time.h>
 
 #include "global_functions.h"
-// #include "global_data.h"
+#include "global_data.h"
+
+static char errorBuffer[1024] = "";
+
+void LogError(const char* errorMessage) {
+    snprintf(errorBuffer, sizeof(errorBuffer), "Error: %s", errorMessage);
+}
+
+void ShowErrorWindow(){
+    CreateWindow("Error Log", {625.0f, 640.0f}, {555.0f, 150.0f});
+    ImGui::Text("Error Window");
+    ImGui::TextWrapped("%s", errorBuffer);
+
+    CloseWindow();
+}
 
 void ExecuteSQL(const char *sql)
 {
@@ -19,7 +33,7 @@ void ExecuteSQL(const char *sql)
 
     if (rc != SQLITE_OK)
     {
-        fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+        LogError(sqlite3_errmsg(db));
         sqlite3_close(db);
         return;
     }
@@ -28,15 +42,14 @@ void ExecuteSQL(const char *sql)
 
     if (rc != SQLITE_OK)
     {
-        fprintf(stderr, "SQL error: %s\n", err_msg);
+        LogError(err_msg);
         sqlite3_free(err_msg);
     }
 
     sqlite3_close(db);
 }
 
-void CreateWindow(const char *name, ImVec2 pos, ImVec2 size)
-{
+void CreateWindow(const char *name, ImVec2 pos, ImVec2 size){
     ImGui::SetNextWindowPos(ImVec2(pos.x, pos.y));
     ImGui::SetNextWindowSize(ImVec2(size.x, size.y));
     ImGui::Begin(name, NULL,
@@ -45,7 +58,6 @@ void CreateWindow(const char *name, ImVec2 pos, ImVec2 size)
                      ImGuiWindowFlags_NoMove);
 }
 
-void CloseWindow()
-{
+void CloseWindow(){
     ImGui::End();
 }
