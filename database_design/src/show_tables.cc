@@ -579,3 +579,65 @@ void Updatevalues(GlobalData *info){
         break;
     }
 }
+
+
+int InitTablesvalues(int i){
+    
+    sqlite3 *db;
+    char *err_msg = 0;
+    int rc = sqlite3_open("../data/Database.db", &db);
+
+    if(rc != SQLITE_OK){
+
+        fprintf(stderr, "Cannot open database: %s\n", sqlite3_errmsg(db));
+        sqlite3_close(db);
+        return 1;
+    }
+
+    char *sql = nullptr;
+
+    switch(i){
+
+        case 0:
+            sql = "SELECT * FROM Employee";
+            rc = sqlite3_exec(db, sql, TableEmployeeCallback, (void *) &(employee), &err_msg);
+
+            
+            break;
+
+        case 1:
+            sql = "SELECT * FROM Company";
+            rc = sqlite3_exec(db, sql, TableCompanyCallback, (void *)&(company), &err_msg);
+            
+            break;
+
+        case 2:
+            sql = "SELECT * FROM City";
+            rc = sqlite3_exec(db, sql, TableCityCallback, (void *)&(city), &err_msg);
+           
+            break;
+
+        case 3:
+            sql = "SELECT * FROM Country";
+            rc = sqlite3_exec(db, sql, TableCountryCallback, (void *)&(country), &err_msg);
+            
+            break;
+    }
+       
+    
+
+    if(rc != SQLITE_OK){
+        fprintf(stderr, "Failed to select data\n");
+        fprintf(stderr, "SQL error: %s\n", err_msg);
+
+        sqlite3_free(err_msg);
+        sqlite3_close(db);
+
+        return 1;
+    }
+
+    sqlite3_close(db);
+    
+    return 0;
+    }
+

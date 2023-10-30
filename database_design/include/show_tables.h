@@ -172,4 +172,14 @@ int ShowDatabaseTable(GlobalData *info);
  */
 void Updatevalues(GlobalData *info);
 
+/**
+ * @brief Init values in a database table.
+ *
+ * This collects allows init values of databse.
+ *
+ * @param i A variable to collect the diferents tables.
+ */
+
+int InitTablesvalues(int i);
+
 #endif

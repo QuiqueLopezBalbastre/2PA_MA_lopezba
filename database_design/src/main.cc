@@ -37,6 +37,7 @@ int esat::main(int argc, char **argv){
   for(int table_identifier = 0; table_identifier < kNumTables; table_identifier++){
     ShowRows(&global_data, table_identifier);
     InitTable(&global_data, table_identifier);
+    InitTablesvalues(table_identifier);
   }
 
   while (esat::WindowIsOpened() && !esat::IsSpecialKeyDown(esat::kSpecialKey_Escape)){
