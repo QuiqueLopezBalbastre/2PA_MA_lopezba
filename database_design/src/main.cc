@@ -19,7 +19,6 @@
 #include "../include/show_tables.h"
 #include "../include/buttons_window.h"
 #include "../include/query_window.h"
-#include "../include/insertdata.h"
 #include "../include/remove_data.h"
 #include "../include/count_rows.h"
 

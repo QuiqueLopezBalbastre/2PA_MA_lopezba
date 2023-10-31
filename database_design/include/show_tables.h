@@ -159,6 +159,17 @@ void ShowDatabaseStructure(GlobalData *info);
  *
  * @return An integer status code (0 for success, 1 for failure).
  */
+
+/**
+ * @brief insert new rows into the table.
+ *
+ * @param info A pointer to the GlobalData structure that contains information about the selected table and database connection.
+ *
+ * @return An integer status code (0 for success, 1 for failure).
+ */
+
+void InsertDataTable(GlobalData *info);
+
 int ShowDatabaseTable(GlobalData *info);
 
 /**
