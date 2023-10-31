@@ -232,17 +232,19 @@ void ShowQuery(GlobalData *info){
     sqlite3 *db;
     int rc = sqlite3_open("../data/Database.db", &db);
 
-    if(rc){
+    if(rc && info->insert_query){
         fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+        info->insert_query = false;
         return;
     }
 
     char *err_msg = 0;
     rc = sqlite3_exec(db, info->user_query, DatabaseStructureCallback, 0, &err_msg);
 
-    if(rc != SQLITE_OK){
+    if(rc != SQLITE_OK && info->insert_query){
         fprintf(stderr, "SQL error: %s\n", err_msg);
         sqlite3_free(err_msg);
+        info->insert_query = false;
     }
 
     sqlite3_close(db);

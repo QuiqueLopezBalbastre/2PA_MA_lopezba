@@ -58,6 +58,8 @@ struct GlobalData
 
   bool query_execute=false;
   bool structb=false;
+  bool insert_query=false;
+  
   unsigned char fps = 60;
   double current_time, last_time;
 };
