@@ -104,7 +104,8 @@ int esat::main(int argc, char **argv){
       break;
 
       case MenuSelector::kMenuSelector_Query:
-        ShowQuery(&global_data);
+        ImGui::Text(global_data.buffer_query, 0, 0);
+        //ShowQuery(&global_data);
       break;
     }
     CloseWindow();

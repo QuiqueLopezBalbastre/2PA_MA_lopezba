@@ -9,6 +9,7 @@
 #include <time.h>
 
 #include "query_window.h"
+#include "show_tables.h"
 #include "global_data.h"
 
 void ExecuteUserQuery(GlobalData *info){
@@ -20,8 +21,12 @@ void ExecuteUserQuery(GlobalData *info){
 
     ImGui::SetCursorPos(ImVec2(20, 80));
     if(ImGui::Button("Execute query", ImVec2(150, 45))) {
+        //free(info->buffer_query);
+        //info->buffer_query = (char *)calloc(5000, sizeof(char));
+        memset(info->buffer_query, '\0', kBufferQueryMax);
+
         info->menu_id = MenuSelector::kMenuSelector_Query; 
-        info->insert_query = true;
+        ShowQuery(info);
     }
 }
 

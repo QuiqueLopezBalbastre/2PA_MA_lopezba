@@ -43,6 +43,8 @@ enum MenuSelector
   kMenuSelector_Query
 };
 
+const unsigned int kBufferQueryMax = 65536;
+
 /// Global variable struct
 struct GlobalData
 {
@@ -59,7 +61,9 @@ struct GlobalData
   bool query_execute=false;
   bool structb=false;
   bool insert_query=false;
-  
+
+  char buffer_query[kBufferQueryMax];
+
   unsigned char fps = 60;
   double current_time, last_time;
 };

@@ -228,26 +228,49 @@ int DatabaseStructureCallback(void *data, int argc, char **argv, char **colNames
     return 0;
 }
 
+int EmptyCallback(void *data, int argc, char **argv, char **colNames){
+    char *t=(char*)data;
+
+    if (strlen(t) < (kBufferQueryMax-1024)) {
+
+      for(int i=0; i<argc; i++){
+          if (NULL == argv[i]) {
+              strcat(t, "NULL\0");
+          } else {
+              strcat(t, argv[i]);
+          }
+      }
+
+      strcat(t, "\n");
+      return 0;
+    } else {
+        fprintf(stderr, "WARNING: Query result overflowing max query character limit!\n");
+        return 0;  // Revise error code
+    }
+}
+
 void ShowQuery(GlobalData *info){
     sqlite3 *db;
+
     int rc = sqlite3_open("../data/Database.db", &db);
 
-    if(rc && info->insert_query){
+    if(rc){
         fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
         info->insert_query = false;
         return;
     }
 
     char *err_msg = 0;
-    rc = sqlite3_exec(db, info->user_query, DatabaseStructureCallback, 0, &err_msg);
 
-    if(rc != SQLITE_OK && info->insert_query){
+    rc = sqlite3_exec(db, info->user_query, EmptyCallback, info->buffer_query, &err_msg);
+
+    if(rc != SQLITE_OK){
         fprintf(stderr, "SQL error: %s\n", err_msg);
         sqlite3_free(err_msg);
         info->insert_query = false;
     }
 
-    sqlite3_close(db);
+    sqlite3_close(db); 
 }
 
 void ShowDatabaseStructure(GlobalData *info){
@@ -445,12 +468,6 @@ int ShowDatabaseTable(GlobalData *info){
                     strncpy_s((country+i)->name,"(null)", 40);
                 }
                 ImGui::NextColumn();
-            }
-            break;
-
-        case TableSelector::Database:
-            if(info->query_execute){
-                ShowQuery(info);
             }
             break;
     }
