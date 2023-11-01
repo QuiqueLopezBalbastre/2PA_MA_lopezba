@@ -17,10 +17,10 @@ void LogError(const char* errorMessage) {
     snprintf(errorBuffer, sizeof(errorBuffer), "Error: %s", errorMessage);
 }
 
-void ShowErrorWindow(){
+void ShowErrorWindow() {
     CreateWindow("Error Log", {625.0f, 640.0f}, {555.0f, 150.0f});
     ImGui::Text("Error Window");
-    ImGui::TextWrapped("%s", errorBuffer);
+    ImGui::Text("%s", errorBuffer);
 
     CloseWindow();
 }

@@ -25,6 +25,6 @@
  *
  * @return An integer status code (always 0 in this implementation).
  */
-int RemoveData(GlobalData *info);
+//int RemoveData(GlobalData *info);
 
 #endif

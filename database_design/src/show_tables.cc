@@ -604,7 +604,6 @@ void Updatevalues(GlobalData *info){
     }
 }
 
-
 int InitTablesvalues(int i){
     
     sqlite3 *db;
@@ -666,6 +665,7 @@ int InitTablesvalues(int i){
     }
 
 void InsertDataTable(GlobalData *info){
+
     char sql[512];
     bool print;
 
@@ -777,3 +777,100 @@ void InsertDataTable(GlobalData *info){
         break;
     }
 }   
+
+int RemoveData(GlobalData *info) {
+    ImGui::InputInt("ID", &info->remove_id);
+    char sql[512];
+
+    if(ImGui::Button("Remove tuple")) {
+        int indexToDelete = -1;
+
+        switch(info->table_id){
+            case TableSelector::Employee:
+                for (int i = 0; i < info->count_rows; i++) {
+                    if (info->remove_id == employee[i].id) {
+                        indexToDelete = i;
+                        break;
+                    }
+                }
+                if(indexToDelete >= 0) {
+                    snprintf(sql, sizeof(sql), "DELETE FROM Employee WHERE ID = %d", info->remove_id);
+                    ExecuteSQL(sql);
+
+                    for(int i = indexToDelete; i < info->count_rows - 1; i++) {
+                        employee[i] = employee[i + 1];
+                    }
+
+                    info->count_rows--;
+                    InitTable(info, 0);
+                }
+                break;
+
+            case TableSelector::Company:
+                for(int i = 0; i < info->count_rows_2; i++) {
+                    if (info->remove_id == company[i].id) {
+                        indexToDelete = i;
+                        break;
+                    }
+                }
+                if(indexToDelete >= 0){
+                    snprintf(sql, sizeof(sql), "DELETE FROM Company WHERE ID = %d", info->remove_id);
+                    ExecuteSQL(sql);
+
+                    for(int i = indexToDelete; i < info->count_rows_2 - 1; i++) {
+                        company[i] = company[i + 1];
+                    }
+
+                    info->count_rows_2--;
+                    InitTable(info, 1);
+                }
+                break;
+
+            case TableSelector::City:
+                for(int i = 0; i < info->count_rows_3; i++) {
+                    if (info->remove_id == city[i].id) {
+                        indexToDelete = i;
+                        break;
+                    }
+                }
+                if(indexToDelete >= 0) {
+                    snprintf(sql, sizeof(sql), "DELETE FROM City WHERE ID = %d", info->remove_id);
+                    ExecuteSQL(sql);
+
+                    for(int i = indexToDelete; i < info->count_rows_3 - 1; i++) {
+                        city[i] = city[i + 1];
+                    }
+
+                    info->count_rows_3--;
+                    InitTable(info, 2);
+                }
+                break;
+
+            case TableSelector::Country:
+                for(int i = 0; i < info->count_rows_4; i++) {
+                    if(info->remove_id == country[i].id) {
+                        indexToDelete = i;
+                        break;
+                    }
+                }
+                if(indexToDelete >= 0) {
+                    snprintf(sql, sizeof(sql), "DELETE FROM Country WHERE ID = %d", info->remove_id);
+                    ExecuteSQL(sql);
+
+                    for (int i = indexToDelete; i < info->count_rows_4 - 1; i++) {
+                        country[i] = country[i + 1];
+                    }
+
+                    info->count_rows_4--;
+                    InitTable(info, 3);
+                }
+                break;
+        }
+    }
+
+    ImGui::Dummy(ImVec2(0, 10));
+    ImGui::Separator();
+    ShowDatabaseTable(info);
+
+    return 0;
+}

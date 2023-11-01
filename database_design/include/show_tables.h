@@ -193,4 +193,6 @@ void Updatevalues(GlobalData *info);
 
 int InitTablesvalues(int i);
 
+int RemoveData(GlobalData *info);
+
 #endif

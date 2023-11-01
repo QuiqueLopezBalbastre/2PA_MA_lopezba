@@ -15,6 +15,18 @@
 #include <esat_extra/imgui.h>
 
 /**
+ * @brief Logs an error message to a buffer.
+ *
+ * @param errorMessage The error message to log.
+ */
+void LogError(const char* errorMessage);
+
+/**
+ * @brief Displays an error window with error messages.
+ */
+void ShowErrorWindow();
+
+/**
  * @brief Execute a SQL query on a SQLite database.
  *
  * This function opens a SQLite database file, executes a SQL query provided as input, and handles any potential errors.
@@ -38,9 +50,6 @@ void CreateWindow(const char *name, ImVec2 pos, ImVec2 size);
  */
 void CloseWindow();
 
-/**
- * @brief Displays an error window with error messages.
- */
-void ShowErrorWindow();
+
 
 #endif
