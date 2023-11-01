@@ -1,5 +1,5 @@
 /**
- * @file global_data.cc
+ * @file global_data.h
  * @author Sergio Madaleno (madalenofi@esat-alumni.com)
  * @brief Defines global constants, enumerations, and the GlobalData structure used in an application.
  * @version 0.1
@@ -11,8 +11,6 @@
 
 #ifndef __GLOBAL_DATA_H__
 #define __GLOBAL_DATA_H__ 1
-
-#include <esat/math.h>
 
 /// Constants
 const int kWindow_width = 1200, kWindow_height = 800;
@@ -56,7 +54,6 @@ struct GlobalData
   int count_rows, count_rows_2, count_rows_3, count_rows_4;
   
   char struct_database[80]="Select name From sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'\0";
-  //char errorBuffer[1024] = "";
 
   bool query_execute=false;
   bool structb=false;

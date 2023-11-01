@@ -14,17 +14,16 @@
 
 struct GlobalData;
 
-#include <esat/math.h>
-
 /**
- * @brief Execute a user-defined SQL query.
+ * @brief Execute a user-provided SQL query and display the results.
  *
- * @param info A pointer to the GlobalData structure containing application information, including the user-defined query.
+ * @param info A pointer to a GlobalData struct containing information related to the
+ * user query and the graphical interface.
  */
 void ExecuteUserQuery(GlobalData *info);
 
 /**
- * @brief Display the bottom user interface window for executing user-defined SQL queries.
+ * @brief Display the bottom user interface window.
 
  * @param info A pointer to the GlobalData structure containing application information, including the user-defined query.
  */

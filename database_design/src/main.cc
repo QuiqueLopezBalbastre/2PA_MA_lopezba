@@ -5,12 +5,10 @@
 #include <esat/input.h>
 #include <esat/sprite.h>
 #include <esat/time.h>
-#include <esat/helpers.h>
+
 #include <esat_extra/imgui.h>
 #include <esat_extra/sqlite3.h>
 
-#include <conio.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
@@ -19,7 +17,6 @@
 #include "../include/show_tables.h"
 #include "../include/buttons_window.h"
 #include "../include/query_window.h"
-#include "../include/remove_data.h"
 #include "../include/count_rows.h"
 
 int esat::main(int argc, char **argv){

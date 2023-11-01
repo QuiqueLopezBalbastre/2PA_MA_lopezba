@@ -1,5 +1,5 @@
 /**
- * @file countrows.cc
+ * @file count_rows.cc
  * @author Fede Sanjuan Barea (sanjuanbare@esat-alumni.com)
  * @brief
  * @version 0.1

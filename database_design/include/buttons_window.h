@@ -14,8 +14,6 @@
 
 struct GlobalData;
 
-#include <esat/math.h>
-
 /**
  * @brief Create GUI window with a button.
  * 

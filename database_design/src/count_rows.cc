@@ -1,11 +1,9 @@
+#include <esat_extra/imgui.h>
+#include <esat_extra/sqlite3.h>
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#include <esat/draw.h>
-#include <esat/input.h>
-#include <esat_extra/imgui.h>
-#include <esat_extra/sqlite3.h>
 
 #include "count_rows.h"
 #include "global_data.h"

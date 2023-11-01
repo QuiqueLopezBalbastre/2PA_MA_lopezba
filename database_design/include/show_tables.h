@@ -127,6 +127,23 @@ static int TableCountryCallback(void *data, int argc, char **field_values, char 
 int DatabaseStructureCallback(void *data, int argc, char **argv, char **colNames);
 
 /**
+ * @brief Callback function for processing the results of an SQL query.
+ *
+ * This function is used as a callback to process the results of an SQL query executed
+ * within a database. It appends the query results to a character buffer 'data' for
+ * further processing or display. If the 'data' buffer approaches the maximum query
+ * character limit (kBufferQueryMax-1024), a warning is printed to stderr.
+ *
+ * @param data A pointer to a character buffer where query results are appended.
+ * @param argc The number of columns in the query result.
+ * @param argv An array of strings representing the values in each column of the result.
+ * @param colNames An array of strings representing the column names.
+ *
+ * @return 0 if the query results are successfully processed
+ */
+int EmptyCallback(void *data, int argc, char **argv, char **colNames);
+
+/**
  * @brief Execute a user-defined SQL query to display database table structure.
  *
  * This function opens a database, executes a user-defined SQL query to retrieve information about the structure of a
@@ -159,17 +176,6 @@ void ShowDatabaseStructure(GlobalData *info);
  *
  * @return An integer status code (0 for success, 1 for failure).
  */
-
-/**
- * @brief insert new rows into the table.
- *
- * @param info A pointer to the GlobalData structure that contains information about the selected table and database connection.
- *
- * @return An integer status code (0 for success, 1 for failure).
- */
-
-void InsertDataTable(GlobalData *info);
-
 int ShowDatabaseTable(GlobalData *info);
 
 /**
@@ -193,6 +199,27 @@ void Updatevalues(GlobalData *info);
 
 int InitTablesvalues(int i);
 
+/**
+ * @brief insert new rows into the table.
+ *
+ * @param info A pointer to the GlobalData structure that contains information about the selected table and database connection.
+ *
+ * @return An integer status code (0 for success, 1 for failure).
+ */
+
+void InsertDataTable(GlobalData *info);
+
+/**
+ * @brief Remove data from specific tables and update the user interface.
+ *
+ * This function allows the user to remove a tuple from one of several tables
+ * (Employee, Company, City, Country) in a database. 
+ *
+ * @param info A pointer to a GlobalData struct containing information about the tables
+ * and database connection.
+ *
+ * @return 0 upon successful removal and update, or an error code if the operation fails.
+ */
 int RemoveData(GlobalData *info);
 
 #endif

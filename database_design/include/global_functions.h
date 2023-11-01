@@ -50,6 +50,4 @@ void CreateWindow(const char *name, ImVec2 pos, ImVec2 size);
  */
 void CloseWindow();
 
-
-
 #endif
