@@ -27,7 +27,7 @@ void InitTable(GlobalData *info, int table_identifier){
     switch(table_identifier){
         case TableSelector::Employee:
             
-            employee=(TableEmployee*)realloc(employee,(info->count_rows+1)*sizeof(TableEmployee));
+            employee=(TableEmployee*)realloc(employee,(info->count_rows+15)*sizeof(TableEmployee));
 
             for(int i=0; i<info->count_rows; i++){
                 (employee+i)->id = -1;
@@ -44,7 +44,7 @@ void InitTable(GlobalData *info, int table_identifier){
 
         case TableSelector::Company:
 
-            company=(TableCompany*)realloc(company,(info->count_rows_2+1)*sizeof(TableCompany));
+            company=(TableCompany*)realloc(company,(info->count_rows_2+15)*sizeof(TableCompany));
 
             for(int i=0; i<info->count_rows_2; i++){
                 (company+i)->id = -1;
@@ -56,7 +56,7 @@ void InitTable(GlobalData *info, int table_identifier){
 
         case TableSelector::City:
 
-            city=(TableCity*)realloc(city,(info->count_rows_3+1)*sizeof(TableCity));
+            city=(TableCity*)realloc(city,(info->count_rows_3+15)*sizeof(TableCity));
 
             for(int i=0; i<info->count_rows_3; i++){
                 (city+i)->id = -1;
@@ -68,7 +68,7 @@ void InitTable(GlobalData *info, int table_identifier){
             
         case TableSelector::Country:
 
-            country=(TableCountry*)realloc(country,(info->count_rows_4+1)*sizeof(TableCountry));
+            country=(TableCountry*)realloc(country,(info->count_rows_4+15)*sizeof(TableCountry));
 
             for(int i=0; i<info->count_rows_4; i++){
                 (country+i)->id = -1;
@@ -497,7 +497,7 @@ void Updatevalues(GlobalData *info){
     switch(info->table_id){
         case TableSelector::Employee:
 
-            for(int i=0; i<kTableEmployeeRows; i++){
+            for(int i=0; i<info->count_rows; i++){
                 ImGui::PushID(i);
                 ImGui::InputInt("ID", &employee[i].id);
                 ImGui::NextColumn();
@@ -521,7 +521,7 @@ void Updatevalues(GlobalData *info){
             }
 
             if(ImGui::Button("Insert")){
-                for(int i=0; i<kTableEmployeeRows; i++){
+                for(int i=0; i<info->count_rows; i++){
                     char sql[512];
                     snprintf(sql, sizeof(sql), "UPDATE Employee Set ID = %d , Name = '%s' , Surname = '%s', Company = %d , city = %d , nationality = %d , salary = %d WHERE ID = %d ;",
                              employee[i].id, &employee[i].name, &employee[i].surname, employee[i].company, employee[i].city, employee[i].nacionality, employee[i].salary, employee[i].id);
@@ -533,7 +533,7 @@ void Updatevalues(GlobalData *info){
 
         case TableSelector::Company:
 
-            for(int i=0; i<kTableCompanyRows; i++){
+            for(int i=0; i<info->count_rows_2; i++){
                 ImGui::PushID(i);
                 ImGui::InputInt("ID", &company[i].id);
                 ImGui::NextColumn();
@@ -546,7 +546,7 @@ void Updatevalues(GlobalData *info){
             }
 
             if(ImGui::Button("Insert")){
-                for(int i=0; i<kTableEmployeeRows; i++){
+                for(int i=0; i<info->count_rows_2; i++){
                     char sql[512];
                     snprintf(sql, sizeof(sql), "UPDATE Country Set ID = %d , Name = '%s' , Country = '%s' WHERE ID = %d ;",
                              company[i].id, &company[i].name, &company[i].country, employee[i].id);
@@ -558,7 +558,7 @@ void Updatevalues(GlobalData *info){
 
         case TableSelector::City:
 
-            for(int i=0; i<kTableCityRows; i++){
+            for(int i=0; i<info->count_rows_3; i++){
                 ImGui::PushID(i);
                 ImGui::InputInt("ID", &city[i].id);
                 ImGui::NextColumn();
@@ -571,7 +571,7 @@ void Updatevalues(GlobalData *info){
             }
 
             if(ImGui::Button("Insert")){
-                for(int i=0; i<kTableCityRows; i++){
+                for(int i=0; i<info->count_rows_3; i++){
                     char sql[512];
                     snprintf(sql, sizeof(sql), "UPDATE City Set ID = %d , Name = '%s' , Country = '%s' WHERE ID = %d ;",
                              city[i].id, &city[i].name, &city[i].country, city[i].id);
@@ -582,7 +582,7 @@ void Updatevalues(GlobalData *info){
 
         case TableSelector::Country:
 
-            for(int i=0; i<kTableCountryRows; i++){
+            for(int i=0; i<info->count_rows_4; i++){
                 ImGui::PushID(i);
                 ImGui::InputInt("ID", &country[i].id);
                 ImGui::NextColumn();
@@ -593,7 +593,7 @@ void Updatevalues(GlobalData *info){
             }
 
             if(ImGui::Button("Insert")){
-                for(int i=0; i<kTableCityRows; i++){
+                for(int i=0; i<info->count_rows_4; i++){
                     char sql[512];
                     snprintf(sql, sizeof(sql), "UPDATE City Set ID = %d , Name = '%s' WHERE ID = %d ;",
                              country[i].id, &country[i].name, country[i].id);
@@ -797,9 +797,7 @@ int RemoveData(GlobalData *info) {
                     snprintf(sql, sizeof(sql), "DELETE FROM Employee WHERE ID = %d", info->remove_id);
                     ExecuteSQL(sql);
 
-                    for(int i = indexToDelete; i < info->count_rows - 1; i++) {
-                        employee[i] = employee[i + 1];
-                    }
+                    
 
                     info->count_rows--;
                     InitTable(info, 0);
@@ -817,9 +815,7 @@ int RemoveData(GlobalData *info) {
                     snprintf(sql, sizeof(sql), "DELETE FROM Company WHERE ID = %d", info->remove_id);
                     ExecuteSQL(sql);
 
-                    for(int i = indexToDelete; i < info->count_rows_2 - 1; i++) {
-                        company[i] = company[i + 1];
-                    }
+                    
 
                     info->count_rows_2--;
                     InitTable(info, 1);
@@ -837,9 +833,7 @@ int RemoveData(GlobalData *info) {
                     snprintf(sql, sizeof(sql), "DELETE FROM City WHERE ID = %d", info->remove_id);
                     ExecuteSQL(sql);
 
-                    for(int i = indexToDelete; i < info->count_rows_3 - 1; i++) {
-                        city[i] = city[i + 1];
-                    }
+                    
 
                     info->count_rows_3--;
                     InitTable(info, 2);
@@ -857,9 +851,7 @@ int RemoveData(GlobalData *info) {
                     snprintf(sql, sizeof(sql), "DELETE FROM Country WHERE ID = %d", info->remove_id);
                     ExecuteSQL(sql);
 
-                    for (int i = indexToDelete; i < info->count_rows_4 - 1; i++) {
-                        country[i] = country[i + 1];
-                    }
+                   
 
                     info->count_rows_4--;
                     InitTable(info, 3);
