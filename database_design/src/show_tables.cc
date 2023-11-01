@@ -496,13 +496,13 @@ void Updatevalues(GlobalData *info){
 
             for(int i=0; i<info->count_rows; i++){
                 ImGui::PushID(i);
-                ImGui::InputInt("ID", &employee[i].id);
+                ImGui::Text("ID %d", (int)employee[i].id);
                 ImGui::NextColumn();
                 ImGui::InputText("Name", employee[i].name, 40);
                 ImGui::NextColumn();
-                ImGui::InputText("surName", employee[i].surname, 40);
+                ImGui::InputText("surname", employee[i].surname, 40);
                 ImGui::NextColumn();
-                ImGui::Text("NULL(RELLENAR)");
+                ImGui::InputText("Address", employee[i].address, 40);
                 ImGui::NextColumn();
                 ImGui::InputInt("company", &employee[i].company);
                 ImGui::NextColumn();
@@ -513,6 +513,8 @@ void Updatevalues(GlobalData *info){
                 ImGui::InputInt("salary", &employee[i].salary);
                 ImGui::NextColumn();
                 ImGui::Separator();
+                ImGui::Spacing();
+                ImGui::Spacing();
 
                 ImGui::PopID();
             }
@@ -520,8 +522,8 @@ void Updatevalues(GlobalData *info){
             if(ImGui::Button("Insert")){
                 for(int i=0; i<info->count_rows; i++){
                     char sql[512];
-                    snprintf(sql, sizeof(sql), "UPDATE Employee Set ID = %d , Name = '%s' , Surname = '%s', Company = %d , city = %d , nationality = %d , salary = %d WHERE ID = %d ;",
-                             employee[i].id, &employee[i].name, &employee[i].surname, employee[i].company, employee[i].city, employee[i].nacionality, employee[i].salary, employee[i].id);
+                    snprintf(sql, sizeof(sql), "UPDATE Employee Set Name = '%s' , Surname = '%s', Company = %d , city = %d , nationality = %d , salary = %d WHERE ID = %d ;",
+                             &employee[i].name, &employee[i].surname, employee[i].company, employee[i].city, employee[i].nacionality, employee[i].salary, employee[i].id);
 
                     ExecuteSQL(sql);
                 }
@@ -532,21 +534,23 @@ void Updatevalues(GlobalData *info){
 
             for(int i=0; i<info->count_rows_2; i++){
                 ImGui::PushID(i);
-                ImGui::InputInt("ID", &company[i].id);
+                ImGui::Text("ID %d", (int)company[i].id);
                 ImGui::NextColumn();
                 ImGui::InputText("Name", company[i].name, 40);
                 ImGui::NextColumn();
                 ImGui::InputText("surName", company[i].country, 40);
-
                 ImGui::Separator();
+                ImGui::Spacing();
+                ImGui::Spacing();
+
                 ImGui::PopID();
             }
 
             if(ImGui::Button("Insert")){
                 for(int i=0; i<info->count_rows_2; i++){
                     char sql[512];
-                    snprintf(sql, sizeof(sql), "UPDATE Country Set ID = %d , Name = '%s' , Country = '%s' WHERE ID = %d ;",
-                             company[i].id, &company[i].name, &company[i].country, employee[i].id);
+                    snprintf(sql, sizeof(sql), "UPDATE Country Set Name = '%s' , Country = '%s' WHERE ID = %d ;",
+                             &company[i].name, &company[i].country, employee[i].id);
 
                     ExecuteSQL(sql);
                 }
@@ -557,21 +561,23 @@ void Updatevalues(GlobalData *info){
 
             for(int i=0; i<info->count_rows_3; i++){
                 ImGui::PushID(i);
-                ImGui::InputInt("ID", &city[i].id);
+                ImGui::Text("ID %d", (int)city[i].id);
                 ImGui::NextColumn();
                 ImGui::InputText("Name", city[i].name, 40);
                 ImGui::NextColumn();
                 ImGui::InputText("surName", city[i].country, 40);
-
                 ImGui::Separator();
+                ImGui::Spacing();
+                ImGui::Spacing();
+
                 ImGui::PopID();
             }
 
             if(ImGui::Button("Insert")){
                 for(int i=0; i<info->count_rows_3; i++){
                     char sql[512];
-                    snprintf(sql, sizeof(sql), "UPDATE City Set ID = %d , Name = '%s' , Country = '%s' WHERE ID = %d ;",
-                             city[i].id, &city[i].name, &city[i].country, city[i].id);
+                    snprintf(sql, sizeof(sql), "UPDATE City Set Name = '%s' , Country = '%s' WHERE ID = %d ;",
+                             &city[i].name, &city[i].country, city[i].id);
                     ExecuteSQL(sql);
                 }
             }
@@ -581,19 +587,21 @@ void Updatevalues(GlobalData *info){
 
             for(int i=0; i<info->count_rows_4; i++){
                 ImGui::PushID(i);
-                ImGui::InputInt("ID", &country[i].id);
+                ImGui::Text("ID %d", (int)country[i].id);
                 ImGui::NextColumn();
                 ImGui::InputText("Name", country[i].name, 40);
-
                 ImGui::Separator();
+                ImGui::Spacing();
+                ImGui::Spacing();
+
                 ImGui::PopID();
             }
 
             if(ImGui::Button("Insert")){
                 for(int i=0; i<info->count_rows_4; i++){
                     char sql[512];
-                    snprintf(sql, sizeof(sql), "UPDATE City Set ID = %d , Name = '%s' WHERE ID = %d ;",
-                             country[i].id, &country[i].name, country[i].id);
+                    snprintf(sql, sizeof(sql), "UPDATE City Set Name = '%s' WHERE ID = %d ;",
+                             &country[i].name, country[i].id);
                     ExecuteSQL(sql);
                 }
             }
@@ -659,7 +667,7 @@ int InitTablesvalues(int i){
     sqlite3_close(db);
     
     return 0;
-    }
+}
 
 void InsertDataTable(GlobalData *info){
 
