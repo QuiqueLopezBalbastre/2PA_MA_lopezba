@@ -46,7 +46,7 @@ void InitTable(GlobalData *info, int table_identifier){
             for(int i=0; i<info->count_rows_2; i++){
                 (company+i)->id = -1;
                 (company+i)->name[40] = '\0';
-                (company+i)->country[40] = '\0';
+                (company+i)->country = -1;
                 (company+i)->rows= info->count_rows_2;
             }
         break;
@@ -58,7 +58,7 @@ void InitTable(GlobalData *info, int table_identifier){
             for(int i=0; i<info->count_rows_3; i++){
                 (city+i)->id = -1;
                 (city+i)->name[40] = '\0';
-                (city+i)->country[40] = '\0';
+                (city+i)->country = -1;
                 (city+i)->rows= info->count_rows_3;
             }
         break;
@@ -143,7 +143,7 @@ int TableCompanyCallback(void *data, int argc, char **field_values, char **colNa
     strncpy_s((company+index)->name, field_values[1], 40);
     }
     if(NULL!=field_values[2]){
-    strncpy_s((company+index)->country, field_values[2], 40);
+    (company+index)->country = atoi(field_values[2]);
     }
 
     if(index == 0){
@@ -176,7 +176,7 @@ int TableCityCallback(void *data, int argc, char **field_values, char **colNames
     strncpy_s((city+index)->name, field_values[1], 40);
     }
     if(NULL!=field_values[2]){
-    strncpy_s((city+index)->country, field_values[2], 40);
+    (city+index)->country = atoi(field_values[2]);
     }
 
     if(index == 0){
@@ -404,11 +404,7 @@ int ShowDatabaseTable(GlobalData *info){
                     strncpy_s((company+i)->name,"(null)", 40);
                 }
                 ImGui::NextColumn();
-                if(strcmp((company+i)->country, null)!=0){
-                ImGui::Text("%s", (company+i)->country);
-                }else{
-                    strncpy_s((company+i)->country,"(null)", 40);
-                }
+                ImGui::Text("%d", (company+i)->country);
                 ImGui::NextColumn();
             }
             break;
@@ -438,11 +434,7 @@ int ShowDatabaseTable(GlobalData *info){
                     strncpy_s((city+i)->name,"(null)", 40);
                 }
                 ImGui::NextColumn();
-                if(strcmp((city+i)->country, null)!=0){
-                ImGui::Text("%s", (city+i)->country);
-                }else{
-                    strncpy_s((city+i)->country,"(null)", 40);
-                }
+                ImGui::Text("%d", (city+i)->country);
                 ImGui::NextColumn();
             }
             break;
@@ -538,7 +530,7 @@ void Updatevalues(GlobalData *info){
                 ImGui::NextColumn();
                 ImGui::InputText("Name", company[i].name, 40);
                 ImGui::NextColumn();
-                ImGui::InputText("surName", company[i].country, 40);
+                ImGui::Text("Country %d", (int)company[i].id);
                 ImGui::Separator();
                 ImGui::Spacing();
                 ImGui::Spacing();
@@ -549,8 +541,8 @@ void Updatevalues(GlobalData *info){
             if(ImGui::Button("Insert")){
                 for(int i=0; i<info->count_rows_2; i++){
                     char sql[512];
-                    snprintf(sql, sizeof(sql), "UPDATE Country Set Name = '%s' , Country = '%s' WHERE ID = %d ;",
-                             &company[i].name, &company[i].country, employee[i].id);
+                    snprintf(sql, sizeof(sql), "UPDATE Country Set Name = '%s' , Country = '%d' WHERE ID = %d ;",
+                             &company[i].name, company[i].country, employee[i].id);
 
                     ExecuteSQL(sql);
                 }
@@ -565,7 +557,7 @@ void Updatevalues(GlobalData *info){
                 ImGui::NextColumn();
                 ImGui::InputText("Name", city[i].name, 40);
                 ImGui::NextColumn();
-                ImGui::InputText("surName", city[i].country, 40);
+                ImGui::Text("ID %d", (int)city[i].country);
                 ImGui::Separator();
                 ImGui::Spacing();
                 ImGui::Spacing();
@@ -576,8 +568,8 @@ void Updatevalues(GlobalData *info){
             if(ImGui::Button("Insert")){
                 for(int i=0; i<info->count_rows_3; i++){
                     char sql[512];
-                    snprintf(sql, sizeof(sql), "UPDATE City Set Name = '%s' , Country = '%s' WHERE ID = %d ;",
-                             &city[i].name, &city[i].country, city[i].id);
+                    snprintf(sql, sizeof(sql), "UPDATE City Set Name = '%s' , Country = '%d' WHERE ID = %d ;",
+                             &city[i].name, city[i].country, city[i].id);
                     ExecuteSQL(sql);
                 }
             }
@@ -711,7 +703,7 @@ void InsertDataTable(GlobalData *info){
         case TableSelector::Company:
             ImGui::InputInt("ID", &newCompany.id);
             ImGui::InputText("Name", newCompany.name, 40);
-            ImGui::InputText("Country", newCompany.country, 40);
+            ImGui::InputInt("Country", &newCompany.country);
             
             if(ImGui::Button("Insert")){
                 for(int i=0;i<info->count_rows_2;i++){
@@ -722,7 +714,7 @@ void InsertDataTable(GlobalData *info){
                 }
 
 
-                snprintf(sql, sizeof(sql), "INSERT INTO Company (id, name, country) VALUES (%d, '%s', '%s');",
+                snprintf(sql, sizeof(sql), "INSERT INTO Company (id, name, country) VALUES (%d, '%s', '%d');",
                          newCompany.id, newCompany.name, newCompany.country);
 
                 ExecuteSQL(sql);
@@ -737,7 +729,7 @@ void InsertDataTable(GlobalData *info){
 
             ImGui::InputInt("ID", &newCity.id);
             ImGui::InputText("Name", newCity.name, 40);
-            ImGui::InputText("Country", newCity.country, 40);
+            ImGui::InputInt("Country", &newCity.country);
 
             if(ImGui::Button("Insert")){
 
@@ -747,7 +739,7 @@ void InsertDataTable(GlobalData *info){
                      printf("no ejecutar");
                     }
                 }
-                snprintf(sql, sizeof(sql), "INSERT INTO City (id, name, country) VALUES (%d, '%s', '%s');",
+                snprintf(sql, sizeof(sql), "INSERT INTO City (id, name, country) VALUES (%d, '%s', '%d');",
                          newCity.id, newCity.name, newCity.country);
 
                 ExecuteSQL(sql);

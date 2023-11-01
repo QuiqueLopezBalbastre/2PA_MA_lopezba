@@ -31,7 +31,7 @@ struct TableCompany
 {
     int id;
     char name[40];
-    char country[40];
+    int country;
     int rows;
 };
 
@@ -39,7 +39,7 @@ struct TableCity
 {
     int id;
     char name[40];
-    char country[40];
+    int country;
     int rows;
 };
 
