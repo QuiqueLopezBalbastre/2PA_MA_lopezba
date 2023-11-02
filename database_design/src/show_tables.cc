@@ -709,6 +709,7 @@ void InsertDataTable(GlobalData *info){
                 if(print){
                 info->count_rows++;
                 InitTable(info, 0);
+                InitTablesvalues(0);
                 }
                     
             }
@@ -738,6 +739,7 @@ void InsertDataTable(GlobalData *info){
                 if(print){
                 info->count_rows_2++;
                 InitTable(info, 1);
+                InitTablesvalues(1);
                 }
             }
         break;
@@ -765,6 +767,8 @@ void InsertDataTable(GlobalData *info){
                 if(print){
                     info->count_rows_3++;
                     InitTable(info, 2);
+                    InitTablesvalues(2);
+                    InitTablesvalues(2);
                 }
             }
         break;
@@ -790,6 +794,7 @@ void InsertDataTable(GlobalData *info){
                 if(print){
                 info->count_rows_4++;
                 InitTable(info, 3);
+                InitTablesvalues(3);
                 }
             }
         break;
@@ -799,7 +804,10 @@ void InsertDataTable(GlobalData *info){
 int RemoveData(GlobalData *info) {
     ImGui::InputInt("ID", &info->remove_id);
     char sql[512];
-
+    int min = 0;
+    if (info->remove_id < min) {
+                info->remove_id = min;
+                }
     if(ImGui::Button("Remove tuple")) {
         int indexToDelete = -1;
 
