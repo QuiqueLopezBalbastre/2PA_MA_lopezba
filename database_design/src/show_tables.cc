@@ -692,8 +692,9 @@ int InitTablesvalues(int i){
 void InsertDataTable(GlobalData *info){
 
     char sql[512];
-    bool print;
+    bool print=true,print2=false,print3=false,print4=false;
     int min = 1;
+    
     switch(info->table_id){
         
         case TableSelector::Employee:
@@ -714,28 +715,72 @@ void InsertDataTable(GlobalData *info){
              if (newEmployee.id < min) {
                 newEmployee.id = min;
                 }
+
+            if (newEmployee.company < min) {
+                newEmployee.company = min;
+                }
+                
+            if (newEmployee.city < min) {
+                newEmployee.city = min;
+                }
+
+            if (newEmployee.nacionality < min) {
+                newEmployee.nacionality = min;
+                }
+            
+
+            
             if(ImGui::Button("Insert")){
                 
                 for(int i=0;i<info->count_rows;i++){
                 if(newEmployee.id==(employee+i)->id){
                      print=false;
+                    
+                    }
+                }
+
+                for(int i=0;i<info->count_rows_2;i++){
+                if(newEmployee.company==(company+i)->id){
+                     print2=true;
                      
                     }
                 }
+
+                for(int i=0;i<info->count_rows_3;i++){
+                if(newEmployee.city==(city+i)->id){
+                     print3=true;
+                   
+                    }
+                }
+
+                if(!print||print2||print3||print4){
+
+                    info->error=true;
+                }
+
+
+                
+
+
+               
                 
                 snprintf(sql, sizeof(sql), "INSERT INTO Employee (id, name, surname, address, company, city, nationality, salary) VALUES (%d, '%s', '%s', '%s', %d, %d, %d, %d);",
                          newEmployee.id, newEmployee.name, newEmployee.surname, newEmployee.address, newEmployee.company, newEmployee.city, newEmployee.nacionality, newEmployee.salary);
 
-                LogConfirmed("Insert confirmed in employee table");
-
+                
+                
+               
+                if(print&&print2&&print3){
+                info->error=false;
                 ExecuteSQL(sql);
-                if(print){
+                LogConfirmed("Insert confirmed in employee table");
                 info->count_rows++;
                 InitTable(info, 0);
                 InitTablesvalues(0);
                 }
                     
             }
+           
         break;
 
         case TableSelector::Company:
@@ -751,25 +796,47 @@ void InsertDataTable(GlobalData *info){
              if (newCompany.id < min) {
                 newCompany.id = min;
                 }
+
+            if (newCompany.country< min) {
+                newCompany.country = min;
+                }
+
+           
+
+            if(!print||print2){
+
+                   info->error=true;
+                }
+
+            
             if(ImGui::Button("Insert")){
-                for(int i=0;i<info->count_rows_2;i++){
+                for(int i=0;i<info->count_rows_4;i++){
                 if(newCompany.id==(company+i)->id){
                      print=false;
                      
                     }
                 }
 
-
+                for(int i=0;i<info->count_rows_4;i++){
+                if(newCompany.country==(country+i)->id){
+                     print2=true;
+                    
+                    }
+                }
+                
                 snprintf(sql, sizeof(sql), "INSERT INTO Company (id, name, country) VALUES (%d, '%s', '%d');",
                          newCompany.id, newCompany.name, newCompany.country);
 
-                LogConfirmed("Insert confirmed in company table");
+               
 
-                ExecuteSQL(sql);
-                if(print){
+                
+                if(print&&print2){
+                info->error=false;
+                 ExecuteSQL(sql);
                 info->count_rows_2++;
                 InitTable(info, 1);
                 InitTablesvalues(1);
+                LogConfirmed("Insert confirmed in company table");
                 }
             }
         break;
@@ -786,6 +853,14 @@ void InsertDataTable(GlobalData *info){
             if (newCity.id < min) {
                 newCity.id = min;
                 }
+
+             if (newCity.country < min) {
+                newCity.country = min;
+                }
+            
+             if(!print||print2){
+                  info->error=true;
+                }
             if(ImGui::Button("Insert")){
                    
                 for(int i=0;i<info->count_rows_3;i++){
@@ -794,17 +869,28 @@ void InsertDataTable(GlobalData *info){
                      
                     }
                 }
+
+                for(int i=0;i<info->count_rows_4;i++){
+                if(newCity.country==(country+i)->id){
+                     print2=true;
+                    }
+                }
+               
+
                 snprintf(sql, sizeof(sql), "INSERT INTO City (id, name, country) VALUES (%d, '%s', '%d');",
                          newCity.id, newCity.name, newCity.country);
 
-                LogConfirmed("Insert confirmed in city table");
+                
 
-                ExecuteSQL(sql);
-                if(print){
+                
+                if(print&&print2){
+                    info->error=false;
+                    ExecuteSQL(sql);
                     info->count_rows_3++;
                     InitTable(info, 2);
                     InitTablesvalues(2);
                     InitTablesvalues(2);
+                    LogConfirmed("Insert confirmed in city table");
                 }
             }
         break;
@@ -831,17 +917,20 @@ void InsertDataTable(GlobalData *info){
                 snprintf(sql, sizeof(sql), "INSERT INTO Country (id, name) VALUES (%d, '%s');",
                          newCountry.id, newCountry.name);
 
-                LogConfirmed("Insert confirmed in country table");
-
-                ExecuteSQL(sql);
+                
+                
+               
                 if(print){
+                ExecuteSQL(sql);
                 info->count_rows_4++;
                 InitTable(info, 3);
                 InitTablesvalues(3);
+                LogConfirmed("Insert confirmed in country table");
                 }
             }
         break;
     }
+    
 }  
 
 int RemoveData(GlobalData *info) {

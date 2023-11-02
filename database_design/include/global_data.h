@@ -54,7 +54,7 @@ struct GlobalData
   int count_rows, count_rows_2, count_rows_3, count_rows_4;
   
   char struct_database[80]="Select name From sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'\0";
-
+  bool error=false;
   bool query_execute=false;
   bool structb=false;
   bool insert_query=false;

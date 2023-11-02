@@ -88,6 +88,12 @@ int esat::main(int argc, char **argv){
 
       case MenuSelector::kMenuSelector_InsertData:
         InsertDataTable(&global_data);
+        if(global_data.error){
+                    ImGui::Begin("Error isert values");
+                    ImGui::Text("foreign key not found or ID repeated");
+                    ImGui::SetWindowPos(ImVec2(0,0),ImGuiCond_Always);
+                    ImGui::End();
+                }
       break;
 
       case MenuSelector::kMenuSelector_RemoveData:
