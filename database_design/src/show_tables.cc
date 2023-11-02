@@ -330,6 +330,7 @@ int ShowDatabaseTable(GlobalData *info){
             sql = "SELECT * FROM Employee";
             rc = sqlite3_exec(db, sql, TableEmployeeCallback, (void *) &(employee), &err_msg);
             ImGui::Columns(8, "Employee Table Data", false);
+            ImGui::Text("EMPLOYEE TABLE");
             ImGui::Separator();
             
                 ImGui::TextColored(textColor, "ID");
@@ -387,7 +388,7 @@ int ShowDatabaseTable(GlobalData *info){
             sql = "SELECT * FROM Company";
             rc = sqlite3_exec(db, sql, TableCompanyCallback, (void *)&(company), &err_msg);
             ImGui::Columns(3, "Company Table Data", false);
-
+            ImGui::Text("COMPANY TABLE");
             ImGui::Separator();
 
                 ImGui::TextColored(textColor, "ID");
@@ -416,7 +417,7 @@ int ShowDatabaseTable(GlobalData *info){
             sql = "SELECT * FROM City";
             rc = sqlite3_exec(db, sql, TableCityCallback, (void *)&(city), &err_msg);
             ImGui::Columns(3, "City Table Data", false);
-
+            ImGui::Text("CITY TABLE");
             ImGui::Separator();
 
                 ImGui::TextColored(textColor, "ID");
@@ -446,7 +447,7 @@ int ShowDatabaseTable(GlobalData *info){
             sql = "SELECT * FROM Country";
             rc = sqlite3_exec(db, sql, TableCountryCallback, (void *)&(country), &err_msg);
             ImGui::Columns(2, "Country Table Data", false);
-
+            ImGui::Text("COUNTRY TABLE");
             ImGui::Separator();
 
                 ImGui::TextColored(textColor, "ID");
@@ -487,6 +488,10 @@ void Updatevalues(GlobalData *info){
 
     switch(info->table_id){
         case TableSelector::Employee:
+            ImGui::Text("EMPLOYEE TABLE");
+            ImGui::Separator();
+            ImGui::Spacing();
+            ImGui::Spacing();
 
             for(int i=0; i<info->count_rows; i++){
                 ImGui::PushID(i);
@@ -527,6 +532,10 @@ void Updatevalues(GlobalData *info){
         break;
 
         case TableSelector::Company:
+            ImGui::Text("COMPANY TABLE");
+            ImGui::Separator();
+            ImGui::Spacing();
+            ImGui::Spacing();
 
             for(int i=0; i<info->count_rows_2; i++){
                 ImGui::PushID(i);
@@ -534,7 +543,7 @@ void Updatevalues(GlobalData *info){
                 ImGui::NextColumn();
                 ImGui::InputText("Name", company[i].name, 40);
                 ImGui::NextColumn();
-                ImGui::Text("Country %d", (int)company[i].id);
+                ImGui::InputInt("Country", &company[i].country);
                 ImGui::Separator();
                 ImGui::Spacing();
                 ImGui::Spacing();
@@ -556,6 +565,10 @@ void Updatevalues(GlobalData *info){
         break;
 
         case TableSelector::City:
+            ImGui::Text("CITY TABLE");
+            ImGui::Separator();
+            ImGui::Spacing();
+            ImGui::Spacing();
 
             for(int i=0; i<info->count_rows_3; i++){
                 ImGui::PushID(i);
@@ -563,7 +576,7 @@ void Updatevalues(GlobalData *info){
                 ImGui::NextColumn();
                 ImGui::InputText("Name", city[i].name, 40);
                 ImGui::NextColumn();
-                ImGui::Text("ID %d", (int)city[i].country);
+                ImGui::InputInt("Country", &city[i].country);
                 ImGui::Separator();
                 ImGui::Spacing();
                 ImGui::Spacing();
@@ -585,6 +598,10 @@ void Updatevalues(GlobalData *info){
         break;
 
         case TableSelector::Country:
+            ImGui::Text("COUNTRY TABLE");
+            ImGui::Separator();
+            ImGui::Spacing();
+            ImGui::Spacing();
 
             for(int i=0; i<info->count_rows_4; i++){
                 ImGui::PushID(i);
@@ -680,6 +697,11 @@ void InsertDataTable(GlobalData *info){
     switch(info->table_id){
 
         case TableSelector::Employee:
+            ImGui::Text("EMPLOYEE TABLE");
+            ImGui::Separator();
+            ImGui::Spacing();
+            ImGui::Spacing();
+
             ImGui::InputInt("ID", &newEmployee.id);
             ImGui::InputText("Name", newEmployee.name, 40);
             ImGui::InputText("Surname", newEmployee.surname, 40);
@@ -690,7 +712,6 @@ void InsertDataTable(GlobalData *info){
             ImGui::InputInt("Salary", &newEmployee.salary);
 
             if(ImGui::Button("Insert")){
-                
                 
                 for(int i=0;i<info->count_rows;i++){
                 if(newEmployee.id==(employee+i)->id){
@@ -713,6 +734,11 @@ void InsertDataTable(GlobalData *info){
         break;
 
         case TableSelector::Company:
+            ImGui::Text("COMPANY TABLE");
+            ImGui::Separator();
+            ImGui::Spacing();
+            ImGui::Spacing();
+
             ImGui::InputInt("ID", &newCompany.id);
             ImGui::InputText("Name", newCompany.name, 40);
             ImGui::InputInt("Country", &newCompany.country);
@@ -740,6 +766,10 @@ void InsertDataTable(GlobalData *info){
         break;
 
         case TableSelector::City:
+            ImGui::Text("CITY TABLE");
+            ImGui::Separator();
+            ImGui::Spacing();
+            ImGui::Spacing();
 
             ImGui::InputInt("ID", &newCity.id);
             ImGui::InputText("Name", newCity.name, 40);
@@ -766,6 +796,11 @@ void InsertDataTable(GlobalData *info){
         break;
 
         case TableSelector::Country:
+            ImGui::Text("COUNTRY TABLE");
+            ImGui::Separator();
+            ImGui::Spacing();
+            ImGui::Spacing();
+
             ImGui::InputInt("ID", &newCountry.id);
             ImGui::InputText("Name", newCountry.name, 40);
 
