@@ -19,6 +19,8 @@ TableCompany newCompany;
 TableCity newCity;
 TableCountry newCountry;
 
+static char errorBuffer[1024] = "";
+
 void InitTable(GlobalData *info, int table_identifier){
 
     switch(table_identifier){
@@ -257,7 +259,7 @@ void ShowQuery(GlobalData *info){
     int rc = sqlite3_open("../data/Database.db", &db);
 
     if(rc){
-        fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+        LogError(sqlite3_errmsg(db));
         info->insert_query = false;
         return;
     }
@@ -267,7 +269,7 @@ void ShowQuery(GlobalData *info){
     rc = sqlite3_exec(db, info->user_query, EmptyCallback, info->buffer_query, &err_msg);
 
     if(rc != SQLITE_OK){
-        fprintf(stderr, "SQL error: %s\n", err_msg);
+        LogError(err_msg);
         sqlite3_free(err_msg);
         info->insert_query = false;
     }
@@ -281,7 +283,7 @@ void ShowDatabaseStructure(GlobalData *info){
     int rc = sqlite3_open("../data/Database.db", &db);
 
     if(rc){
-        fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+        LogError(sqlite3_errmsg(db));
         return;
     }
 
@@ -298,7 +300,7 @@ void ShowDatabaseStructure(GlobalData *info){
     rc = sqlite3_exec(db, query, DatabaseStructureCallback, 0, &err_msg);
 
     if(rc != SQLITE_OK){
-        fprintf(stderr, "SQL error: %s\n", err_msg);
+        LogError(err_msg);
         sqlite3_free(err_msg);
     }
 
@@ -313,7 +315,7 @@ int ShowDatabaseTable(GlobalData *info){
 
     if(rc != SQLITE_OK){
 
-        fprintf(stderr, "Cannot open database: %s\n", sqlite3_errmsg(db));
+        LogError(sqlite3_errmsg(db));
         sqlite3_close(db);
         return 1;
     }
@@ -467,8 +469,7 @@ int ShowDatabaseTable(GlobalData *info){
     }
 
     if(rc != SQLITE_OK){
-        fprintf(stderr, "Failed to select data\n");
-        fprintf(stderr, "SQL error: %s\n", err_msg);
+        LogError(err_msg);
 
         sqlite3_free(err_msg);
         sqlite3_close(db);
@@ -517,6 +518,8 @@ void Updatevalues(GlobalData *info){
                     snprintf(sql, sizeof(sql), "UPDATE Employee Set Name = '%s' , Surname = '%s', Company = %d , city = %d , nationality = %d , salary = %d WHERE ID = %d ;",
                              &employee[i].name, &employee[i].surname, employee[i].company, employee[i].city, employee[i].nacionality, employee[i].salary, employee[i].id);
 
+                    LogConfirmed("Update employee table confirmed");
+                    
                     ExecuteSQL(sql);
                 }
             }
@@ -544,6 +547,8 @@ void Updatevalues(GlobalData *info){
                     snprintf(sql, sizeof(sql), "UPDATE Country Set Name = '%s' , Country = '%d' WHERE ID = %d ;",
                              &company[i].name, company[i].country, employee[i].id);
 
+                    LogConfirmed("Update company table confirmed");
+
                     ExecuteSQL(sql);
                 }
             }
@@ -570,6 +575,9 @@ void Updatevalues(GlobalData *info){
                     char sql[512];
                     snprintf(sql, sizeof(sql), "UPDATE City Set Name = '%s' , Country = '%d' WHERE ID = %d ;",
                              &city[i].name, city[i].country, city[i].id);
+
+                    LogConfirmed("Update city table confirmed");
+
                     ExecuteSQL(sql);
                 }
             }
@@ -594,6 +602,9 @@ void Updatevalues(GlobalData *info){
                     char sql[512];
                     snprintf(sql, sizeof(sql), "UPDATE City Set Name = '%s' WHERE ID = %d ;",
                              &country[i].name, country[i].id);
+
+                    LogConfirmed("Update country table confirmed");
+
                     ExecuteSQL(sql);
                 }
             }
@@ -609,7 +620,7 @@ int InitTablesvalues(int i){
 
     if(rc != SQLITE_OK){
 
-        fprintf(stderr, "Cannot open database: %s\n", sqlite3_errmsg(db));
+        LogError(sqlite3_errmsg(db));
         sqlite3_close(db);
         return 1;
     }
@@ -647,8 +658,7 @@ int InitTablesvalues(int i){
     
 
     if(rc != SQLITE_OK){
-        fprintf(stderr, "Failed to select data\n");
-        fprintf(stderr, "SQL error: %s\n", err_msg);
+        LogError(err_msg);
 
         sqlite3_free(err_msg);
         sqlite3_close(db);
@@ -683,14 +693,15 @@ void InsertDataTable(GlobalData *info){
                 
                 for(int i=0;i<info->count_rows;i++){
                 if(newEmployee.id==(employee+i)->id){
-                     print=false;
-                     printf("no ejecutar");
+                    print=false;
                     }
                 }
                 
                 snprintf(sql, sizeof(sql), "INSERT INTO Employee (id, name, surname, address, company, city, nationality, salary) VALUES (%d, '%s', '%s', '%s', %d, %d, %d, %d);",
                          newEmployee.id, newEmployee.name, newEmployee.surname, newEmployee.address, newEmployee.company, newEmployee.city, newEmployee.nacionality, newEmployee.salary);
 
+                LogConfirmed("Insert in employee table confirmed");
+                
                 ExecuteSQL(sql);
                 if(print){
                 info->count_rows++;
@@ -717,6 +728,8 @@ void InsertDataTable(GlobalData *info){
                 snprintf(sql, sizeof(sql), "INSERT INTO Company (id, name, country) VALUES (%d, '%s', '%d');",
                          newCompany.id, newCompany.name, newCompany.country);
 
+                LogConfirmed("Insert in company table confirmed");
+
                 ExecuteSQL(sql);
                 if(print){
                 info->count_rows_2++;
@@ -736,11 +749,12 @@ void InsertDataTable(GlobalData *info){
                 for(int i=0;i<info->count_rows_3;i++){
                 if(newCity.id==(city+i)->id){
                      print=false;
-                     printf("no ejecutar");
                     }
                 }
                 snprintf(sql, sizeof(sql), "INSERT INTO City (id, name, country) VALUES (%d, '%s', '%d');",
                          newCity.id, newCity.name, newCity.country);
+
+                LogConfirmed("Insert in city table confirmed");
 
                 ExecuteSQL(sql);
                 if(print){
@@ -758,12 +772,13 @@ void InsertDataTable(GlobalData *info){
                 for(int i=0;i<info->count_rows_4;i++){
                 if(newCountry.id==(country+i)->id){
                      print=false;
-                     printf("no ejecutar");
                     }
                 }
 
                 snprintf(sql, sizeof(sql), "INSERT INTO Country (id, name) VALUES (%d, '%s');",
                          newCountry.id, newCountry.name);
+
+                LogConfirmed("Insert in country table confirmed");
 
                 ExecuteSQL(sql);
                 if(print){
@@ -794,7 +809,7 @@ int RemoveData(GlobalData *info) {
                     snprintf(sql, sizeof(sql), "DELETE FROM Employee WHERE ID = %d", info->remove_id);
                     ExecuteSQL(sql);
 
-                    
+                    LogConfirmed("Delete confirmed in employee table");
 
                     info->count_rows--;
                     InitTable(info, 0);
@@ -812,7 +827,7 @@ int RemoveData(GlobalData *info) {
                     snprintf(sql, sizeof(sql), "DELETE FROM Company WHERE ID = %d", info->remove_id);
                     ExecuteSQL(sql);
 
-                    
+                    LogConfirmed("Delete confirmed in company table");
 
                     info->count_rows_2--;
                     InitTable(info, 1);
@@ -830,7 +845,7 @@ int RemoveData(GlobalData *info) {
                     snprintf(sql, sizeof(sql), "DELETE FROM City WHERE ID = %d", info->remove_id);
                     ExecuteSQL(sql);
 
-                    
+                    LogConfirmed("Delete confirmed in city table");
 
                     info->count_rows_3--;
                     InitTable(info, 2);
@@ -848,7 +863,7 @@ int RemoveData(GlobalData *info) {
                     snprintf(sql, sizeof(sql), "DELETE FROM Country WHERE ID = %d", info->remove_id);
                     ExecuteSQL(sql);
 
-                   
+                    LogConfirmed("Delete confirmed in country table");
 
                     info->count_rows_4--;
                     InitTable(info, 3);

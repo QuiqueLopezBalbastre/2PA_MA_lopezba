@@ -14,9 +14,13 @@ void LogError(const char* errorMessage) {
     snprintf(errorBuffer, sizeof(errorBuffer), "Error: %s", errorMessage);
 }
 
+void LogConfirmed(const char* message) {
+    snprintf(errorBuffer, sizeof(errorBuffer), "%s", message);
+}
+
 void ShowErrorWindow() {
     CreateWindow("Error Log", {625.0f, 640.0f}, {555.0f, 150.0f});
-    ImGui::Text("Error Window");
+    ImGui::Text("Log Window");
     ImGui::Text("%s", errorBuffer);
 
     CloseWindow();

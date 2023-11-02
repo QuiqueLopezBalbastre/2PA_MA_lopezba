@@ -22,6 +22,13 @@
 void LogError(const char* errorMessage);
 
 /**
+ * @brief Logs a message to a buffer.
+ *
+ * @param message Message to log.
+ */
+void LogConfirmed(const char* message);
+
+/**
  * @brief Displays an error window with error messages.
  */
 void ShowErrorWindow();

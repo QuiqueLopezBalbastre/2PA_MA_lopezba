@@ -7,6 +7,9 @@
 
 #include "count_rows.h"
 #include "global_data.h"
+#include "global_functions.h"
+
+static char errorBuffer[1024] = "";
 
 int ReadRows(void *data, int argc, char **field_values, char **colNames){
     
@@ -28,7 +31,7 @@ void ShowRows(GlobalData* info, int table_identifier) {
             snprintf(sql, sizeof(sql), " Select COUNT(*) FROM Employee;");
 
             if (rc != SQLITE_OK) {
-                fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+                LogError(sqlite3_errmsg(db));
                 sqlite3_close(db);
                 return;
             }
@@ -36,7 +39,7 @@ void ShowRows(GlobalData* info, int table_identifier) {
             rc = sqlite3_exec(db, sql, ReadRows, (void*) &(info->count_rows), &err_msg);
 
             if (rc != SQLITE_OK) {
-                fprintf(stderr, "SQL error: %s\n", err_msg);
+                LogError(err_msg);
                 sqlite3_free(err_msg);
             }
 
@@ -47,7 +50,7 @@ void ShowRows(GlobalData* info, int table_identifier) {
             snprintf(sql, sizeof(sql), " Select COUNT(*) FROM Company;");
 
             if (rc != SQLITE_OK) {
-                fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+                LogError(sqlite3_errmsg(db));
                 sqlite3_close(db);
                 return;
             }
@@ -55,7 +58,7 @@ void ShowRows(GlobalData* info, int table_identifier) {
             rc = sqlite3_exec(db, sql, ReadRows, (void*) &(info->count_rows_2), &err_msg);
 
             if (rc != SQLITE_OK) {
-                fprintf(stderr, "SQL error: %s\n", err_msg);
+                LogError(err_msg);
                 sqlite3_free(err_msg);
             }
 
@@ -66,7 +69,7 @@ void ShowRows(GlobalData* info, int table_identifier) {
             snprintf(sql, sizeof(sql), " Select COUNT(*) FROM City;");
 
             if (rc != SQLITE_OK) {
-                fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+                LogError(sqlite3_errmsg(db));
                 sqlite3_close(db);
                 return;
             }
@@ -74,7 +77,7 @@ void ShowRows(GlobalData* info, int table_identifier) {
             rc = sqlite3_exec(db, sql, ReadRows, (void*) &(info->count_rows_3), &err_msg);
 
             if (rc != SQLITE_OK) {
-                fprintf(stderr, "SQL error: %s\n", err_msg);
+                LogError(err_msg);
                 sqlite3_free(err_msg);
             }
 
@@ -85,7 +88,7 @@ void ShowRows(GlobalData* info, int table_identifier) {
             snprintf(sql, sizeof(sql), " Select COUNT(*) FROM Country;");
 
             if (rc != SQLITE_OK) {
-                fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+                LogError(sqlite3_errmsg(db));
                 sqlite3_close(db);
                 return;
             }
@@ -93,7 +96,7 @@ void ShowRows(GlobalData* info, int table_identifier) {
             rc = sqlite3_exec(db, sql, ReadRows, (void*) &(info->count_rows_4), &err_msg);
 
             if (rc != SQLITE_OK) {
-                fprintf(stderr, "SQL error: %s\n", err_msg);
+                LogError(err_msg);
                 sqlite3_free(err_msg);
             }
 
