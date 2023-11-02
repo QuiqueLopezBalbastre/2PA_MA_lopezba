@@ -1,0 +1,21 @@
+Pass
+
+P1 --> Documentation, page 3
+P2 --> show_tables.cc, line 772, InsertDataTable()
+P3 --> show_tables.cc, line 309, ShowQuery()
+P4 --> show_tables.cc, line 781, InsertDataTable() controlado por ImGui::Input
+P5 --> Documentation, page 4-12
+
+Merit
+
+M1 --> Documentation, page 3
+M2 --> show_tables.cc, line 309, ShowQuery()
+M3 --> show_tables.cc, line 88, TableEmployeeCallback()
+M4 --> show_tables.cc, line 781, InsertDataTable() controlado por ImGui::Input
+M5 --> Documentation, page 5
+
+Distinction
+
+D1 --> Documentation, page 4
+D2 --> Documentation, page 13
+D3 --> Documentation, page 13
