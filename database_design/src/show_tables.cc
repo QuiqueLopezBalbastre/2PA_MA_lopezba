@@ -267,6 +267,7 @@ void ShowQuery(GlobalData *info){
     char *err_msg = 0;
 
     rc = sqlite3_exec(db, info->user_query, EmptyCallback, info->buffer_query, &err_msg);
+    LogConfirmed("Query confirmed");
 
     if(rc != SQLITE_OK){
         LogError(err_msg);
