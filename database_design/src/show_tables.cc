@@ -554,7 +554,7 @@ void Updatevalues(GlobalData *info){
             if(ImGui::Button("Insert")){
                 for(int i=0; i<info->count_rows_2; i++){
                     char sql[512];
-                    snprintf(sql, sizeof(sql), "UPDATE Country Set Name = '%s' , Country = '%d' WHERE ID = %d ;",
+                    snprintf(sql, sizeof(sql), "UPDATE Company Set Name = '%s' , Country = '%d' WHERE ID = %d ;",
                              &company[i].name, company[i].country, employee[i].id);
 
                     LogConfirmed("Update company table confirmed");
@@ -618,7 +618,7 @@ void Updatevalues(GlobalData *info){
             if(ImGui::Button("Insert")){
                 for(int i=0; i<info->count_rows_4; i++){
                     char sql[512];
-                    snprintf(sql, sizeof(sql), "UPDATE City Set Name = '%s' WHERE ID = %d ;",
+                    snprintf(sql, sizeof(sql), "UPDATE Country Set Name = '%s' WHERE ID = %d ;",
                              &country[i].name, country[i].id);
 
                     LogConfirmed("Update country table confirmed");
@@ -693,7 +693,7 @@ void InsertDataTable(GlobalData *info){
 
     char sql[512];
     bool print;
-    int min = 0;
+    int min = 1;
     switch(info->table_id){
         
         case TableSelector::Employee:
@@ -847,7 +847,7 @@ void InsertDataTable(GlobalData *info){
 int RemoveData(GlobalData *info) {
     ImGui::InputInt("ID", &info->remove_id);
     char sql[512];
-    int min = 0;
+    int min = 1;
     if(info->remove_id < min) {
         info->remove_id = min;
     }
