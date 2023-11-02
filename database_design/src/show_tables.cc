@@ -719,12 +719,14 @@ void InsertDataTable(GlobalData *info){
                 for(int i=0;i<info->count_rows;i++){
                 if(newEmployee.id==(employee+i)->id){
                      print=false;
-                     printf("no ejecutar");
+                     
                     }
                 }
                 
                 snprintf(sql, sizeof(sql), "INSERT INTO Employee (id, name, surname, address, company, city, nationality, salary) VALUES (%d, '%s', '%s', '%s', %d, %d, %d, %d);",
                          newEmployee.id, newEmployee.name, newEmployee.surname, newEmployee.address, newEmployee.company, newEmployee.city, newEmployee.nacionality, newEmployee.salary);
+
+                LogConfirmed("Insert confirmed in employee table");
 
                 ExecuteSQL(sql);
                 if(print){
@@ -753,13 +755,15 @@ void InsertDataTable(GlobalData *info){
                 for(int i=0;i<info->count_rows_2;i++){
                 if(newCompany.id==(company+i)->id){
                      print=false;
-                     printf("no ejecutar");
+                     
                     }
                 }
 
 
                 snprintf(sql, sizeof(sql), "INSERT INTO Company (id, name, country) VALUES (%d, '%s', '%d');",
                          newCompany.id, newCompany.name, newCompany.country);
+
+                LogConfirmed("Insert confirmed in company table");
 
                 ExecuteSQL(sql);
                 if(print){
@@ -787,11 +791,13 @@ void InsertDataTable(GlobalData *info){
                 for(int i=0;i<info->count_rows_3;i++){
                 if(newCity.id==(city+i)->id){
                      print=false;
-                     printf("no ejecutar");
+                     
                     }
                 }
                 snprintf(sql, sizeof(sql), "INSERT INTO City (id, name, country) VALUES (%d, '%s', '%d');",
                          newCity.id, newCity.name, newCity.country);
+
+                LogConfirmed("Insert confirmed in city table");
 
                 ExecuteSQL(sql);
                 if(print){
@@ -818,12 +824,14 @@ void InsertDataTable(GlobalData *info){
                 for(int i=0;i<info->count_rows_4;i++){
                 if(newCountry.id==(country+i)->id){
                      print=false;
-                     printf("no ejecutar");
+                     
                     }
                 }
 
                 snprintf(sql, sizeof(sql), "INSERT INTO Country (id, name) VALUES (%d, '%s');",
                          newCountry.id, newCountry.name);
+
+                LogConfirmed("Insert confirmed in country table");
 
                 ExecuteSQL(sql);
                 if(print){
@@ -840,9 +848,9 @@ int RemoveData(GlobalData *info) {
     ImGui::InputInt("ID", &info->remove_id);
     char sql[512];
     int min = 0;
-    if (info->remove_id < min) {
-                info->remove_id = min;
-                }
+    if(info->remove_id < min) {
+        info->remove_id = min;
+    }
     if(ImGui::Button("Remove tuple")) {
         int indexToDelete = -1;
 
