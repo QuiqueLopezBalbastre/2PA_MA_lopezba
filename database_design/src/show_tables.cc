@@ -753,7 +753,7 @@ void InsertDataTable(GlobalData *info){
                     }
                 }
 
-                if(!print||print2||print3||print4){
+                if(!print||!print2||!print3||!print4){
 
                     info->error=true;
                 }
@@ -803,10 +803,7 @@ void InsertDataTable(GlobalData *info){
 
            
 
-            if(!print||print2){
-
-                   info->error=true;
-                }
+            
 
             
             if(ImGui::Button("Insert")){
@@ -822,6 +819,11 @@ void InsertDataTable(GlobalData *info){
                      print2=true;
                     
                     }
+                }
+
+                if(!print||!print2){
+
+                   info->error=true;
                 }
                 
                 snprintf(sql, sizeof(sql), "INSERT INTO Company (id, name, country) VALUES (%d, '%s', '%d');",
@@ -858,9 +860,7 @@ void InsertDataTable(GlobalData *info){
                 newCity.country = min;
                 }
             
-             if(!print||print2){
-                  info->error=true;
-                }
+             
             if(ImGui::Button("Insert")){
                    
                 for(int i=0;i<info->count_rows_3;i++){
@@ -876,6 +876,9 @@ void InsertDataTable(GlobalData *info){
                     }
                 }
                
+               if(!print||!print2){
+                  info->error=true;
+                }
 
                 snprintf(sql, sizeof(sql), "INSERT INTO City (id, name, country) VALUES (%d, '%s', '%d');",
                          newCity.id, newCity.name, newCity.country);
